@@ -39,6 +39,9 @@ jobs:
           VITE_API_URL: ''
           VITE_CONTACT_FORM_ENDPOINT: ''
 
+      - name: Disable Jekyll processing
+        run: touch dist/.nojekyll
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
