@@ -1,0 +1,106 @@
+.home-skills__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-bottom: var(--space-lg);
+}
+
+@media (max-width: 720px) {
+  .home-skills__nav {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    padding-bottom: 0.15rem;
+    margin-inline: calc(var(--space-md) * -1);
+    padding-inline: var(--space-md);
+  }
+
+  .home-skills__nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .home-skills__tab {
+    flex-shrink: 0;
+  }
+}
+
+.home-skills__tab {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition:
+    color var(--motion-base) ease,
+    border-color var(--motion-base) ease,
+    background var(--motion-base) ease,
+    transform var(--motion-base) var(--motion-ease),
+    box-shadow var(--motion-base) ease;
+}
+
+@media (hover: hover) {
+  .home-skills__tab:hover {
+    color: var(--color-accent-primary);
+    border-color: color-mix(in srgb, var(--color-accent-primary) 40%, transparent);
+    transform: translateY(var(--motion-lift));
+    box-shadow: 0 0 12px var(--nav-glow);
+  }
+}
+
+.home-skills__tab--active {
+  color: var(--color-heading);
+  border-color: color-mix(in srgb, var(--color-accent-primary) 45%, var(--color-border));
+  background: color-mix(in srgb, var(--color-accent-primary) 14%, var(--color-surface));
+}
+
+.home-skills__panel {
+  padding: var(--space-lg);
+}
+
+.home-skills__panel--compact {
+  padding-block: var(--space-md);
+}
+
+.home-skills__panel-title {
+  margin: 0 0 var(--space-md);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent-primary);
+}
+
+.home-skills__panel--compact .home-skills__panel-title {
+  margin-bottom: var(--space-sm);
+}
+
+.home-skills__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.home-skills__list--compact {
+  gap: 0.45rem;
+  max-width: 22rem;
+}
+
+@media (max-width: 640px) {
+  .home-skills__tab {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.7rem;
+  }
+}

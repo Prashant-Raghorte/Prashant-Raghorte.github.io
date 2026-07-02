@@ -1,0 +1,5 @@
+export { AboutPage } from '@/pages/AboutPage'
+export { ContactPage } from '@/pages/ContactPage'
+export { ExperiencePage } from '@/pages/ExperiencePage'
+export { HomePage } from '@/pages/HomePage'
+export { ProjectsPage } from '@/pages/ProjectsPage'

@@ -1,0 +1,40 @@
+.theme-switcher {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 1px solid var(--nav-border);
+  border-radius: 999px;
+  background: var(--nav-control-bg);
+  color: var(--nav-icon);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition:
+    color var(--motion-base) ease,
+    border-color var(--motion-base) ease,
+    box-shadow var(--motion-base) ease,
+    transform var(--motion-base) var(--motion-ease);
+}
+
+@media (hover: hover) {
+  .theme-switcher:hover {
+    color: var(--nav-icon-active);
+    border-color: color-mix(in srgb, var(--color-accent-primary) 40%, transparent);
+    box-shadow: 0 0 16px var(--nav-glow);
+    transform: translateY(var(--motion-lift));
+  }
+}
+
+.theme-switcher:focus-visible {
+  outline: 2px solid var(--color-accent-primary);
+  outline-offset: 2px;
+}
+
+.theme-switcher__icon {
+  width: 1.15rem;
+  height: 1.15rem;
+}

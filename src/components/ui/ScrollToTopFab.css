@@ -1,0 +1,182 @@
+.scroll-fab-wrap {
+  position: fixed;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1.25rem, env(safe-area-inset-bottom));
+  z-index: 180;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0.75rem) scale(0.92);
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease,
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.scroll-fab-wrap--visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.scroll-fab__tooltip {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 0.65rem);
+  min-width: max-content;
+  padding: 0.4rem 0.7rem;
+  border-radius: var(--radius-md);
+  border: 1px solid color-mix(in srgb, var(--color-accent-primary) 35%, var(--color-border));
+  background: color-mix(in srgb, var(--color-surface) 95%, var(--color-bg));
+  box-shadow:
+    0 8px 24px color-mix(in srgb, var(--color-bg) 40%, transparent),
+    0 0 16px var(--nav-glow);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-heading);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(4px);
+  transition:
+    opacity 0.22s ease,
+    visibility 0.22s ease,
+    transform 0.22s ease;
+}
+
+.scroll-fab__tooltip::after {
+  content: '';
+  position: absolute;
+  right: 1.1rem;
+  bottom: -5px;
+  width: 10px;
+  height: 10px;
+  transform: rotate(45deg);
+  border-right: 1px solid color-mix(in srgb, var(--color-accent-primary) 35%, var(--color-border));
+  border-bottom: 1px solid color-mix(in srgb, var(--color-accent-primary) 35%, var(--color-border));
+  background: color-mix(in srgb, var(--color-surface) 95%, var(--color-bg));
+}
+
+@media (hover: hover) {
+  .scroll-fab-wrap:hover .scroll-fab__tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+.scroll-fab-wrap:focus-within .scroll-fab__tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.scroll-fab {
+  position: relative;
+  display: inline-flex;
+  padding: 1px;
+  border: none;
+  border-radius: 999px;
+  background: var(--shine-track);
+  color: var(--color-text);
+  cursor: pointer;
+  overflow: hidden;
+  isolation: isolate;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.scroll-fab::before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  transform: translate(-50%, -50%);
+  background: var(--shine-gradient);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+@media (hover: hover) {
+  .scroll-fab:hover::before {
+    opacity: 1;
+    animation: shine-border-spin 1.6s linear infinite;
+  }
+
+  .scroll-fab:hover .scroll-fab__inner {
+    color: var(--color-heading);
+    transform: translateY(var(--motion-lift));
+    box-shadow:
+      0 10px 28px color-mix(in srgb, var(--color-bg) 40%, transparent),
+      0 0 20px var(--nav-glow);
+  }
+}
+
+.scroll-fab__inner {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  background: var(--color-surface);
+  color: var(--color-accent-primary);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--color-bg) 35%, transparent);
+  transition:
+    color var(--motion-base) ease,
+    background var(--motion-base) ease,
+    transform var(--motion-base) var(--motion-ease),
+    box-shadow var(--motion-base) ease;
+}
+
+.scroll-fab:focus-visible {
+  outline: 2px solid var(--color-accent-primary);
+  outline-offset: 3px;
+  border-radius: 999px;
+}
+
+.scroll-fab__inner svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+@media (max-width: 640px) {
+  .scroll-fab-wrap {
+    right: max(0.85rem, env(safe-area-inset-right));
+    bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+
+  .scroll-fab__inner {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .scroll-fab__inner svg {
+    width: 1.05rem;
+    height: 1.05rem;
+  }
+
+  .scroll-fab-wrap:focus-within .scroll-fab__tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-fab:hover::before {
+    animation: none;
+    opacity: 0.85;
+  }
+
+  .scroll-fab-wrap,
+  .scroll-fab__tooltip {
+    transition: opacity 0.15s ease, visibility 0.15s ease;
+  }
+}

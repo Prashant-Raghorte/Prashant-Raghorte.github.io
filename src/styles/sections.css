@@ -1,0 +1,10 @@
+.section-text {
+  max-width: 42rem;
+  margin: 0 0 var(--space-md);
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+.section-text:last-child {
+  margin-bottom: 0;
+}

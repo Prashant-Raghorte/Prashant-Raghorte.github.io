@@ -1,0 +1,28 @@
+.section-block {
+  scroll-margin-top: calc(var(--header-height) + var(--space-md));
+  padding-block: var(--space-3xl);
+}
+
+.section-block__header {
+  margin-bottom: var(--space-xl);
+}
+
+.section-block__title {
+  margin: 0;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  color: var(--color-heading);
+}
+
+.section-block__eyebrow {
+  margin: 0 0 var(--space-sm);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent-primary);
+}
+
+.section-block__inner {
+  width: min(100% - var(--space-xl), var(--max-width));
+  margin-inline: auto;
+}

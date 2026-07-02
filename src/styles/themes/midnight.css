@@ -1,0 +1,50 @@
+[data-theme='midnight'] {
+  color-scheme: dark;
+
+  --color-bg: #030712;
+  --color-surface: #0c1222;
+  --color-border: #1e293b;
+  --color-text: #e2e8f0;
+  --color-text-muted: #94a3b8;
+  --color-heading: #f8fafc;
+  --color-primary: #818cf8;
+  --color-primary-hover: #a5b4fc;
+  --color-accent-primary: #67e8f9;
+  --color-accent-secondary: #818cf8;
+  --color-link: #a5b4fc;
+
+  --nav-bg: rgba(3, 7, 18, 0.85);
+  --nav-border: rgba(129, 140, 248, 0.15);
+  --nav-control-bg: rgba(129, 140, 248, 0.1);
+  --nav-glow: rgba(103, 232, 249, 0.25);
+  --nav-icon: #cbd5e1;
+  --nav-icon-active: #67e8f9;
+
+  --footer-bg: #060b16;
+  --footer-border: rgba(129, 140, 248, 0.22);
+
+  --shine-track: #334155;
+  --shine-gradient: conic-gradient(
+    from -90deg,
+    transparent 0deg 298deg,
+    rgba(49, 46, 129, 0.35) 312deg,
+    rgba(99, 102, 241, 0.65) 324deg,
+    rgba(129, 140, 248, 0.9) 334deg,
+    rgba(165, 180, 252, 1) 342deg,
+    rgba(103, 232, 249, 0.95) 348deg,
+    rgba(165, 243, 252, 1) 352deg,
+    rgba(129, 140, 248, 0.7) 356deg,
+    rgba(99, 102, 241, 0.4) 360deg
+  );
+  --btn-shine-bg: var(--color-surface);
+  --btn-shine-text: var(--color-text);
+  --btn-shine-text-hover: var(--color-accent-primary);
+}
+
+[data-theme='midnight'] .navbar-shine-ring {
+  opacity: 0.4;
+}
+
+[data-theme='midnight'] .star-background__stage canvas {
+  filter: contrast(1.08) saturate(1.2) hue-rotate(12deg);
+}

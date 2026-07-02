@@ -1,0 +1,389 @@
+@import './variables.css';
+
+/*
+ * Touch / mobile — mirror desktop :hover visuals.
+ * Phones have no hover; show the same glass shine, glow, and lift on tap (:active).
+ * Shine cards + shine buttons keep the desktop hover look always visible.
+ */
+
+@media (hover: none) {
+  .navbar-link,
+  .navbar-logo,
+  .theme-switcher,
+  .ui-btn,
+  .footer__brand,
+  .footer__orbit-link,
+  .footer-social-link,
+  .footer__resume,
+  .scroll-fab,
+  .contact-preview__social,
+  .contact-preview__link,
+  .contact-connect__channel,
+  .about-profile__tile--link,
+  .about-profile__social-item,
+  .project-card__link-btn,
+  .projects-page__clear,
+  .project-skill-filter__chip,
+  .project-skill-filter__clear,
+  .project-skill-filter__active-chip,
+  .home-skills__tab,
+  .skills-chip,
+  .about-highlights__chip,
+  .about-skills__category,
+  .read-more__toggle,
+  .view-all-rail__pill,
+  .timeline-card__company--link,
+  .availability-badge__status {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  /* Glass shine cards — same as desktop hover, always on */
+  .shine-card--hover::before,
+  .shine-card--active::before {
+    opacity: 1;
+    animation: shine-border-spin 1.6s linear infinite;
+  }
+
+  /* Shine / ghost buttons — same as desktop hover, always on */
+  .ui-btn--shine::before,
+  .ui-btn--ghost::before {
+    opacity: 1;
+    animation: shine-border-spin 1.6s linear infinite;
+  }
+
+  .ui-btn--shine .ui-btn__inner {
+    color: var(--btn-shine-text-hover);
+    box-shadow: 0 0 22px color-mix(in srgb, var(--nav-glow) 70%, transparent);
+  }
+
+  .ui-btn--ghost .ui-btn__inner--ghost {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 35%, transparent);
+    background: color-mix(in srgb, var(--color-accent-primary) 8%, var(--color-surface));
+    color: var(--color-accent-primary);
+    box-shadow: 0 0 22px color-mix(in srgb, var(--nav-glow) 60%, transparent);
+  }
+
+  .ui-btn--soft {
+    border-color: var(--color-accent-primary);
+    color: var(--color-accent-primary);
+    box-shadow: 0 0 16px color-mix(in srgb, var(--nav-glow) 45%, transparent);
+  }
+
+  .ui-btn:active:not(:disabled) {
+    transform: translateY(0) scale(0.98);
+    transition-duration: 0.1s;
+  }
+
+  /* Footer CV + scroll FAB — desktop shine always on */
+  .footer__resume::before,
+  .scroll-fab::before {
+    opacity: 1;
+    animation: shine-border-spin 1.6s linear infinite;
+  }
+
+  .footer__resume .footer__resume-inner {
+    color: var(--btn-shine-text-hover);
+    box-shadow: 0 0 22px color-mix(in srgb, var(--nav-glow) 70%, transparent);
+  }
+
+  .scroll-fab .scroll-fab__inner {
+    color: var(--color-heading);
+    box-shadow:
+      0 10px 28px color-mix(in srgb, var(--color-bg) 40%, transparent),
+      0 0 20px var(--nav-glow);
+  }
+
+  /* Nav */
+  .navbar-link:active,
+  .navbar-link:focus-visible {
+    color: var(--nav-icon-active);
+    background: color-mix(in srgb, var(--color-accent-primary) 10%, transparent);
+    transform: translateY(var(--motion-lift));
+    box-shadow: 0 0 16px var(--nav-glow);
+  }
+
+  .navbar-logo:active,
+  .navbar-logo:focus-visible {
+    color: var(--color-accent-primary);
+  }
+
+  .theme-switcher:active,
+  .theme-switcher:focus-visible {
+    color: var(--nav-icon-active);
+    border-color: color-mix(in srgb, var(--color-accent-primary) 40%, transparent);
+    box-shadow: 0 0 16px var(--nav-glow);
+    transform: translateY(var(--motion-lift));
+  }
+
+  /* Footer icons */
+  .footer__brand:active {
+    transform: translateY(var(--motion-lift));
+  }
+
+  .footer__orbit-link:active,
+  .footer__orbit-link:focus-visible,
+  .footer-social-link:active,
+  .footer-social-link:focus-visible {
+    color: var(--color-accent-primary);
+    background: color-mix(in srgb, var(--color-accent-primary) 12%, transparent);
+    transform: translateY(var(--motion-lift));
+    box-shadow: 0 0 16px var(--nav-glow);
+  }
+
+  .footer__resume:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  .scroll-fab:active .scroll-fab__inner {
+    transform: scale(0.96);
+  }
+
+  /* Home contact preview */
+  .contact-preview__social:active,
+  .contact-preview__social:focus-visible {
+    color: var(--color-accent-primary);
+    border-color: color-mix(in srgb, var(--color-accent-primary) 40%, transparent);
+    transform: translateY(var(--motion-lift));
+    box-shadow: 0 0 16px var(--nav-glow);
+  }
+
+  .contact-preview__link:active,
+  .contact-preview__link:focus-visible {
+    color: var(--color-primary-hover);
+    border-color: var(--color-accent-primary);
+  }
+
+  /* Contact page channels */
+  .contact-connect__channel:active,
+  .contact-connect__channel:focus-visible {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 40%, var(--color-border));
+    background: color-mix(in srgb, var(--color-accent-primary) 6%, var(--color-surface));
+    transform: translateY(var(--motion-lift));
+    box-shadow: 0 0 16px var(--nav-glow);
+  }
+
+  /* About profile card tiles + socials */
+  .about-profile__tile--link:active,
+  .about-profile__tile--link:focus-visible {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 38%, transparent);
+    background: color-mix(in srgb, var(--color-accent-primary) 9%, var(--color-surface));
+    transform: translateY(var(--motion-lift));
+    box-shadow:
+      0 8px 22px color-mix(in srgb, var(--color-accent-primary) 10%, transparent),
+      0 0 16px color-mix(in srgb, var(--nav-glow) 35%, transparent);
+  }
+
+  .about-profile__tile--link:active .about-profile__tile-value,
+  .about-profile__tile--link:focus-visible .about-profile__tile-value {
+    color: var(--color-accent-primary);
+  }
+
+  .about-profile__tile--link:active .about-profile__tile-icon,
+  .about-profile__tile--link:focus-visible .about-profile__tile-icon {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 35%, transparent);
+    background: color-mix(in srgb, var(--color-accent-primary) 16%, var(--color-bg));
+    box-shadow: 0 0 14px color-mix(in srgb, var(--nav-glow) 50%, transparent);
+    transform: scale(1.04);
+  }
+
+  .about-profile__social-item:active,
+  .about-profile__social-item:focus-visible {
+    color: var(--color-accent-primary);
+    border-color: color-mix(in srgb, var(--color-accent-primary) 28%, transparent);
+    background: color-mix(in srgb, var(--color-accent-primary) 8%, var(--color-bg));
+    transform: translateX(2px);
+  }
+
+  .about-profile__social-item:active .about-profile__social-icon-wrap,
+  .about-profile__social-item:focus-visible .about-profile__social-icon-wrap {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 35%, transparent);
+    box-shadow: 0 0 14px var(--nav-glow);
+  }
+
+  /* Focus area chips */
+  .about-highlights__chip:active {
+    color: var(--color-accent-primary);
+    border-color: color-mix(in srgb, var(--color-accent-primary) 40%, transparent);
+    background: color-mix(in srgb, var(--color-accent-primary) 12%, var(--color-surface));
+    transform: translateY(var(--motion-lift));
+    box-shadow: 0 0 12px var(--nav-glow);
+  }
+
+  /* Skills panels */
+  .about-skills__category:active,
+  .about-skills__category:focus-visible {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 30%, var(--color-border));
+    background: color-mix(in srgb, var(--color-accent-primary) 5%, var(--color-surface));
+    box-shadow: 0 8px 24px color-mix(in srgb, var(--color-bg) 35%, transparent);
+  }
+
+  .home-skills__tab:active,
+  .home-skills__tab:focus-visible,
+  .skills-chip:active,
+  .skills-chip:focus-visible {
+    color: var(--color-accent-primary);
+    border-color: color-mix(in srgb, var(--color-accent-primary) 40%, transparent);
+    transform: translateY(var(--motion-lift));
+    box-shadow: 0 0 12px var(--nav-glow);
+  }
+
+  /* Projects page */
+  .project-card__link-btn:active,
+  .project-card__link-btn:focus-visible {
+    color: var(--color-accent-primary);
+    border-color: color-mix(in srgb, var(--color-accent-primary) 40%, transparent);
+    background: color-mix(in srgb, var(--color-accent-primary) 8%, var(--color-bg));
+    transform: translateY(var(--motion-lift));
+    box-shadow: 0 0 16px var(--nav-glow);
+  }
+
+  .projects-page__clear:active,
+  .projects-page__clear:focus-visible {
+    color: var(--color-accent-primary);
+    border-color: color-mix(in srgb, var(--color-accent-primary) 40%, var(--color-border));
+    transform: translateY(var(--motion-lift));
+  }
+
+  .project-skill-filter__chip:active,
+  .project-skill-filter__chip:focus-visible {
+    color: var(--color-accent-primary);
+    border-color: color-mix(in srgb, var(--color-accent-primary) 40%, transparent);
+    transform: translateY(var(--motion-lift));
+    box-shadow: 0 0 12px var(--nav-glow);
+  }
+
+  .project-skill-filter__clear:active,
+  .project-skill-filter__clear:focus-visible {
+    color: var(--color-heading);
+    border-color: color-mix(in srgb, var(--color-accent-primary) 40%, var(--color-border));
+    background: var(--color-surface);
+    transform: translateY(var(--motion-lift));
+  }
+
+  .project-skill-filter__active-chip:active {
+    border-color: color-mix(in srgb, #ef4444 45%, var(--color-border));
+    background: color-mix(in srgb, #ef4444 10%, var(--color-surface));
+  }
+
+  .read-more__toggle:active,
+  .read-more__toggle:focus-visible {
+    color: var(--color-primary-hover);
+  }
+
+  .view-all-rail__pill:active .view-all-rail__label,
+  .view-all-rail__pill:focus-visible .view-all-rail__label {
+    color: var(--color-accent-primary);
+  }
+
+  .view-all-rail__pill:active .view-all-rail__arrow,
+  .view-all-rail__pill:focus-visible .view-all-rail__arrow {
+    transform: translateX(3px);
+    background: color-mix(in srgb, var(--color-accent-primary) 20%, transparent);
+    box-shadow: 0 0 16px color-mix(in srgb, var(--color-accent-primary) 22%, transparent);
+  }
+
+  .timeline-card__company--link:active,
+  .timeline-card__company--link:focus-visible {
+    color: var(--color-primary-hover);
+  }
+
+  .availability-badge__status:active {
+    transform: translateY(-1px);
+  }
+
+  .availability-badge__status--open:active {
+    border-color: color-mix(in srgb, #22c55e 55%, var(--color-border));
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, #22c55e 20%, transparent),
+      0 8px 22px color-mix(in srgb, #22c55e 18%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .navbar-link:hover,
+  .navbar-link:active,
+  .theme-switcher:hover,
+  .theme-switcher:active,
+  .ui-btn:hover:not(:disabled),
+  .ui-btn:active:not(:disabled),
+  .footer__brand:hover,
+  .footer__brand:active,
+  .footer__orbit-link:hover,
+  .footer__orbit-link:active,
+  .footer-social-link:hover,
+  .footer-social-link:active,
+  .footer__resume:hover,
+  .footer__resume:active,
+  .scroll-fab:hover .scroll-fab__inner,
+  .scroll-fab:active .scroll-fab__inner,
+  .contact-preview__social:hover,
+  .contact-preview__social:active,
+  .contact-connect__channel:hover,
+  .contact-connect__channel:active,
+  .about-profile__tile--link:hover,
+  .about-profile__tile--static:hover,
+  .about-profile__tile--link:active,
+  .about-profile__tile--link:hover .about-profile__tile-icon,
+  .about-profile__tile--static:hover .about-profile__tile-icon,
+  .about-profile__tile--link:active .about-profile__tile-icon,
+  .about-profile__social-item:hover,
+  .about-profile__social-item:active,
+  .project-card__link-btn:hover,
+  .project-card__link-btn:active,
+  .projects-page__clear:hover,
+  .projects-page__clear:active,
+  .project-skill-filter__chip:hover,
+  .project-skill-filter__chip:active,
+  .project-skill-filter__clear:hover,
+  .project-skill-filter__clear:active,
+  .home-skills__tab:hover,
+  .home-skills__tab:active,
+  .skills-chip:hover,
+  .skills-chip:active,
+  .about-highlights__chip:hover,
+  .about-highlights__chip:active,
+  .view-all-rail__pill:hover .view-all-rail__arrow,
+  .view-all-rail__pill:active .view-all-rail__arrow,
+  .availability-badge__status:hover,
+  .availability-badge__status:active {
+    transform: none;
+  }
+
+  .ui-btn--shine:hover::before,
+  .ui-btn--ghost:hover::before,
+  .ui-btn--shine::before,
+  .ui-btn--ghost::before,
+  .footer__resume:hover::before,
+  .footer__resume::before,
+  .scroll-fab:hover::before,
+  .scroll-fab::before,
+  .shine-card--hover:hover::before,
+  .shine-card--hover::before,
+  .shine-card--active::before {
+    animation: none;
+    opacity: 0.75;
+  }
+
+  .availability-badge__status--open,
+  .availability-badge__status--limited,
+  .availability-badge__status--open .availability-badge__dot-wrap::before,
+  .availability-badge__status--open .availability-badge__dot-wrap::after,
+  .availability-badge__status--limited .availability-badge__dot-wrap::before,
+  .about-profile__portrait-glow,
+  .hero__portrait-glow,
+  .hero__portrait-orbit--outer,
+  .hero__portrait-orbit--inner,
+  .hero__portrait-spark {
+    animation: none;
+  }
+
+  .availability-badge__status--open .availability-badge__dot-wrap::before,
+  .availability-badge__status--open .availability-badge__dot-wrap::after {
+    opacity: 0;
+  }
+}

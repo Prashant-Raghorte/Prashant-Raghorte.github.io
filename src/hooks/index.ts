@@ -1,0 +1,8 @@
+export { useActiveNav } from '@/hooks/useActiveNav'
+export { useHashScroll } from '@/hooks/useHashScroll'
+export { useNavIndicator } from '@/hooks/useNavIndicator'
+export { useScrollNavbar } from '@/hooks/useScrollNavbar'
+export type { NavbarScrollState } from '@/hooks/useScrollNavbar'
+export { useScrollToTopOnRoute } from '@/hooks/useScrollToTopOnRoute'
+export { useSpotlight } from '@/hooks/useSpotlight'
+export { useTheme } from '@/hooks/useTheme'

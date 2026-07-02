@@ -1,0 +1,43 @@
+[data-theme='dark'],
+:root {
+  color-scheme: dark;
+
+  --color-bg: #000000;
+  --color-surface: #0a0a0a;
+  --color-border: #262626;
+  --color-text: #f5f5f5;
+  --color-text-muted: #a3a3a3;
+  --color-heading: #ffffff;
+  --color-primary: #8b5cf6;
+  --color-primary-hover: #a78bfa;
+  --color-accent-primary: #a78bfa;
+  --color-accent-secondary: #8b5cf6;
+  --color-link: #c4b5fd;
+
+  --nav-bg: rgba(0, 0, 0, 0.82);
+  --nav-border: rgba(255, 255, 255, 0.12);
+  --nav-control-bg: rgba(255, 255, 255, 0.08);
+  --nav-glow: rgba(139, 92, 246, 0.35);
+  --nav-icon: #e5e5e5;
+  --nav-icon-active: #c4b5fd;
+
+  --footer-bg: #050505;
+  --footer-border: rgba(139, 92, 246, 0.25);
+
+  --shine-track: #404040;
+  --shine-gradient: conic-gradient(
+    from -90deg,
+    transparent 0deg 298deg,
+    rgba(76, 29, 149, 0.35) 312deg,
+    rgba(124, 58, 237, 0.65) 324deg,
+    rgba(139, 92, 246, 0.9) 334deg,
+    rgba(167, 139, 250, 1) 342deg,
+    rgba(196, 181, 253, 0.95) 348deg,
+    rgba(221, 214, 254, 1) 352deg,
+    rgba(167, 139, 250, 0.7) 356deg,
+    rgba(124, 58, 237, 0.4) 360deg
+  );
+  --btn-shine-bg: var(--color-surface);
+  --btn-shine-text: var(--color-text);
+  --btn-shine-text-hover: var(--color-accent-primary);
+}

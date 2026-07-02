@@ -1,0 +1,46 @@
+[data-theme='light'] {
+  color-scheme: light;
+
+  --color-bg: #ffffff;
+  --color-surface: #f5f5f5;
+  --color-border: #e5e5e5;
+  --color-text: #171717;
+  --color-text-muted: #525252;
+  --color-heading: #0a0a0a;
+  --color-primary: #7c3aed;
+  --color-primary-hover: #6d28d9;
+  --color-accent-primary: #7c3aed;
+  --color-accent-secondary: #6d28d9;
+  --color-link: #6d28d9;
+
+  --nav-bg: rgba(255, 255, 255, 0.92);
+  --nav-border: rgba(0, 0, 0, 0.1);
+  --nav-control-bg: rgba(0, 0, 0, 0.05);
+  --nav-glow: rgba(124, 58, 237, 0.22);
+  --nav-icon: #404040;
+  --nav-icon-active: #6d28d9;
+
+  --footer-bg: #fafafa;
+  --footer-border: rgba(124, 58, 237, 0.2);
+
+  --shine-track: #d4d4d4;
+  --shine-gradient: conic-gradient(
+    from -90deg,
+    transparent 0deg 298deg,
+    rgba(76, 29, 149, 0.3) 312deg,
+    rgba(124, 58, 237, 0.6) 324deg,
+    rgba(139, 92, 246, 0.85) 334deg,
+    rgba(167, 139, 250, 1) 342deg,
+    rgba(196, 181, 253, 0.95) 348deg,
+    rgba(221, 214, 254, 1) 352deg,
+    rgba(167, 139, 250, 0.65) 356deg,
+    rgba(124, 58, 237, 0.35) 360deg
+  );
+  --btn-shine-bg: var(--color-bg);
+  --btn-shine-text: var(--color-text);
+  --btn-shine-text-hover: var(--color-accent-primary);
+}
+
+[data-theme='light'] .navbar-shine-ring {
+  opacity: 0.35;
+}

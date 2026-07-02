@@ -1,0 +1,16 @@
+.layout {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  color: var(--color-text);
+  transition: color 0.3s ease;
+}
+
+.layout__main {
+  flex: 1;
+  padding-top: calc(var(--header-height) + var(--space-sm));
+  background-color: transparent;
+}

@@ -1,0 +1,21 @@
+.about-bio-card {
+  height: 100%;
+}
+
+.about-bio {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+}
+
+.about-bio__paragraph {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+}
+
+.about-bio__paragraph:last-child {
+  margin-bottom: 0;
+}

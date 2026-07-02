@@ -1,0 +1,173 @@
+.availability-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+}
+
+.availability-badge__status {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  width: fit-content;
+  padding: 0.42rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.2;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  overflow: visible;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    border-color var(--motion-base) ease,
+    background var(--motion-base) ease,
+    box-shadow var(--motion-base) ease,
+    transform var(--motion-base) var(--motion-ease);
+}
+
+@media (hover: hover) {
+  .availability-badge__status:hover {
+    transform: translateY(-1px);
+  }
+
+  .availability-badge__status--open:hover {
+    border-color: color-mix(in srgb, #22c55e 55%, var(--color-border));
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, #22c55e 20%, transparent),
+      0 8px 22px color-mix(in srgb, #22c55e 18%, transparent);
+  }
+
+  .availability-badge__status--limited:hover {
+    box-shadow: 0 8px 20px color-mix(in srgb, #f59e0b 14%, transparent);
+  }
+}
+
+@media (hover: none) {
+  .availability-badge__status:active {
+    transform: scale(0.98);
+  }
+}
+
+.availability-badge__dot-wrap {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 0.625rem;
+  height: 0.625rem;
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+.availability-badge__dot {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+}
+
+.availability-badge__status--open .availability-badge__dot {
+  background: #22c55e;
+  box-shadow: 0 0 10px color-mix(in srgb, #22c55e 65%, transparent);
+}
+
+.availability-badge__status--open .availability-badge__dot-wrap::before,
+.availability-badge__status--open .availability-badge__dot-wrap::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  z-index: 1;
+  border-radius: 50%;
+  border: 2px solid #22c55e;
+  opacity: 0.7;
+  pointer-events: none;
+  animation: availability-ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.availability-badge__status--open .availability-badge__dot-wrap::after {
+  animation-delay: 1.2s;
+}
+
+.availability-badge__status--open {
+  color: color-mix(in srgb, #22c55e 82%, var(--color-heading));
+  border-color: color-mix(in srgb, #22c55e 42%, var(--color-border));
+  background: color-mix(in srgb, #22c55e 9%, var(--color-surface));
+  animation: availability-badge-glow 3s ease-in-out infinite;
+}
+
+.availability-badge__status--limited .availability-badge__dot {
+  background: #f59e0b;
+  box-shadow: 0 0 8px color-mix(in srgb, #f59e0b 50%, transparent);
+}
+
+.availability-badge__status--limited .availability-badge__dot-wrap::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  z-index: 1;
+  border-radius: 50%;
+  border: 2px solid #f59e0b;
+  opacity: 0.55;
+  pointer-events: none;
+  animation: availability-ping 3.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.availability-badge__status--limited {
+  color: color-mix(in srgb, #f59e0b 78%, var(--color-heading));
+  border-color: color-mix(in srgb, #f59e0b 38%, var(--color-border));
+  background: color-mix(in srgb, #f59e0b 8%, var(--color-surface));
+}
+
+.availability-badge__status--unavailable .availability-badge__dot {
+  background: var(--color-text-muted);
+}
+
+.availability-badge__summary {
+  margin: 0;
+  max-width: 36rem;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+@keyframes availability-ping {
+  0% {
+    transform: scale(0.75);
+    opacity: 0.75;
+  }
+
+  65%,
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+@keyframes availability-badge-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, #22c55e 0%, transparent);
+  }
+
+  50% {
+    box-shadow: 0 0 0 4px color-mix(in srgb, #22c55e 14%, transparent);
+  }
+}
+
+@media (max-width: 640px) {
+  .availability-badge--center-mobile,
+  .contact-preview__availability {
+    align-items: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .availability-badge__status:hover,
+  .availability-badge__status:active {
+    transform: none;
+  }
+}

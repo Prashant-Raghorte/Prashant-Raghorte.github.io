@@ -1,0 +1,82 @@
+.contact-preview {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  max-width: 44rem;
+}
+
+.contact-preview__text {
+  margin: 0;
+}
+
+.contact-preview__note {
+  margin: 0;
+  max-width: 42rem;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--color-text-muted);
+}
+
+.contact-preview__link {
+  font-weight: 600;
+  color: var(--color-accent-primary);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-accent-primary) 35%, transparent);
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    color var(--motion-base) ease,
+    border-color var(--motion-base) ease;
+}
+
+@media (hover: hover) {
+  .contact-preview__link:hover {
+    color: var(--color-primary-hover);
+    border-color: var(--color-accent-primary);
+  }
+}
+
+.contact-preview__socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.contact-preview__social {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition:
+    color var(--motion-base) ease,
+    border-color var(--motion-base) ease,
+    transform var(--motion-base) var(--motion-ease),
+    box-shadow var(--motion-base) ease;
+}
+
+@media (hover: hover) {
+  .contact-preview__social:hover {
+    color: var(--color-accent-primary);
+    border-color: color-mix(in srgb, var(--color-accent-primary) 40%, transparent);
+    transform: translateY(var(--motion-lift));
+    box-shadow: 0 0 16px var(--nav-glow);
+  }
+}
+
+.contact-preview__social:focus-visible {
+  outline: 2px solid var(--color-accent-primary);
+  outline-offset: 2px;
+}
+
+.contact-preview__social-icon {
+  width: 0.95rem;
+  height: 0.95rem;
+}

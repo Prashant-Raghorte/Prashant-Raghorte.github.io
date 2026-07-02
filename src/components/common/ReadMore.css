@@ -1,0 +1,49 @@
+.read-more__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.65rem;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-accent-primary);
+  cursor: pointer;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition: color var(--motion-base) ease;
+}
+
+@media (hover: hover) {
+  .read-more__toggle:hover {
+    color: var(--color-primary-hover);
+  }
+}
+
+.read-more__toggle-icon {
+  display: inline-flex;
+  width: 0.85rem;
+  height: 0.85rem;
+  transition: transform 0.25s ease;
+}
+
+.read-more__toggle-icon--open {
+  transform: rotate(180deg);
+}
+
+.read-more__text--clamped {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.read-more__list-item--hidden {
+  display: none;
+}
+
+.read-more__list--expanded .read-more__list-item--hidden {
+  display: list-item;
+}

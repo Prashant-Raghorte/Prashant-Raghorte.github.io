@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" role="img" aria-label="Profile placeholder">
+  <defs>
+    <linearGradient id="profile-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="profile-accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+    <radialGradient id="profile-glow" cx="50%" cy="35%" r="55%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="480" height="480" fill="url(#profile-bg)"/>
+  <circle cx="240" cy="240" r="220" fill="url(#profile-glow)"/>
+  <circle cx="240" cy="178" r="78" fill="url(#profile-accent)"/>
+  <ellipse cx="240" cy="390" rx="118" ry="92" fill="url(#profile-accent)" opacity="0.82"/>
+  <circle cx="240" cy="178" r="78" fill="none" stroke="#e2e8f0" stroke-opacity="0.12" stroke-width="2"/>
+  <text x="240" y="448" text-anchor="middle" fill="#cbd5e1" font-family="Segoe UI, system-ui, sans-serif" font-size="24" font-weight="600" letter-spacing="0.12em">PR</text>
+</svg>

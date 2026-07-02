@@ -1,0 +1,42 @@
+.about-page__inner {
+  width: min(100% - var(--space-xl), var(--max-width));
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.about-page__content {
+  min-width: 0;
+}
+
+.about-page__who-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.85fr);
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+.about-page__who-grid > * {
+  min-width: 0;
+}
+
+.about-page__heading {
+  margin: 0 0 var(--space-md);
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  color: var(--color-heading);
+}
+
+.about-page__heading--spaced {
+  margin-top: var(--space-xl);
+}
+
+.about-page__skills {
+  margin-top: var(--space-xl);
+}
+
+@media (max-width: 900px) {
+  .about-page__who-grid {
+    grid-template-columns: 1fr;
+  }
+}

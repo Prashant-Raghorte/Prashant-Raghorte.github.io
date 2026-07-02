@@ -1,0 +1,22 @@
+.contact-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: var(--space-xl);
+  align-items: stretch;
+}
+
+.contact-page {
+  padding-top: 0;
+}
+
+.contact-form-card.shine-card,
+.contact-connect-card.shine-card {
+  height: 100%;
+}
+
+@media (max-width: 900px) {
+  .contact-section {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+}

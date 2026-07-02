@@ -1,0 +1,57 @@
+.navbar-logo {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.65rem 0.35rem 0.35rem;
+  border-radius: 999px;
+  color: var(--color-text);
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition: color var(--motion-base) ease;
+  flex-shrink: 0;
+}
+
+@media (hover: hover) {
+  .navbar-logo:hover {
+    color: var(--color-accent-primary);
+  }
+}
+
+.navbar-logo__mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--color-accent-primary) 20%, transparent),
+    color-mix(in srgb, var(--color-accent-secondary) 22%, transparent)
+  );
+  border: 1px solid color-mix(in srgb, var(--color-accent-primary) 30%, transparent);
+  box-shadow: 0 0 20px var(--nav-glow);
+}
+
+.navbar-logo__text {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .navbar-logo__text {
+    display: inline;
+  }
+}
+
+.navbar-shell--compact .navbar-logo__mark {
+  width: 1.85rem;
+  height: 1.85rem;
+  font-size: 0.6875rem;
+}
