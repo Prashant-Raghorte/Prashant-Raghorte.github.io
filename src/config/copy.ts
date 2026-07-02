@@ -2,7 +2,7 @@ export const siteCopy = {
   role: 'Software Developer',
   tagline: 'Software Developer · React & TypeScript',
   description:
-    'Software developer building responsive web applications with React, TypeScript, and modern tooling — focused on clean interfaces, performance, and maintainable code.',
+    'Software developer building responsive web applications with Python and Django, and modern tooling — focused on clean interfaces, performance, and maintainable code.',
   metaDescription:
     'Prashant Raghorte — Software developer specializing in responsive web applications with React, TypeScript, and modern tooling.',
 
