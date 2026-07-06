@@ -3,78 +3,119 @@ import type { Education, Experience, Project, SkillCategory } from '@/types'
 export const experiences: Experience[] = [
   {
     id: '1',
-    company: 'Tech Company',
-    companyUrl: 'https://example.com',
-    role: 'Software Developer',
-    location: 'Remote, India',
-    period: '2024 – Present',
+    company: 'Infidigit',
+    companyUrl: 'https://www.infidigit.com',
+    role: 'SDE I — Backend',
+    location: 'Mumbai, India',
+    period: 'Nov 2024 – Present',
     isCurrent: true,
     highlights: [
-      'Developed and maintained React + TypeScript applications with reusable component libraries and shared design tokens.',
-      'Collaborated with product and design teams to ship features on schedule while keeping accessibility and responsiveness in mind.',
-      'Improved frontend performance through code splitting, lazy loading, and targeted bundle optimization.',
-      'Participated in code reviews, sprint planning, and documentation to improve team delivery quality.',
+      'Engineered scalable RESTful APIs using Django REST Framework (DRF) for SEO modules including Rank Tracker, Keyword Research, SEO Audit, Workspace, AI Overview, AI Insights, and SEO Forecasting.',
+      'Integrated LLMs (OpenAI GPT, Claude, and Gemini) to enable AI-powered title generation, meta description generation, and automated keyword research, significantly reducing manual content creation effort.',
+      'Optimized Elasticsearch indexing and search algorithms to deliver high-performance, real-time keyword analytics across large-scale datasets.',
+      'Implemented Microsoft OAuth 2.0 Single Sign-On (SSO) for secure enterprise authentication and authorization.',
+      'Configured multi-database architecture (PostgreSQL and MSSQL) within a Django application to support seamless cross-system data operations.',
+      'Architected cross-repository Django ORM model sharing and integrated Django models into FastAPI microservices, improving modularity and code reuse.',
+      'Strengthened backend security by validating and restricting external URL access, reducing the risk of unauthorized database access and malicious requests.',
     ],
   },
   {
     id: '2',
-    company: 'Product Studio',
-    companyUrl: 'https://example.com/product-studio',
-    role: 'Junior Developer',
-    location: 'Pune, IN',
-    period: '2022 – 2024',
+    company: 'Crossdev Technologies (Gloify)',
+    companyUrl: 'https://www.gloify.com',
+    role: 'Software Developer',
+    location: 'Bengaluru, India',
+    period: 'Jan 2023 – Oct 2024',
     highlights: [
-      'Built responsive web interfaces from Figma mockups using React, HTML, CSS, and JavaScript.',
-      'Integrated REST APIs, handled client-side state, and implemented form validation flows.',
-      'Fixed UI bugs, improved cross-browser compatibility, and supported production releases.',
+      'Designed and developed scalable RESTful APIs using Django REST Framework (DRF), implementing JWT authentication and Role-Based Access Control (RBAC) for 18+ user roles.',
+      'Integrated Stripe Payment Gateway for international payments and Zoho Bigin CRM using REST APIs and webhooks to automate real-time lead management.',
+      'Integrated Gmail API to automate email workflows, campaign scheduling, and domain/email verification.',
+      'Architected asynchronous task pipelines using Celery and Redis, improving background job execution and application scalability.',
+      'Integrated AWS services including S3, SES, and SNS to support secure file storage, transactional emails, and event-driven notifications.',
+      'Implemented multilingual support using DRF Localization and integrated exchange rate APIs to enable seamless internationalization.',
     ],
   },
   {
     id: '3',
-    company: 'Startup Labs',
-    role: 'Software Engineering Intern',
-    location: 'Pune, IN',
-    period: '2021 – 2022',
+    company: 'Percept Infosystem',
+    companyUrl: 'https://perceptinfosystems.lovable.app/',
+    role: 'Python/Django Intern',
+    location: 'Nagpur, India',
+    period: 'Jul 2022 – Dec 2022',
     highlights: [
-      'Assisted in building internal dashboards and customer-facing pages with React and Node.js.',
-      'Wrote unit tests, participated in code reviews, and learned agile delivery practices.',
-    ],
-  },
-  {
-    id: '4',
-    company: 'Training Program',
-    role: 'Trainee Developer',
-    location: 'Pune, IN',
-    period: '2020 – 2021',
-    highlights: [
-      'Learned web development fundamentals, Git workflows, and debugging techniques.',
-      'Supported senior developers on small feature tasks and bug fixes.',
+      'Built and maintained Django web applications using MVT architecture, leveraging Django ORM, class-based views (CBVs), and template rendering.',
+      'Designed relational database schemas using PostgreSQL and SQLite, writing optimized queries to ensure data integrity and efficient performance.',
+      'Developed dynamic, data-driven web pages using Django templates, forms, and ORM, building a strong foundation in Python web application development.',
     ],
   },
 ]
 
+export const experienceDomains = [
+  {
+    id: 'apis',
+    title: 'REST APIs & DRF',
+    description:
+      'Production APIs with JWT, RBAC across 18+ roles, OAuth 2.0 SSO, and secure enterprise authentication.',
+    metric: '25+ total modules',
+  },
+  {
+    id: 'ai',
+    title: 'AI & LLM Integration',
+    description:
+      'OpenAI, Claude, and Gemini for AI-powered content, keyword research, and automated SEO workflows.',
+    metric: 'Live in production',
+  },
+  {
+    id: 'async',
+    title: 'Async & Scale',
+    description:
+      'Celery and Redis pipelines, Elasticsearch indexing, and multi-database architecture for high-throughput systems.',
+    metric: 'PostgreSQL + MSSQL',
+  },
+  {
+    id: 'integrations',
+    title: 'Cloud & Integrations',
+    description:
+      'AWS (S3, SES, SNS), Stripe payments, Zoho CRM, Gmail API, and webhook-driven automation.',
+    metric: 'End-to-end delivery',
+  },
+] as const
+
+export const experienceKeyWins = [
+  {
+    id: 'llm',
+    value: '3',
+    label: 'LLM providers',
+    detail: 'GPT, Claude & Gemini in production',
+  },
+  {
+    id: 'rbac',
+    value: '18+',
+    label: 'RBAC roles',
+    detail: 'JWT auth across user tiers',
+  },
+  {
+    id: 'modules',
+    value: '25+',
+    label: 'Total modules',
+    detail: 'Shipped across production platforms',
+  },
+  {
+    id: 'integrations',
+    value: '10+',
+    label: 'Integrations',
+    detail: 'Stripe, AWS, CRM & Gmail API',
+  },
+] as const
+
 export const educationList: Education[] = [
   {
     id: 'degree',
-    institution: 'Savitribai Phule Pune University',
-    degree: 'B.Tech in Computer Science',
-    period: '2018 – 2022',
+    institution: 'Sant Gadge Baba Amravati University',
+    degree: 'B.E. in Computer Science and Engineering',
+    period: '2016 – 2020',
     details:
-      'Coursework: Data Structures, Algorithms, Web Development, Databases, Software Engineering.',
-  },
-  {
-    id: '12th',
-    institution: 'Maharashtra State Board',
-    degree: 'Higher Secondary (12th) — Science',
-    period: '2016 – 2018',
-    details: 'Mathematics, Physics, Chemistry, and Computer Science.',
-  },
-  {
-    id: '10th',
-    institution: 'Maharashtra State Board',
-    degree: 'Secondary School (10th)',
-    period: '2016',
-    details: 'Strong foundation in Mathematics and Science.',
+      'Bachelor of Engineering in Computer Science and Engineering from Sant Gadge Baba Amravati University, Amravati, Maharashtra.',
   },
 ]
 
@@ -93,69 +134,108 @@ export const skillCategories: SkillCategory[] = [
   {
     id: 'backend',
     title: 'Backend',
-    skills: ['Node.js', 'Express', 'Java', 'REST APIs', 'Spring Boot'],
+    skills: [
+      'Python',
+      'Django',
+      'Django REST Framework',
+      'REST APIs',
+      'FastAPI',
+      'Django WebSockets',
+      'OAuth 2.0',
+      'JWT',
+      'RBAC',
+      'API Security',
+    ],
   },
   {
     id: 'frontend',
     title: 'Frontend',
-    skills: ['React', 'TypeScript', 'JavaScript', 'HTML', 'CSS', 'Vite'],
+    skills: ['HTML', 'CSS', 'Bootstrap'],
   },
   {
     id: 'databases',
     title: 'Databases',
-    skills: ['MySQL', 'PostgreSQL', 'MongoDB', 'SQL'],
+    skills: ['PostgreSQL', 'MSSQL', 'SQLite', 'Elasticsearch', 'Redis'],
   },
   {
     id: 'devops',
-    title: 'DevOps',
-    skills: ['Docker', 'GitHub Actions', 'CI/CD', 'Linux', 'AWS'],
+    title: 'Cloud & Async',
+    skills: ['AWS', 'Celery', 'Linux', 'Windows'],
   },
   {
     id: 'dev-tools',
-    title: 'Dev Tools',
-    skills: ['Git', 'GitHub', 'VS Code', 'Postman', 'Figma'],
+    title: 'Integrations & Tools',
+    skills: [
+      'Cursor',
+      'Stripe',
+      'Zoho CRM',
+      'Gmail API',
+      'Git',
+      'GitHub',
+      'Postman',
+      'DRF Localization',
+      'Resend',
+    ],
   },
   {
     id: 'ai-tools',
-    title: 'AI Tools',
-    skills: ['GitHub Copilot', 'ChatGPT', 'Cursor', 'Claude'],
+    title: 'AI / LLM',
+    skills: ['OpenAI API', 'Claude API', 'Gemini API'],
   },
 ]
 
 export const projects: Project[] = [
   {
     id: '1',
+    title: 'Infigrowth',
+    description:
+      'AI-powered SEO SaaS platform with rank tracking, keyword research, LLM-driven title and meta description generation, and automated SEO audit reporting for digital marketers.',
+    tags: ['Python', 'Django', 'DRF', 'Rest API', 'PostgreSQL', 'MSSQL', 'Elasticsearch', 'FastAPI', 'OpenAI API', 'Claude API', 'Gemini API'],
+    url: 'https://app.infigrowth.com/',
+    logoUrl: 'https://infigrowth.com/favicon.ico',
+  },
+  {
+    id: '2',
+    title: 'Discovemail',
+    description:
+      'Lead generation platform with LinkedIn scraping, email/domain verification, campaign scheduling, and Stripe-powered billing. Reduced outreach setup time through end-to-end automation.',
+    tags: ['Python', 'Django', 'DRF', 'Celery', 'Redis', 'S3 Bucket', 'AWS SNS', 'AWS SES', 'Stripe', 'Gmail API'],
+    url: 'https://www.discovemail.com/',
+    logoUrl: 'https://www.discovemail.com/favicon.ico',
+  },
+  {
+    id: '3',
+    title: 'Ciao Green',
+    description:
+      'Enterprise interior design management system supporting 18+ user roles with RBAC, lead/project management, vendor coordination, asset tracking, BOQ generation, and Zoho CRM integration.',
+    tags: ['Python', 'Django', 'DRF', 'PostgreSQL', 'Zoho CRM', 'Webhooks'],
+    url: 'https://myspace.ciaogreen.com/',
+    logoUrl: '/project-logos/ciao-green.png',
+  },
+  {
+    id: '4',
+    title: 'Rapid One',
+    description:
+      'Workplace health and safety (WHS) and HR compliance platform with digital document workflows, AI-assisted safety audits, background verification, and real-time compliance tracking.',
+    tags: ['Python', 'Django', 'DRF', 'AWS', 'Celery', 'Redis'],
+    url: 'https://app.rapid.one/',
+    logoUrl: '/project-logos/rapid-one.svg',
+  },
+  {
+    id: '5',
+    title: 'Apna Naukari',
+    description:
+      'Role-based job search and recruitment portal for job seekers and employers with JWT auth, job listings, applicant management, and AWS-integrated storage and email.',
+    tags: ['Python', 'Django', 'DRF', 'PostgreSQL', 'AWS', 'JWT'],
+  },
+  {
+    id: '6',
     title: 'Developer Portfolio',
     description:
       'A multi-page portfolio built with React, TypeScript, and Vite — featuring dark and light themes, animated UI, a project showcase, experience timeline, contact form, and GitHub Pages deployment with SPA routing.',
     tags: ['React', 'TypeScript', 'Vite', 'GitHub Actions', 'Cursor'],
     repoUrl: 'https://github.com/Prashant-Raghorte/Prashant-Raghorte.github.io',
     url: 'https://prashant-raghorte.github.io',
-  },
-  {
-    id: '2',
-    title: 'Task Manager App',
-    description:
-      'A full-stack task management application with user authentication, CRUD operations, filtering, and a responsive dashboard. Built to practice API integration, state management, and form handling in a product-style workflow.',
-    tags: ['React', 'Node.js', 'Express', 'MongoDB', 'Docker'],
-    repoUrl: 'https://github.com/Prashant-Raghorte',
-    url: 'https://example.com/task-manager-demo',
-  },
-  {
-    id: '3',
-    title: 'Weather Dashboard',
-    description:
-      'A weather dashboard that fetches live data from a public API and displays forecasts, location search, and responsive cards. Focused on clean UI, loading states, error handling, and mobile-first layout.',
-    tags: ['JavaScript', 'React', 'REST APIs', 'CSS', 'Postman'],
-    repoUrl: 'https://github.com/Prashant-Raghorte',
-    url: 'https://example.com/weather-dashboard',
-  },
-  {
-    id: '4',
-    title: 'E-Commerce UI Clone',
-    description:
-      'A frontend e-commerce interface clone with product listing, cart interactions, category filters, and checkout-style screens. Used to strengthen component architecture, routing, and reusable UI patterns.',
-    tags: ['React', 'TypeScript', 'CSS', 'MySQL', 'GitHub Copilot'],
-    repoUrl: 'https://github.com/Prashant-Raghorte',
+    logoUrl: '/favicon.svg',
   },
 ]

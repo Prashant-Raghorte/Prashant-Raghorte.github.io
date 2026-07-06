@@ -1,0 +1,220 @@
+.exp-journey {
+  --exp-journey-enter: 0.7s;
+  position: relative;
+  min-width: 0;
+  margin-top: clamp(1.5rem, 4vw, 2.5rem);
+  padding-top: var(--space-sm);
+}
+
+.exp-journey::before {
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  top: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(100%, 52rem);
+  height: 14rem;
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    color-mix(in srgb, var(--color-accent-primary) 10%, transparent),
+    transparent 72%
+  );
+  opacity: 0.85;
+}
+
+.exp-journey__head {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  margin-bottom: clamp(1rem, 2.5vw, 1.35rem);
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity var(--exp-journey-enter) var(--motion-ease),
+    transform var(--exp-journey-enter) var(--motion-ease);
+}
+
+.exp-journey--in-view .exp-journey__head {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.exp-journey__accent {
+  width: 0.4rem;
+  height: 1.5rem;
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: linear-gradient(
+    to bottom,
+    var(--color-accent-primary),
+    color-mix(in srgb, var(--color-accent-primary) 25%, transparent)
+  );
+  box-shadow: 0 0 14px color-mix(in srgb, var(--color-accent-primary) 42%, transparent);
+}
+
+.exp-journey__head-copy {
+  min-width: 0;
+}
+
+.exp-journey__title {
+  margin: 0 0 0.3rem;
+  font-size: clamp(1.15rem, 2.8vw, 1.45rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-heading);
+}
+
+.exp-journey__hint {
+  margin: 0;
+  max-width: 36rem;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+.exp-journey .exp-constellation {
+  position: relative;
+  z-index: 1;
+  margin-bottom: clamp(1.75rem, 4vw, 2.25rem);
+  background: transparent;
+}
+
+.exp-journey .exp-constellation--compact {
+  margin-top: 0;
+}
+
+.exp-journey__body {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(15rem, 21rem) minmax(0, 1fr);
+  gap: clamp(1rem, 2.6vw, 1.75rem);
+  align-items: start;
+}
+
+.exp-journey__spotlight {
+  position: sticky;
+  top: calc(var(--header-height) + var(--space-md));
+  min-width: 0;
+}
+
+.exp-journey__spotlight .exp-stage {
+  margin-bottom: 0;
+}
+
+.exp-journey__timeline {
+  min-width: 0;
+}
+
+.exp-journey__section-label {
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  .exp-journey__body {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .exp-journey__spotlight {
+    display: none;
+  }
+
+  .exp-journey__timeline {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .exp-journey__section-label {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0 0 0.7rem;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-accent-primary);
+  }
+
+  .exp-journey__section-label::before {
+    content: '';
+    width: 0.35rem;
+    height: 0.35rem;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--color-accent-primary);
+    box-shadow: 0 0 8px color-mix(in srgb, var(--color-accent-primary) 55%, transparent);
+  }
+
+  .exp-journey__section-label--timeline::before {
+    border-radius: 2px;
+    width: 0.65rem;
+    height: 0.2rem;
+  }
+
+  .exp-journey__section-label--timeline {
+    margin-bottom: 0.85rem;
+  }
+
+  .exp-journey .exp-constellation--compact {
+    margin-bottom: 1.15rem;
+  }
+
+  .exp-journey .exp-constellation {
+    margin-bottom: 1.35rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .exp-journey {
+    margin-top: clamp(1.15rem, 4vw, 1.5rem);
+  }
+
+  .exp-journey__head {
+    margin-bottom: 0.85rem;
+  }
+
+  .exp-journey__title {
+    font-size: clamp(1.05rem, 4.5vw, 1.25rem);
+  }
+
+  .exp-journey__hint {
+    font-size: 0.78rem;
+    line-height: 1.45;
+  }
+}
+
+@media (max-width: 640px) {
+  .exp-journey {
+    margin-top: var(--space-lg);
+  }
+
+  .exp-journey__head {
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .exp-journey__accent {
+    width: 2rem;
+    height: 0.3rem;
+    margin-top: 0;
+  }
+
+  .exp-journey__hint {
+    font-size: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .exp-journey__head {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

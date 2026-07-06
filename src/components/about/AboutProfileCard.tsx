@@ -50,16 +50,6 @@ function buildDetailItems(): DetailItem[] {
     })
   }
 
-  if (email) {
-    items.push({
-      id: 'email',
-      label: 'Email',
-      value: email,
-      href: `mailto:${email}`,
-      icon: <SocialIcon name="email" className="about-profile__tile-icon-svg" />,
-    })
-  }
-
   if (phone) {
     items.push({
       id: 'phone',
@@ -67,6 +57,16 @@ function buildDetailItems(): DetailItem[] {
       value: phone,
       href: `tel:${phone.replace(/\s+/g, '')}`,
       icon: <SocialIcon name="phone" className="about-profile__tile-icon-svg" />,
+    })
+  }
+
+  if (email) {
+    items.push({
+      id: 'email',
+      label: 'Email',
+      value: email,
+      href: `mailto:${email}`,
+      icon: <SocialIcon name="email" className="about-profile__tile-icon-svg" />,
     })
   }
 
@@ -92,7 +92,21 @@ function buildSocialLinks(): SocialLink[] {
   return links
 }
 
+function formatEmailParts(email: string): { local: string; domain: string } {
+  const atIndex = email.indexOf('@')
+  if (atIndex === -1) {
+    return { local: email, domain: '' }
+  }
+
+  return {
+    local: email.slice(0, atIndex),
+    domain: email.slice(atIndex),
+  }
+}
+
 function DetailTile({ item }: { item: DetailItem }) {
+  const emailParts = item.id === 'email' ? formatEmailParts(item.value) : null
+
   const content = (
     <>
       <span className="about-profile__tile-icon" aria-hidden="true">
@@ -100,7 +114,14 @@ function DetailTile({ item }: { item: DetailItem }) {
       </span>
       <span className="about-profile__tile-copy">
         <span className="about-profile__tile-label">{item.label}</span>
-        <span className="about-profile__tile-value">{item.value}</span>
+        {emailParts ? (
+          <span className="about-profile__tile-value about-profile__tile-value--email">
+            <span className="about-profile__tile-email-local">{emailParts.local}</span>
+            <span className="about-profile__tile-email-domain">{emailParts.domain}</span>
+          </span>
+        ) : (
+          <span className="about-profile__tile-value">{item.value}</span>
+        )}
       </span>
     </>
   )
@@ -109,9 +130,16 @@ function DetailTile({ item }: { item: DetailItem }) {
     return (
       <a
         href={item.href}
-        className="about-profile__tile about-profile__tile--link"
+        className={[
+          'about-profile__tile',
+          'about-profile__tile--link',
+          item.id === 'email' ? 'about-profile__tile--email' : '',
+        ]
+          .filter(Boolean)
+          .join(' ')}
+        aria-label={`${item.label}: ${item.value}`}
         {...(item.external
-          ? { target: '_blank', rel: 'noreferrer', 'aria-label': `Open ${item.value} in Google Maps` }
+          ? { target: '_blank', rel: 'noreferrer' }
           : {})}
       >
         {content}
@@ -168,20 +196,24 @@ export function AboutProfileCard() {
           <aside className="about-profile__aside" aria-label="Social profiles">
             <p className="about-profile__aside-label">Connect</p>
             <div className="about-profile__social-list">
-              {socialLinks.map((link) => (
-                <a
-                  key={link.id}
-                  href={link.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="about-profile__social-item"
-                  aria-label={`${link.label} profile`}
-                >
-                  <span className="about-profile__social-icon-wrap" aria-hidden="true">
-                    <SocialIcon name={link.icon} className="about-profile__social-icon" />
-                  </span>
-                  <span className="about-profile__social-label">{link.label}</span>
-                </a>
+              {socialLinks.map((link, index) => (
+                <div key={link.id} className="about-profile__social-row">
+                  {index > 0 && (
+                    <span className="about-profile__social-rule" aria-hidden="true" />
+                  )}
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="about-profile__social-item"
+                    aria-label={`${link.label} profile`}
+                  >
+                    <span className="about-profile__social-mark" aria-hidden="true">
+                      <SocialIcon name={link.icon} className="about-profile__social-icon" />
+                    </span>
+                    <span className="about-profile__social-label">{link.label}</span>
+                  </a>
+                </div>
               ))}
             </div>
           </aside>

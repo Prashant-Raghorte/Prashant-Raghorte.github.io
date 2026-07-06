@@ -1,17 +1,16 @@
 export const aboutBioParagraphs = [
-  'I am Prashant Raghorte, a software developer who builds clean, performant web applications. I work across the stack — from responsive React interfaces to reliable APIs — and focus on shipping products that are fast, accessible, and easy to maintain.',
-  'My experience includes portfolio and product-style web applications built with TypeScript, modern tooling, and component-driven architecture. I enjoy turning requirements into polished UI, collaborating with teams, and improving delivery through code reviews and iterative releases.',
-  'I am open to full-time roles and freelance collaborations where I can contribute as a frontend-focused developer while continuing to grow in backend and system design.', 
-  'AS we all know Salman Khan is the most popular & successful superstar in the history of i4Hindi cinema & ruling on box office by giving back to back blockbusters.His stardom is totally different from others stars, Whatever he do it becomes trend & everybody love to adopt his style.',
+  'I am Prashant Raghorte, a results-driven Software Development Engineer focused on backend systems. I build and scale high-performance web applications using Python, Django, and Django REST Framework — with a strong emphasis on clean code, API security, and scalable architecture.',
+  'Over 3.5+ years, I have shipped RESTful APIs, asynchronous pipelines with Celery and Redis, multi-database setups across PostgreSQL and MSSQL, and LLM integrations (Claude, Gemini, OpenAI) for AI-powered content and keyword workflows. I also work with OAuth 2.0, JWT, Elasticsearch, AWS (S3, SES, SNS), and integrations like Stripe, Zoho CRM, and Gmail API.',
+  'I am open to full-time roles and freelance collaborations where I can contribute as a backend engineer — designing reliable APIs, improving system performance, and delivering production-ready features end to end.',
 ] as const
 
 export const aboutFocusAreas = [
-  'React & TypeScript',
-  'Responsive UI',
-  'REST APIs',
-  'Performance',
-  'Component architecture',
-  'Code quality',
+  'Python & Django',
+  'REST APIs & DRF',
+  'LLM Integration',
+  'Celery & Redis',
+  'PostgreSQL & Elasticsearch',
+  'API Security',
 ] as const
 
 export const aboutAvailability = [
@@ -19,5 +18,3 @@ export const aboutAvailability = [
   'Freelance projects',
   'Remote opportunities',
 ] as const
-
-

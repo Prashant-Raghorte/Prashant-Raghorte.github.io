@@ -4,15 +4,36 @@ import { SECTION_IDS, ROUTES } from '@/constants'
 import { Button } from '@/components/ui/Button'
 import { ChevronDownIcon, DownloadIcon } from '@/components/ui/icons'
 import { scrollToSection } from '@/utils/scroll'
+import { HeroQuickStats } from '@/sections/home/HeroQuickStats'
 import './HeroSection.css'
+import './HeroQuickStats.css'
+
+const nameParts = siteConfig.name.trim().split(/\s+/)
+const firstName = nameParts[0] ?? siteConfig.name
+const lastName = nameParts.slice(1).join(' ')
 
 export function HeroSection() {
   return (
     <section id="home" className="hero section-block">
       <div className="container hero__layout">
         <div className="hero__content">
-          <h1 className="hero__title text-balance">{siteConfig.name}</h1>
-          <p className="hero__subtitle prose text-fluid-base">{siteConfig.description}</p>
+          <div className="hero__intro">
+            <h1 className="hero__title text-balance">
+              <span className="hero__greeting">{siteCopy.hero.greeting}</span>
+              <span className="hero__name">
+                <span className="hero__name-first">{firstName}</span>
+                {lastName ? (
+                  <>
+                    {' '}
+                    <span className="hero__name-last">{lastName}</span>
+                  </>
+                ) : null}
+              </span>
+            </h1>
+            <p className="hero__role">{siteConfig.role}</p>
+          </div>
+          <p className="hero__subtitle prose">{siteConfig.description}</p>
+          <HeroQuickStats />
           <div className="hero__actions">
             <Button
               variant="shine"

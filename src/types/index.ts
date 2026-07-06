@@ -11,6 +11,7 @@ export type Experience = {
   id: string
   company: string
   companyUrl?: string
+  companyLogoUrl?: string
   role: string
   location: string
   period: string
@@ -39,6 +40,7 @@ export type Project = {
   tags: string[]
   url?: string
   repoUrl?: string
+  logoUrl?: string
 }
 
 export type Skill = {

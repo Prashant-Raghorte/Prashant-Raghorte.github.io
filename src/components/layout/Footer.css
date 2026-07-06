@@ -4,6 +4,7 @@
   padding-block: var(--space-2xl) var(--space-xl);
   background: var(--footer-bg);
   color: var(--color-text);
+  transition: filter 0.45s var(--motion-ease);
 }
 
 .footer__shine {

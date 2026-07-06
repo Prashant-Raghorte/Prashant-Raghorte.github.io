@@ -13,4 +13,38 @@
   flex: 1;
   padding-top: calc(var(--header-height) + var(--space-sm));
   background-color: transparent;
+  transition: filter 0.45s var(--motion-ease);
+}
+
+/* Blur page content when mobile nav menu is open */
+@media (max-width: 899px) {
+  html.navbar-menu-open .layout__main,
+  html.navbar-menu-open .footer,
+  html.navbar-menu-open .star-background {
+    filter: blur(11px) saturate(1.06);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  html.navbar-menu-open .scroll-fab-wrap,
+  html.navbar-menu-open .scroll-progress {
+    filter: blur(6px);
+    opacity: 0.45;
+    pointer-events: none;
+  }
+
+  html.navbar-menu-open .navbar,
+  html.navbar-menu-open .navbar-menu-panel {
+    filter: none;
+    pointer-events: auto;
+    user-select: auto;
+  }
+}
+
+@media (max-width: 899px) and (prefers-reduced-motion: reduce) {
+  html.navbar-menu-open .layout__main,
+  html.navbar-menu-open .footer,
+  html.navbar-menu-open .star-background {
+    filter: none;
+  }
 }

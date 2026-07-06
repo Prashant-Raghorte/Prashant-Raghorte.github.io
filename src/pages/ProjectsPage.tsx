@@ -10,6 +10,7 @@ import { filterProjectsBySkills } from '@/utils/projectSkills'
 import { getSkillsFromSearchParams, skillsToSearchParams } from '@/utils/projectRoutes'
 import '@/components/common/PageHeader.css'
 import '@/components/projects/ProjectCard.css'
+import '@/components/projects/ProjectLogo.css'
 import '@/components/projects/ProjectSkillFilter.css'
 
 export function ProjectsPage() {

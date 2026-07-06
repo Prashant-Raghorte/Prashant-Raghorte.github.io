@@ -1,0 +1,151 @@
+.exp-spectrum {
+  --exp-spectrum-enter: 0.55s;
+}
+
+.exp-spectrum__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  margin-bottom: 0.7rem;
+}
+
+.exp-spectrum__accent {
+  width: 0.32rem;
+  height: 1.15rem;
+  margin-top: 0.15rem;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: linear-gradient(
+    to bottom,
+    var(--color-accent-primary),
+    color-mix(in srgb, var(--color-accent-primary) 25%, transparent)
+  );
+  box-shadow: 0 0 10px color-mix(in srgb, var(--color-accent-primary) 38%, transparent);
+}
+
+.exp-spectrum__head-copy {
+  min-width: 0;
+}
+
+.exp-spectrum__title {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-accent-primary);
+}
+
+.exp-spectrum__hint {
+  margin: 0.2rem 0 0;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--color-text-muted);
+}
+
+.exp-spectrum__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.exp-spectrum__item {
+  opacity: 0;
+  transform: translateX(-8px);
+  animation: exp-spectrum-in var(--exp-spectrum-enter) var(--motion-ease) forwards;
+  animation-delay: var(--exp-spectrum-delay, 0ms);
+}
+
+.exp-stage--in-view .exp-spectrum__item,
+.exp-outcomes--in-view .exp-spectrum__item {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.exp-spectrum__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.28rem;
+}
+
+.exp-spectrum__label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+.exp-spectrum__count {
+  flex-shrink: 0;
+  min-width: 1.15rem;
+  padding: 0.1rem 0.35rem;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  color: var(--color-accent-primary);
+  background: color-mix(in srgb, var(--color-accent-primary) 10%, var(--color-bg));
+  border: 1px solid color-mix(in srgb, var(--color-accent-primary) 22%, transparent);
+}
+
+.exp-spectrum__track {
+  display: block;
+  height: 0.28rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-border) 65%, transparent);
+  overflow: hidden;
+}
+
+.exp-spectrum__fill {
+  display: block;
+  height: 100%;
+  width: var(--exp-spectrum-score, 0%);
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--color-accent-primary) 55%, transparent),
+    var(--color-accent-primary)
+  );
+  box-shadow: 0 0 10px color-mix(in srgb, var(--color-accent-primary) 45%, transparent);
+  transition: width 0.65s var(--motion-ease);
+}
+
+@media (hover: hover) {
+  .exp-spectrum__item:hover .exp-spectrum__fill {
+    box-shadow: 0 0 14px color-mix(in srgb, var(--nav-glow) 55%, transparent);
+  }
+
+  .exp-spectrum__item:hover .exp-spectrum__count {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 38%, transparent);
+    box-shadow: 0 0 8px color-mix(in srgb, var(--nav-glow) 35%, transparent);
+  }
+}
+
+@keyframes exp-spectrum-in {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .exp-spectrum__item {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .exp-spectrum__fill {
+    transition: none;
+  }
+}

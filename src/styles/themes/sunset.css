@@ -45,6 +45,14 @@
   opacity: 0.42;
 }
 
+@media (hover: none) {
+  [data-theme='sunset'] .hero__actions .ui-btn--shine::before,
+  [data-theme='sunset'] .hero__actions .ui-btn--ghost::before,
+  [data-theme='sunset'] .hero-stats-shine::before {
+    opacity: 0.78;
+  }
+}
+
 [data-theme='sunset'] .star-background__stage canvas {
   filter: contrast(1.06) saturate(1.25) hue-rotate(-28deg);
 }

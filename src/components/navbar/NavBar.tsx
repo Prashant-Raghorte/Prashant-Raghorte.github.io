@@ -7,7 +7,9 @@ import {
   useSpotlight,
   useTheme,
 } from '@/hooks'
+import { useMobileMenuLock } from '@/hooks/useMobileMenuLock'
 import { MobileMenuToggle } from '@/components/navbar/MobileMenuToggle'
+import { MobileMenuBackdrop } from '@/components/navbar/MobileMenuBackdrop'
 import { NavBarIndicator, NavBarSpotlight, NavBarShineRing } from '@/components/navbar/NavBarEffects'
 import { NavBarLogo } from '@/components/navbar/NavBarLogo'
 import { NavBarMenu } from '@/components/navbar/NavBarMenu'
@@ -40,6 +42,8 @@ export function NavBar() {
     isDesktop && !menuOpen,
   )
 
+  useMobileMenuLock(menuOpen && !isDesktop)
+
   useEffect(() => {
     const media = window.matchMedia('(min-width: 900px)')
 
@@ -53,10 +57,33 @@ export function NavBar() {
     return () => media.removeEventListener('change', handleChange)
   }, [])
 
+  useEffect(() => {
+    if (!menuOpen || isDesktop) return
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setMenuOpen(false)
+    }
+
+    window.addEventListener('keydown', handleEscape)
+    return () => window.removeEventListener('keydown', handleEscape)
+  }, [isDesktop, menuOpen])
+
+  const closeMenu = () => setMenuOpen(false)
+  const shouldHide = isHidden && !menuOpen
+
   return (
     <header
-      className={`navbar ${isHidden ? 'navbar--hidden' : 'navbar--visible'} navbar--${scrollState}`}
+      className={[
+        'navbar',
+        shouldHide ? 'navbar--hidden' : 'navbar--visible',
+        `navbar--${scrollState}`,
+        menuOpen ? 'navbar--menu-open' : '',
+      ]
+        .filter(Boolean)
+        .join(' ')}
     >
+      <MobileMenuBackdrop isOpen={menuOpen && !isDesktop} onClose={closeMenu} />
+
       <nav
         ref={containerRef}
         className={getShellClass(scrollState, menuOpen)}
@@ -80,9 +107,9 @@ export function NavBar() {
         <NavBarMenu
           items={mainNavItems}
           activeNavId={activeNavId}
-          isOpen={menuOpen}
+          isOpen={isDesktop || menuOpen}
           registerLink={registerLink}
-          onNavigate={() => setMenuOpen(false)}
+          onNavigate={closeMenu}
         />
 
         <div className="navbar-shell__actions">

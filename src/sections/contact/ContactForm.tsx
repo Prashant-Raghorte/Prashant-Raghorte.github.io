@@ -1,6 +1,5 @@
 import { useState, type FormEvent } from 'react'
 import { siteCopy } from '@/config/copy'
-import { siteConfig } from '@/config/site'
 import { Button } from '@/components/ui/Button'
 import { SendIcon } from '@/components/ui/icons'
 import { ShineBorderCard } from '@/components/ui/ShineBorderCard'
@@ -26,6 +25,7 @@ const initialFields: FormFields = {
 }
 
 export function ContactForm() {
+  const { contactForm } = siteCopy.sections
   const [fields, setFields] = useState<FormFields>(initialFields)
   const [status, setStatus] = useState<FormStatus>('idle')
   const [errorMessage, setErrorMessage] = useState('')
@@ -80,13 +80,13 @@ export function ContactForm() {
     <ShineBorderCard hoverOnly className="contact-form-card">
       <form className="contact-form" onSubmit={handleSubmit} noValidate>
         <div className="contact-form__header">
-          <h3 className="contact-form__title">{siteCopy.sections.contactForm.title}</h3>
-          <p className="contact-form__subtitle">{siteCopy.sections.contactForm.subtitle}</p>
+          <h3 className="contact-form__title">{contactForm.title}</h3>
+          <p className="contact-form__subtitle">{contactForm.subtitle}</p>
         </div>
 
         <div className="contact-form__grid">
           <label className="contact-form__field">
-            <span className="contact-form__label">Name</span>
+            <span className="contact-form__label">{contactForm.labels.name}</span>
             <input
               type="text"
               name="name"
@@ -94,13 +94,13 @@ export function ContactForm() {
               required
               value={fields.name}
               disabled={status === 'submitting'}
-              placeholder="Your name"
+              placeholder={contactForm.placeholders.name}
               onChange={(event) => updateField('name', event.target.value)}
             />
           </label>
 
           <label className="contact-form__field">
-            <span className="contact-form__label">Email</span>
+            <span className="contact-form__label">{contactForm.labels.email}</span>
             <input
               type="email"
               name="email"
@@ -108,33 +108,33 @@ export function ContactForm() {
               required
               value={fields.email}
               disabled={status === 'submitting'}
-              placeholder="you@example.com"
+              placeholder={contactForm.placeholders.email}
               onChange={(event) => updateField('email', event.target.value)}
             />
           </label>
         </div>
 
         <label className="contact-form__field">
-          <span className="contact-form__label">Subject</span>
+          <span className="contact-form__label">{contactForm.labels.subject}</span>
           <input
             type="text"
             name="subject"
             value={fields.subject}
             disabled={status === 'submitting'}
-            placeholder={siteCopy.sections.contactForm.placeholders.subject}
+            placeholder={contactForm.placeholders.subject}
             onChange={(event) => updateField('subject', event.target.value)}
           />
         </label>
 
         <label className="contact-form__field">
-          <span className="contact-form__label">Message</span>
+          <span className="contact-form__label">{contactForm.labels.message}</span>
           <textarea
             name="message"
             required
             rows={5}
             value={fields.message}
             disabled={status === 'submitting'}
-            placeholder={siteCopy.sections.contactForm.placeholders.message}
+            placeholder={contactForm.placeholders.message}
             onChange={(event) => updateField('message', event.target.value)}
           />
         </label>
@@ -153,20 +153,13 @@ export function ContactForm() {
 
         {status === 'success' && (
           <p className="contact-form__feedback contact-form__feedback--success" role="status">
-            {siteCopy.sections.contactForm.success}
+            {contactForm.success}
           </p>
         )}
 
         {status === 'error' && errorMessage && (
           <p className="contact-form__feedback contact-form__feedback--error" role="alert">
-            {errorMessage}
-            {siteConfig.links.email && (
-              <>
-                {' '}
-                Or email me at{' '}
-                <a href={`mailto:${siteConfig.links.email}`}>{siteConfig.links.email}</a>.
-              </>
-            )}
+            {errorMessage} {contactForm.errorFallback}
           </p>
         )}
 
@@ -177,7 +170,7 @@ export function ContactForm() {
             disabled={status === 'submitting'}
             icon={<SendIcon />}
           >
-            {status === 'submitting' ? 'Sending…' : 'Send Message'}
+            {status === 'submitting' ? contactForm.submitting : contactForm.submit}
           </Button>
         </div>
       </form>

@@ -1,0 +1,682 @@
+.exp-collab {
+  --exp-collab-enter: 0.68s;
+  --exp-collab-tile-border: color-mix(in srgb, var(--color-border) 85%, transparent);
+  --exp-collab-tile-hover-border: color-mix(in srgb, var(--color-accent-primary) 36%, var(--color-border));
+  --exp-collab-tile-hover-bg: color-mix(in srgb, var(--color-accent-primary) 8%, var(--color-bg));
+  --exp-collab-tile-hover-glow: 0 0 12px color-mix(in srgb, var(--nav-glow) 22%, transparent);
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: clamp(0.75rem, 2vw, 0.95rem);
+  min-height: 0;
+  padding: clamp(1rem, 2.2vw, 1.25rem);
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      color-mix(in srgb, var(--color-accent-primary) 16%, transparent),
+      transparent 48%
+    ),
+    radial-gradient(
+      circle at 0% 100%,
+      color-mix(in srgb, var(--color-accent-primary) 8%, transparent),
+      transparent 42%
+    ),
+    linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--color-accent-primary) 5%, var(--color-surface)),
+      color-mix(in srgb, var(--color-bg) 92%, var(--color-surface))
+    );
+}
+
+.exp-collab__mesh {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--color-border) 28%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-border) 28%, transparent) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: radial-gradient(ellipse 90% 80% at 80% 20%, black 10%, transparent 75%);
+}
+
+.exp-collab__rail {
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  top: 1rem;
+  bottom: 1rem;
+  width: 3px;
+  border-radius: 0 4px 4px 0;
+  background: linear-gradient(
+    180deg,
+    var(--color-accent-primary),
+    color-mix(in srgb, var(--color-accent-primary) 30%, #60a5fa) 55%,
+    transparent
+  );
+  box-shadow: 0 0 16px color-mix(in srgb, var(--color-accent-primary) 40%, transparent);
+}
+
+.exp-collab__meta,
+.exp-collab__hero,
+.exp-collab__body,
+.exp-collab__dock {
+  position: relative;
+  z-index: 1;
+}
+
+.exp-collab__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: clamp(0.65rem, 1.8vw, 0.85rem);
+  min-height: 0;
+}
+
+.exp-collab__meta {
+  padding-right: clamp(5.5rem, 34vw, 7.25rem);
+}
+
+.exp-collab__availability {
+  width: fit-content;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.exp-collab__where {
+  position: absolute;
+  top: clamp(1rem, 2.2vw, 1.25rem);
+  right: clamp(1rem, 2.2vw, 1.25rem);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.35rem;
+  margin: 0;
+  max-width: min(46vw, 9.5rem);
+  padding: 0.12rem 0;
+  font-size: clamp(0.625rem, 2.8vw, 0.6875rem);
+  line-height: 1.35;
+  text-align: right;
+  white-space: nowrap;
+  color: var(--color-text-muted);
+  cursor: default;
+  -webkit-tap-highlight-color: transparent;
+  transition: color var(--motion-base) ease;
+}
+
+.exp-collab__where-copy {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.exp-collab__where-pin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--color-accent-primary);
+  transition:
+    color var(--motion-base) ease,
+    transform var(--motion-base) var(--motion-ease),
+    filter var(--motion-base) ease;
+}
+
+.exp-collab__where-pin svg {
+  width: clamp(0.72rem, 3vw, 0.82rem);
+  height: clamp(0.72rem, 3vw, 0.82rem);
+}
+
+.exp-collab__where-copy::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: -0.08rem;
+  height: 1px;
+  transform: scaleX(0);
+  transform-origin: right center;
+  background: linear-gradient(
+    270deg,
+    var(--color-accent-primary),
+    color-mix(in srgb, var(--color-accent-primary) 20%, transparent)
+  );
+  transition: transform var(--motion-base) var(--motion-ease);
+}
+
+.exp-collab__where-city {
+  font-weight: 700;
+  color: var(--color-heading);
+  transition: color var(--motion-base) ease;
+}
+
+.exp-collab__hero {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding-bottom: 0.15rem;
+}
+
+.exp-collab__eyebrow {
+  margin: 0;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent-primary);
+}
+
+.exp-collab__title {
+  margin: 0;
+  font-size: clamp(1.1rem, 2.6vw, 1.35rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-heading);
+  background: linear-gradient(
+    120deg,
+    var(--color-heading) 0%,
+    color-mix(in srgb, var(--color-accent-primary) 68%, var(--color-heading)) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.exp-collab__lede {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+  text-wrap: pretty;
+}
+
+.exp-collab__stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.exp-collab__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.12rem;
+  min-height: 2.85rem;
+  padding: 0.5rem 0.4rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--exp-collab-tile-border);
+  background: color-mix(in srgb, var(--color-bg) 82%, var(--color-surface));
+  text-align: center;
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.exp-outcomes--in-view .exp-collab__stat {
+  animation: exp-collab-in var(--exp-collab-enter) var(--motion-ease) forwards;
+  animation-delay: var(--exp-collab-delay, 0ms);
+}
+
+.exp-collab__stat-value {
+  font-size: clamp(0.9rem, 2.4vw, 1rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--color-heading);
+}
+
+.exp-collab__stat-label {
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.25;
+  color: var(--color-text-muted);
+}
+
+.exp-collab__modes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.exp-collab__mode {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.45rem;
+  min-height: 100%;
+  padding: 0.72rem 0.58rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--exp-collab-tile-border);
+  background: color-mix(in srgb, var(--color-bg) 78%, var(--color-surface));
+  text-align: left;
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    border-color var(--motion-base) ease,
+    background var(--motion-base) ease,
+    box-shadow var(--motion-base) ease,
+    transform var(--motion-base) var(--motion-ease),
+    color var(--motion-base) ease;
+}
+
+.exp-outcomes--in-view .exp-collab__mode {
+  animation: exp-collab-in var(--exp-collab-enter) var(--motion-ease) forwards;
+  animation-delay: var(--exp-collab-delay, 0ms);
+}
+
+.exp-collab__mode-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 0.55rem;
+  color: var(--color-accent-primary);
+  background: color-mix(in srgb, var(--color-accent-primary) 11%, var(--color-bg));
+  border: 1px solid color-mix(in srgb, var(--color-accent-primary) 22%, transparent);
+}
+
+.exp-collab__mode-icon svg {
+  width: 0.95rem;
+  height: 0.95rem;
+}
+
+.exp-collab__mode-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+  min-width: 0;
+}
+
+.exp-collab__mode-label {
+  font-size: clamp(0.68rem, 2vw, 0.75rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-heading);
+}
+
+.exp-collab__mode-hint {
+  font-size: 0.625rem;
+  line-height: 1.35;
+  color: var(--color-text-muted);
+}
+
+.exp-collab__strengths {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-height: 0;
+  padding: 0.72rem 0.75rem;
+  border-radius: var(--radius-md);
+  border: 1px solid color-mix(in srgb, var(--color-accent-primary) 16%, var(--color-border));
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      color-mix(in srgb, var(--color-accent-primary) 10%, transparent),
+      transparent 55%
+    ),
+    color-mix(in srgb, var(--color-bg) 88%, var(--color-surface));
+  transition:
+    border-color var(--motion-base) ease,
+    box-shadow var(--motion-base) ease,
+    background var(--motion-base) ease;
+}
+
+.exp-collab__strengths-label {
+  margin: 0;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent-primary);
+}
+
+.exp-collab__strengths-list {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.exp-collab__strength {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.42rem 0.45rem;
+  margin-inline: -0.45rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition:
+    border-color var(--motion-base) ease,
+    background var(--motion-base) ease,
+    box-shadow var(--motion-base) ease,
+    transform var(--motion-base) var(--motion-ease);
+}
+
+.exp-outcomes--in-view .exp-collab__strength {
+  animation: exp-collab-strength-in var(--exp-collab-enter) var(--motion-ease) forwards;
+  animation-delay: var(--exp-collab-delay, 0ms);
+}
+
+.exp-collab__strength-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.2rem;
+  height: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+  border-radius: 50%;
+  color: var(--color-accent-primary);
+  background: color-mix(in srgb, var(--color-accent-primary) 12%, var(--color-bg));
+  border: 1px solid color-mix(in srgb, var(--color-accent-primary) 24%, transparent);
+  transition:
+    border-color var(--motion-base) ease,
+    box-shadow var(--motion-base) ease,
+    background var(--motion-base) ease;
+}
+
+.exp-collab__strength-icon svg {
+  width: 0.62rem;
+  height: 0.62rem;
+}
+
+.exp-collab__strength-text {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--color-text-muted);
+  transition: color var(--motion-base) ease;
+}
+
+.exp-collab__dock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin-top: auto;
+  padding-top: 0.35rem;
+  border-top: 1px solid color-mix(in srgb, var(--color-border) 75%, transparent);
+}
+
+.exp-collab__download {
+  width: 100%;
+  justify-content: center;
+}
+
+.exp-collab__channels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
+.exp-collab__channel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.45rem;
+  min-width: 0;
+  min-height: 3rem;
+  padding: 0.65rem 0.7rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--exp-collab-tile-border);
+  background: color-mix(in srgb, var(--color-bg) 80%, var(--color-surface));
+  color: inherit;
+  text-decoration: none;
+  transition:
+    border-color var(--motion-base) ease,
+    background var(--motion-base) ease,
+    box-shadow var(--motion-base) ease,
+    transform var(--motion-base) var(--motion-ease);
+}
+
+.exp-collab__channel-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.08rem;
+  min-width: 0;
+}
+
+.exp-collab__channel-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--color-heading);
+}
+
+.exp-collab__channel-hint {
+  font-size: 0.625rem;
+  line-height: 1.3;
+  color: var(--color-text-muted);
+}
+
+.exp-collab__channel-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+  color: var(--color-accent-primary);
+  background: color-mix(in srgb, var(--color-accent-primary) 10%, var(--color-bg));
+  border: 1px solid color-mix(in srgb, var(--color-accent-primary) 20%, transparent);
+  transition:
+    color var(--motion-base) ease,
+    background var(--motion-base) ease,
+    border-color var(--motion-base) ease,
+    transform var(--motion-base) var(--motion-ease);
+}
+
+.exp-collab__channel-arrow svg {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+@media (hover: hover) {
+  .exp-collab__where:hover {
+    color: var(--color-heading);
+  }
+
+  .exp-collab__where:hover .exp-collab__where-pin {
+    transform: translateY(-1px) scale(1.08);
+    filter: drop-shadow(0 0 6px color-mix(in srgb, var(--color-accent-primary) 55%, transparent));
+  }
+
+  .exp-collab__where:hover .exp-collab__where-copy::after {
+    transform: scaleX(1);
+  }
+
+  .exp-collab__where:hover .exp-collab__where-city {
+    color: var(--color-accent-primary);
+  }
+
+  .exp-collab__stat:hover,
+  .exp-collab__mode:hover {
+    border-color: var(--exp-collab-tile-hover-border);
+    background: var(--exp-collab-tile-hover-bg);
+    box-shadow: var(--exp-collab-tile-hover-glow);
+    transform: translateY(-1px);
+  }
+
+  .exp-collab__mode:hover .exp-collab__mode-icon {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 38%, transparent);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--nav-glow) 30%, transparent);
+  }
+
+  .exp-collab__strengths:has(.exp-collab__strength:hover) {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 28%, var(--color-border));
+    box-shadow: 0 0 18px color-mix(in srgb, var(--color-accent-primary) 10%, transparent);
+  }
+
+  .exp-collab__strength:hover {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 24%, var(--color-border));
+    background: color-mix(in srgb, var(--color-accent-primary) 7%, var(--color-bg));
+    box-shadow: var(--exp-collab-tile-hover-glow);
+    transform: translateX(2px);
+  }
+
+  .exp-collab__strength:hover .exp-collab__strength-icon {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 38%, transparent);
+    background: color-mix(in srgb, var(--color-accent-primary) 16%, var(--color-bg));
+    box-shadow: 0 0 10px color-mix(in srgb, var(--nav-glow) 28%, transparent);
+  }
+
+  .exp-collab__strength:hover .exp-collab__strength-text {
+    color: var(--color-heading);
+  }
+
+  .exp-collab__channel:hover {
+    border-color: var(--exp-collab-tile-hover-border);
+    background: var(--exp-collab-tile-hover-bg);
+    box-shadow: var(--exp-collab-tile-hover-glow);
+    transform: translateY(-1px);
+  }
+
+  .exp-collab__channel:hover .exp-collab__channel-label {
+    color: var(--color-accent-primary);
+  }
+
+  .exp-collab__channel:hover .exp-collab__channel-arrow {
+    color: var(--color-heading);
+    background: color-mix(in srgb, var(--color-accent-primary) 18%, var(--color-bg));
+    border-color: color-mix(in srgb, var(--color-accent-primary) 38%, transparent);
+    transform: translateX(2px);
+  }
+}
+
+@media (max-width: 900px) {
+  .exp-collab__meta {
+    padding-right: clamp(5.25rem, 36vw, 7rem);
+  }
+
+  .exp-collab__modes {
+    grid-template-columns: 1fr;
+  }
+
+  .exp-collab__mode {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.62rem 0.7rem;
+  }
+
+  .exp-collab__strengths-list {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .exp-collab__meta {
+    padding-right: clamp(4.85rem, 42vw, 6.25rem);
+  }
+
+  .exp-collab__where {
+    max-width: min(54vw, 8.75rem);
+  }
+
+  .exp-collab__channels {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (hover: none) {
+  .exp-collab__where:active {
+    color: var(--color-heading);
+  }
+
+  .exp-collab__where:active .exp-collab__where-pin {
+    transform: translateY(-1px) scale(1.08);
+    filter: drop-shadow(0 0 6px color-mix(in srgb, var(--color-accent-primary) 55%, transparent));
+  }
+
+  .exp-collab__where:active .exp-collab__where-copy::after {
+    transform: scaleX(1);
+  }
+
+  .exp-collab__where:active .exp-collab__where-city {
+    color: var(--color-accent-primary);
+  }
+
+  .exp-collab__mode:active,
+  .exp-collab__channel:active,
+  .exp-collab__strength:active {
+    border-color: var(--exp-collab-tile-hover-border);
+    background: var(--exp-collab-tile-hover-bg);
+    box-shadow: var(--exp-collab-tile-hover-glow);
+  }
+
+  .exp-collab__strength:active .exp-collab__strength-text {
+    color: var(--color-heading);
+  }
+
+  .exp-collab__channel:active .exp-collab__channel-label {
+    color: var(--color-accent-primary);
+  }
+}
+
+@keyframes exp-collab-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes exp-collab-strength-in {
+  from {
+    opacity: 0;
+    transform: translateX(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .exp-collab__mode {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .exp-collab__stat,
+  .exp-collab__strength {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .exp-collab__mode:hover,
+  .exp-collab__channel:hover,
+  .exp-collab__strength:hover,
+  .exp-collab__mode:active,
+  .exp-collab__channel:active,
+  .exp-collab__strength:active {
+    transform: none;
+  }
+}

@@ -1,12 +1,33 @@
+.contact-page {
+  padding-top: 0;
+}
+
+.contact-page__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.contact-page__intro {
+  display: flex;
+  justify-content: center;
+}
+
+.contact-page__availability {
+  align-items: center;
+  text-align: center;
+}
+
+.contact-page__availability .availability-badge__summary {
+  max-width: 42rem;
+  text-align: center;
+}
+
 .contact-section {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
   gap: var(--space-xl);
   align-items: stretch;
-}
-
-.contact-page {
-  padding-top: 0;
 }
 
 .contact-form-card.shine-card,
@@ -17,6 +38,12 @@
 @media (max-width: 900px) {
   .contact-section {
     grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-page__inner {
     gap: var(--space-lg);
   }
 }

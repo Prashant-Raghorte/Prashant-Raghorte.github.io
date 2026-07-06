@@ -159,8 +159,11 @@
 }
 
 @media (max-width: 640px) {
-  .availability-badge--center-mobile,
-  .contact-preview__availability {
+  .availability-badge--center-mobile {
+    align-items: center;
+  }
+
+  .contact-preview__availability.availability-badge--center-mobile {
     align-items: center;
   }
 }

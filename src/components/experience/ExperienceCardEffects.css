@@ -1,0 +1,61 @@
+/* Shared experience card + control interactions (ViewAllCard / ShineBorderCard patterns) */
+
+.home-experience__card-wrap,
+.timeline__card-wrap,
+.immersive__card-wrap {
+  transition: transform var(--motion-base) var(--motion-ease);
+}
+
+.home-experience__card,
+.timeline-card,
+.immersive-card {
+  transition:
+    background var(--motion-base) ease,
+    box-shadow var(--motion-base) ease;
+}
+
+@media (hover: hover) {
+  .home-experience__card-wrap.shine-card--hover:hover,
+  .timeline__card-wrap.shine-card--hover:hover,
+  .immersive__card-wrap.shine-card--hover:hover {
+    transform: translateY(var(--motion-lift));
+  }
+
+  .home-experience__card-wrap.shine-card--hover:hover .home-experience__meta-line--period,
+  .timeline__card-wrap.shine-card--hover:hover .timeline-card__meta-line--period {
+    color: var(--color-accent-primary);
+  }
+
+  .home-experience__card-wrap.shine-card--hover:hover .home-experience__meta-line--location,
+  .timeline__card-wrap.shine-card--hover:hover .timeline-card__meta-line--location {
+    color: var(--color-heading);
+  }
+
+  .home-experience__card-wrap.shine-card--hover:hover .home-experience__company--link,
+  .timeline__card-wrap.shine-card--hover:hover .timeline-card__company--link,
+  .home-experience__company--link:hover,
+  .timeline-card__company--link:hover,
+  .immersive-card .exp-identity__company--link:hover {
+    color: var(--color-primary-hover);
+  }
+
+  .home-experience__card .read-more__toggle:hover,
+  .timeline-card .read-more__toggle:hover,
+  .immersive-card .read-more__toggle:hover {
+    color: var(--color-primary-hover);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-experience__card-wrap,
+  .timeline__card-wrap,
+  .immersive__card-wrap {
+    transition: none;
+  }
+
+  .home-experience__card,
+  .timeline-card,
+  .immersive-card {
+    transition: none;
+  }
+}

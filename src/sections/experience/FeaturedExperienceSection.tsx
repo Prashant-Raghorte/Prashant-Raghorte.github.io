@@ -1,23 +1,18 @@
 import { siteCopy } from '@/config/copy'
-import { Section, ViewAllCard } from '@/components/common'
-import { ExperienceTimeline } from '@/components/experience/ExperienceTimeline'
-import { FEATURED_EXPERIENCE_LIMIT, ROUTES, SECTION_IDS } from '@/constants'
+import { Section } from '@/components/common'
+import { HomeExperienceShowcase } from '@/sections/experience/HomeExperienceShowcase'
+import { SECTION_IDS } from '@/constants'
 import { experiences } from '@/data/portfolio'
 import '@/components/common/PageHeader.css'
-import '@/components/common/ViewAllCard.css'
-import '@/components/experience/ExperienceTimeline.css'
+import '@/sections/experience/HomeExperienceShowcase.css'
 
 export function FeaturedExperienceSection() {
-  const featuredExperiences = experiences.slice(0, FEATURED_EXPERIENCE_LIMIT)
-  const hasMoreExperiences = experiences.length > FEATURED_EXPERIENCE_LIMIT
+  const featuredExperiences = experiences.slice(0, 3)
 
   return (
     <Section id={SECTION_IDS.EXPERIENCE} eyebrow="Career" title="Work Experience">
       <p className="featured-section__subtitle">{siteCopy.sections.featuredExperience}</p>
-      <ExperienceTimeline items={featuredExperiences} />
-      {hasMoreExperiences && (
-        <ViewAllCard to={ROUTES.EXPERIENCE} variant="experience" />
-      )}
+      <HomeExperienceShowcase items={featuredExperiences} />
     </Section>
   )
 }
