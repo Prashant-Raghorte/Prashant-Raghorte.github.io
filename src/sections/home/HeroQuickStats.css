@@ -267,12 +267,13 @@
 @media (max-width: 900px) {
   .hero-stats-shell {
     max-width: 100%;
+    margin-bottom: var(--space-lg);
   }
 }
 
 @media (max-width: 640px) {
   .hero-stats-shell {
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-md);
   }
 
   .hero-stats__item-wrap:not(:last-child) .hero-stats__item::after {

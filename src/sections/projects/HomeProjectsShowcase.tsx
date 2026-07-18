@@ -8,6 +8,7 @@ import { ArrowRightIcon } from '@/components/ui/icons'
 import { useRef } from 'react'
 import { FEATURED_PROJECTS_LIMIT, ROUTES } from '@/constants'
 import { useSpotlightTagsLine } from '@/hooks/useHomeProjectsSpotlightLayout'
+import { getSkillIcon } from '@/utils/skillIcons'
 
 type HomeProjectsShowcaseProps = {
   projects: Project[]
@@ -120,6 +121,35 @@ function ProjectSignatureCard({ projects }: ProjectSignatureProps) {
   )
 }
 
+type SpotlightTagProps = {
+  tag: string
+}
+
+function SpotlightTag({ tag }: SpotlightTagProps) {
+  const icon = getSkillIcon(tag)
+
+  return (
+    <li className="home-projects__spotlight-tag">
+      <span className="home-projects__spotlight-tag-surface">
+        {icon ? (
+          <img
+            src={icon}
+            alt=""
+            className="home-projects__spotlight-tag-icon"
+            loading="lazy"
+            decoding="async"
+          />
+        ) : (
+          <span className="home-projects__spotlight-tag-fallback" aria-hidden="true">
+            {tag.charAt(0)}
+          </span>
+        )}
+        <span className="home-projects__spotlight-tag-label">{tag}</span>
+      </span>
+    </li>
+  )
+}
+
 type ProjectSpotlightProps = {
   project: Project
 }
@@ -157,7 +187,7 @@ function ProjectSpotlight({ project }: ProjectSpotlightProps) {
         aria-label={`${project.title} tech stack`}
       >
         {visibleTags.map((tag) => (
-          <li key={tag}>{tag}</li>
+          <SpotlightTag key={tag} tag={tag} />
         ))}
         {hiddenTagCount > 0 ? (
           <li className="home-projects__spotlight-tags-more">+{hiddenTagCount}</li>
@@ -241,13 +271,7 @@ export function HomeProjectsShowcase({ projects }: HomeProjectsShowcaseProps) {
           <article className="home-projects__item home-projects__item--lead">
             <ProjectIndex index={0} showConnector={supportProjects.length > 0} />
             <div className="home-projects__card-wrap">
-              <span
-                className="home-projects__badge home-projects__badge--lead"
-                title="Primary project highlighted in this section"
-              >
-                Featured
-              </span>
-              <ProjectCard project={leadProject} />
+              <ProjectCard project={leadProject} variant="home" featured />
             </div>
           </article>
         ) : null}
@@ -261,7 +285,7 @@ export function HomeProjectsShowcase({ projects }: HomeProjectsShowcaseProps) {
                   showConnector={index < supportProjects.length - 1}
                 />
                 <div className="home-projects__card-wrap">
-                  <ProjectCard project={project} />
+                  <ProjectCard project={project} variant="home" />
                 </div>
               </article>
             ))}

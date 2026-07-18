@@ -35,6 +35,20 @@
   .project-card__link-btn,
   .project-card__tag,
   .projects-page__clear,
+  .projects-catalog__clear,
+  .stack-filter__pill,
+  .stack-filter__tab,
+  .stack-filter__clear,
+  .stack-filter__active-chip,
+  .stack-filter__all,
+  .projects-catalog__focus-link,
+  .projects-catalog__focus-tag,
+  .projects-catalog__focus-stat,
+  .project-highlights__item,
+  .projects-hero__orbit-logo,
+  .projects-hero__stack-node-btn,
+  .projects-hero__brief-domain,
+  .projects-hero__brief-metric,
   .project-skill-filter__chip,
   .project-skill-filter__clear,
   .project-skill-filter__active-chip,
@@ -457,9 +471,72 @@
   }
 
   .projects-page__clear:active,
-  .projects-page__clear:focus-visible {
+  .projects-page__clear:focus-visible,
+  .projects-catalog__clear:active,
+  .projects-catalog__clear:focus-visible {
     color: var(--color-accent-primary);
     border-color: color-mix(in srgb, var(--color-accent-primary) 40%, var(--color-border));
+    transform: translateY(var(--motion-lift));
+  }
+
+  .stack-filter__pill:not(:disabled):active,
+  .stack-filter__pill:not(:disabled):focus-visible,
+  .stack-filter__tab:active,
+  .stack-filter__tab:focus-visible,
+  .stack-filter__all:active,
+  .stack-filter__all:focus-visible {
+    color: var(--color-accent-primary);
+    border-color: color-mix(in srgb, var(--color-accent-primary) 40%, var(--color-border));
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-accent-primary) 18%, transparent);
+    transform: scale(0.98);
+  }
+
+  .stack-filter__clear:active,
+  .stack-filter__clear:focus-visible,
+  .stack-filter__active-chip:active,
+  .stack-filter__active-chip:focus-visible {
+    color: var(--color-accent-primary);
+    border-color: color-mix(in srgb, var(--color-accent-primary) 40%, var(--color-border));
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-accent-primary) 16%, transparent);
+    transform: scale(0.98);
+  }
+
+  .projects-catalog__focus-link:active,
+  .projects-catalog__focus-link:focus-visible {
+    background: color-mix(in srgb, var(--color-accent-primary) 14%, var(--color-surface));
+    border-color: color-mix(in srgb, var(--color-accent-primary) 45%, var(--color-border));
+    transform: translateY(var(--motion-lift));
+  }
+
+  .projects-catalog__focus-tag:active,
+  .projects-catalog__focus-tag:focus-visible,
+  .projects-catalog__focus-stat:active,
+  .projects-catalog__focus-stat:focus-visible,
+  .project-highlights__item:active,
+  .project-highlights__item:focus-visible {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 36%, var(--color-border));
+    background: color-mix(in srgb, var(--color-accent-primary) 8%, var(--color-surface));
+    box-shadow:
+      inset 0 1px 0 color-mix(in srgb, var(--color-accent-primary) 16%, transparent),
+      inset 0 0 0 1px color-mix(in srgb, var(--color-accent-primary) 12%, transparent);
+  }
+
+  .projects-catalog__focus-tag:active .projects-catalog__focus-tag-icon,
+  .projects-catalog__focus-tag:focus-visible .projects-catalog__focus-tag-icon {
+    transform: scale(1.08);
+  }
+
+  .projects-hero__orbit-logo:active .projects-hero__orbit-logo-surface,
+  .projects-hero__orbit-logo:focus-visible .projects-hero__orbit-logo-surface {
+    transform: scale(1.1);
+    box-shadow: 0 0 14px color-mix(in srgb, var(--color-accent-primary) 35%, transparent);
+  }
+
+  .projects-hero__brief-domain:active,
+  .projects-hero__brief-domain:focus-visible,
+  .projects-hero__brief-metric:active,
+  .projects-hero__brief-metric:focus-visible {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 38%, var(--color-border));
     transform: translateY(var(--motion-lift));
   }
 
@@ -640,6 +717,28 @@
   .project-card__link-btn:active,
   .projects-page__clear:hover,
   .projects-page__clear:active,
+  .projects-catalog__clear:hover,
+  .projects-catalog__clear:active,
+  .stack-filter__pill:hover,
+  .stack-filter__pill:active,
+  .stack-filter__tab:hover,
+  .stack-filter__tab:active,
+  .stack-filter__all:hover,
+  .stack-filter__all:active,
+  .stack-filter__clear:hover,
+  .stack-filter__clear:active,
+  .stack-filter__active-chip:hover,
+  .stack-filter__active-chip:active,
+  .projects-catalog__focus-link:hover,
+  .projects-catalog__focus-link:active,
+  .projects-hero__orbit-logo:hover,
+  .projects-hero__orbit-logo:active,
+  .projects-hero__brief-domain:hover,
+  .projects-hero__brief-domain:active,
+  .projects-hero__brief-metric:hover,
+  .projects-hero__brief-metric:active,
+  .projects-hero__stack-node-btn:hover,
+  .projects-hero__stack-node-btn:active,
   .project-skill-filter__chip:hover,
   .project-skill-filter__chip:active,
   .project-skill-filter__clear:hover,

@@ -151,6 +151,16 @@
     box-shadow var(--motion-base) ease;
 }
 
+.exp-skill-focus__tag-icon {
+  width: 0.9rem;
+  height: 0.9rem;
+  flex-shrink: 0;
+  object-fit: contain;
+  transition:
+    transform var(--motion-base) var(--motion-ease),
+    filter var(--motion-base) ease;
+}
+
 @media (hover: hover) {
   .exp-skill-focus__category:hover .exp-skill-focus__fill {
     box-shadow: 0 0 14px color-mix(in srgb, var(--nav-glow) 55%, transparent);
@@ -160,6 +170,11 @@
     transform: translateY(-2px);
     border-color: color-mix(in srgb, var(--color-accent-primary) 40%, transparent);
     box-shadow: 0 0 12px color-mix(in srgb, var(--nav-glow) 40%, transparent);
+  }
+
+  .exp-skill-focus__tag:hover .exp-skill-focus__tag-icon {
+    transform: scale(1.18);
+    filter: drop-shadow(0 0 6px color-mix(in srgb, var(--nav-glow) 55%, transparent));
   }
 }
 

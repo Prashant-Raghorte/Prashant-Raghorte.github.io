@@ -178,6 +178,11 @@
   .immersive-card__tag:hover .immersive-card__tag-dot {
     box-shadow: 0 0 8px color-mix(in srgb, var(--nav-glow) 60%, transparent);
   }
+
+  .immersive-card__tag:hover .immersive-card__tag-icon {
+    transform: scale(1.18);
+    filter: drop-shadow(0 0 6px color-mix(in srgb, var(--nav-glow) 55%, transparent));
+  }
 }
 
 .immersive-card__spotlight {
@@ -287,6 +292,16 @@
   border-radius: 50%;
   background: var(--color-accent-primary);
   box-shadow: 0 0 5px color-mix(in srgb, var(--color-accent-primary) 45%, transparent);
+}
+
+.immersive-card__tag-icon {
+  width: 0.9rem;
+  height: 0.9rem;
+  flex-shrink: 0;
+  object-fit: contain;
+  transition:
+    transform var(--motion-base) var(--motion-ease),
+    filter var(--motion-base) ease;
 }
 
 .immersive-card__tag-label {

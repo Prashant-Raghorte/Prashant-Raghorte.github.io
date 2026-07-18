@@ -324,6 +324,7 @@
   border: 1px solid color-mix(in srgb, var(--color-accent-primary) 22%, var(--color-border));
   background: color-mix(in srgb, var(--color-accent-primary) 5%, var(--color-bg));
   text-align: left;
+  overflow: hidden;
   transition:
     border-color var(--motion-base) ease,
     background var(--motion-base) ease,
@@ -426,9 +427,24 @@
   list-style: none;
   width: 100%;
   min-width: 0;
+  overflow: hidden;
 }
 
-.home-projects__spotlight-tags li {
+.home-projects__spotlight-tag {
+  display: inline-flex;
+  max-width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.home-projects__spotlight-tag-surface,
+.home-projects__spotlight-tags-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  min-width: 0;
+  max-width: 100%;
   padding: 0.18rem 0.45rem;
   border-radius: 999px;
   border: 1px solid color-mix(in srgb, var(--color-border) 82%, transparent);
@@ -437,10 +453,50 @@
   font-weight: 600;
   line-height: 1.2;
   color: var(--color-text-muted);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition:
+    color var(--motion-base) ease,
+    border-color var(--motion-base) ease,
+    background var(--motion-base) ease,
+    box-shadow var(--motion-base) ease;
+}
+
+.home-projects__spotlight-tag-icon {
+  width: 0.75rem;
+  height: 0.75rem;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.home-projects__spotlight-tag-fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 0.75rem;
+  height: 0.75rem;
+  flex-shrink: 0;
+  border-radius: 0.18rem;
+  font-size: 0.5625rem;
+  font-weight: 700;
+  color: var(--color-accent-primary);
+  background: color-mix(in srgb, var(--color-accent-primary) 18%, transparent);
+}
+
+.home-projects__spotlight-tag-label {
   white-space: nowrap;
-  max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
+  min-width: 0;
+}
+
+@media (hover: hover) {
+  .home-projects__spotlight-tag:hover .home-projects__spotlight-tag-surface {
+    color: var(--color-heading);
+    border-color: color-mix(in srgb, var(--color-accent-primary) 45%, transparent);
+    background: color-mix(in srgb, var(--color-accent-primary) 14%, var(--color-surface));
+    box-shadow: 0 0 8px color-mix(in srgb, var(--nav-glow) 28%, transparent);
+  }
 }
 
 .home-projects__spotlight-tags-more {
@@ -509,6 +565,16 @@
     align-content: center;
     flex-wrap: nowrap;
     overflow: hidden;
+  }
+
+  .home-projects__spotlight-tag,
+  .home-projects__spotlight-tags-more {
+    flex-shrink: 0;
+  }
+
+  .home-projects__spotlight-tag-surface,
+  .home-projects__spotlight-tags-more {
+    white-space: nowrap;
   }
 
   .home-projects__cta-shine {
@@ -660,23 +726,6 @@
   min-width: 0;
 }
 
-.home-projects__badge {
-  position: absolute;
-  top: 0.85rem;
-  right: 0.85rem;
-  z-index: 2;
-  padding: 0.2rem 0.55rem;
-  border-radius: 999px;
-  border: 1px solid color-mix(in srgb, var(--color-accent-primary) 35%, transparent);
-  background: color-mix(in srgb, var(--color-accent-primary) 12%, var(--color-bg));
-  font-size: 0.625rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--color-accent-primary);
-  pointer-events: none;
-}
-
 .home-projects__item--lead .project-card-wrap {
   transition: transform var(--motion-base) var(--motion-ease);
 }
@@ -699,7 +748,7 @@
 }
 
 .home-projects__item--lead .project-card {
-  padding-top: calc(var(--space-lg) + 0.35rem);
+  padding-top: var(--space-lg);
   background: transparent;
 }
 
@@ -759,50 +808,67 @@
 
   .home-projects__snapshot-inner {
     display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-columns: 1fr;
     grid-template-areas:
-      'orbit copy'
-      'stats stats'
-      'signature signature'
-      'spotlight spotlight'
-      'cta cta';
-    align-items: start;
+      'orbit'
+      'copy'
+      'stats'
+      'signature'
+      'spotlight'
+      'cta';
+    align-items: center;
     column-gap: var(--space-md);
     row-gap: var(--space-md);
-    text-align: left;
+    text-align: center;
   }
 
   .home-projects__orbit {
     grid-area: orbit;
     width: 4.75rem;
     height: 4.75rem;
+    justify-self: center;
   }
 
   .home-projects__snapshot-label {
     grid-area: copy;
     margin: 0;
+    justify-self: center;
     align-self: center;
     min-width: 0;
+    width: 100%;
+    text-align: center;
   }
 
   .home-projects__stats {
     grid-area: stats;
     min-width: 0;
+    width: 100%;
   }
 
   .home-projects__signature {
     grid-area: signature;
     min-width: 0;
+    width: 100%;
+    text-align: left;
+  }
+
+  .home-projects__signature-meta {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.45rem;
   }
 
   .home-projects__spotlight {
     grid-area: spotlight;
     min-width: 0;
+    width: 100%;
+    text-align: left;
   }
 
   .home-projects__cta-shine {
     grid-area: cta;
     min-width: 0;
+    width: 100%;
   }
 
   .home-projects__support {
@@ -828,11 +894,22 @@
     min-height: 1.5rem;
     margin-top: 0.35rem;
   }
+  .home-projects__item--lead .project-card {
+    padding-top: 0.85rem;
+  }
+
+  .home-projects__item {
+    grid-template-columns: 1.5rem minmax(0, 1fr);
+    column-gap: 0.55rem;
+  }
+
+  .home-projects__marker {
+    padding-top: 1.05rem;
+  }
 }
 
 @media (max-width: 640px) {
   .home-projects__snapshot-inner {
-    column-gap: 0.75rem;
     row-gap: 0.75rem;
     padding: var(--space-md);
   }
@@ -866,12 +943,29 @@
     font-size: 0.9375rem;
   }
 
+  .home-projects__signature {
+    padding: 0.75rem 0.65rem 0.75rem 0.85rem;
+  }
+
+  .home-projects__signature-meta {
+    gap: 0.4rem;
+  }
+
   .home-projects__signature-item {
-    padding: 0.52rem 0.58rem;
+    padding: 0.5rem 0.55rem;
+  }
+
+  .home-projects__signature-icon {
+    width: 1.65rem;
+    height: 1.65rem;
   }
 
   .home-projects__signature-item-value {
     font-size: 0.6875rem;
+  }
+
+  .home-projects__spotlight {
+    padding: 0.75rem 0.65rem 0.75rem 0.85rem;
   }
 
   .home-projects__spotlight-head {
@@ -879,7 +973,12 @@
     row-gap: 0.35rem;
   }
 
-  .home-projects__spotlight-tags li {
+  .home-projects__spotlight-tag-surface,
+  .home-projects__spotlight-tags-more {
+    white-space: normal;
+  }
+
+  .home-projects__spotlight-tag-label {
     white-space: normal;
     overflow-wrap: anywhere;
   }
@@ -905,19 +1004,8 @@
     font-size: 0.6875rem;
   }
 
-  .home-projects__item--lead .project-card__title {
-    padding-right: 4.5rem;
-  }
-
-  .home-projects__badge {
-    top: 0.65rem;
-    right: 0.65rem;
-    font-size: 0.5625rem;
-    padding: 0.16rem 0.45rem;
-  }
-
   .home-projects__item--lead .project-card {
-    padding-top: calc(var(--space-md) + 0.35rem);
+    padding-top: var(--space-md);
   }
 }
 
@@ -955,6 +1043,10 @@
   .home-projects__signature,
   .home-projects__spotlight {
     text-align: left;
+  }
+
+  .home-projects__signature-meta {
+    grid-template-columns: 1fr;
   }
 
   .home-projects__spotlight-head {
@@ -1004,7 +1096,8 @@
     gap: 0.3rem;
   }
 
-  .home-projects__spotlight-tags li {
+  .home-projects__spotlight-tag-surface,
+  .home-projects__spotlight-tags-more {
     font-size: 0.5625rem;
     padding: 0.16rem 0.38rem;
   }
@@ -1022,7 +1115,8 @@
 
   .home-projects__stats li,
   .home-projects__signature-item,
-  .home-projects__signature-icon {
+  .home-projects__signature-icon,
+  .home-projects__spotlight-tag-surface {
     transition: none;
   }
 }

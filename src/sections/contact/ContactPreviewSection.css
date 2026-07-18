@@ -661,12 +661,51 @@
     gap: clamp(1.5rem, 4vw, 2rem);
   }
 
+  .contact-preview__intro {
+    grid-template-columns: 1.5rem minmax(0, 1fr);
+    column-gap: 0.85rem;
+  }
+
+  .contact-preview__intro-stack {
+    gap: 0.95rem;
+  }
+
+  .contact-preview__lede {
+    max-width: 100%;
+  }
+
+  .contact-preview__signals {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+  }
+
+  .contact-preview__signal {
+    min-width: 0;
+  }
+
+  .contact-preview__hub {
+    padding: 1rem 1rem 1.1rem;
+  }
+
+  .contact-preview__grid {
+    gap: 0.6rem;
+  }
+
+  .contact-preview__channel {
+    padding: 0.8rem 0.9rem;
+  }
+
   .contact-preview--in-view .contact-preview__hub-wrap {
     animation-delay: calc(var(--contact-stagger-step) * 2);
   }
 }
 
 @media (max-width: 720px) {
+  .contact-preview__signals {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .contact-preview__grid {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -677,6 +716,10 @@
 
   .contact-preview__hub-head {
     flex-wrap: wrap;
+  }
+
+  .contact-preview__hub-title {
+    font-size: clamp(1rem, 4vw, 1.18rem);
   }
 }
 
@@ -706,11 +749,23 @@
   }
 
   .contact-preview__availability {
-    align-self: stretch;
+    align-self: flex-start;
+  }
+
+  .contact-preview__availability.availability-badge--center-mobile {
+    align-items: flex-start;
   }
 
   .contact-preview__availability .availability-badge__summary {
-    text-align: center;
+    text-align: left;
+  }
+
+  .contact-preview__intro-stack {
+    gap: 0.85rem;
+  }
+
+  .contact-preview__lede {
+    line-height: 1.65;
   }
 
   .contact-preview--in-view .contact-preview__signal {
@@ -745,9 +800,36 @@
     width: 2.15rem;
     height: 2.15rem;
   }
+
+  .contact-preview__hub {
+    padding: 0.95rem 0.9rem 1rem;
+    gap: 0.9rem;
+  }
+
+  .contact-preview__hub-head {
+    gap: 0.7rem;
+  }
+
+  .contact-preview__orbit {
+    width: 3.6rem;
+    height: 3.6rem;
+  }
+
+  .contact-preview__orbit-core {
+    width: 1.9rem;
+    height: 1.9rem;
+  }
+
+  .contact-preview__hub-title {
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 480px) {
+  .contact-preview__intro-stack {
+    gap: 0.75rem;
+  }
+
   .contact-preview__hub {
     padding: 0.95rem;
   }
@@ -765,8 +847,16 @@
     height: 1.95rem;
   }
 
+  .contact-preview__signal-value {
+    font-size: 0.72rem;
+  }
+
   .contact-preview__channel-display {
     font-size: 0.75rem;
+  }
+
+  .contact-preview__channel-name {
+    font-size: 0.84rem;
   }
 }
 
@@ -781,6 +871,14 @@
 
   .contact-preview__channel {
     padding: 0.75rem;
+  }
+
+  .contact-preview__hub {
+    padding: 0.85rem;
+  }
+
+  .contact-preview__signal {
+    padding: 0.6rem 0.65rem;
   }
 
   .contact-preview__channel-arrow {

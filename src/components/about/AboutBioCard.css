@@ -1,21 +1,822 @@
 .about-bio-card {
+  --bio-tone: var(--color-accent-primary);
   height: 100%;
+  min-height: min-content;
+  min-width: 0;
+  overflow: hidden;
+  box-shadow: none;
+  transform: none;
+  z-index: 0;
+}
+
+.about-bio-card.shine-card,
+.about-bio-card .shine-card__inner {
+  overflow: hidden;
+  box-shadow: none;
+  transform: none;
+  height: 100%;
+  min-height: min-content;
+}
+
+.about-bio-card .shine-card__inner {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.about-bio-card:hover,
+.about-bio-card:focus-within {
+  box-shadow: none;
+  transform: none;
 }
 
 .about-bio {
+  --bio-active: 0;
+  --bio-progress: 33.333%;
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
-  padding: var(--space-lg);
+  flex: 1 1 auto;
+  gap: 0.7rem;
+  height: 100%;
+  min-height: min-content;
+  min-width: 0;
+  padding: clamp(1rem, 2.2vw, 1.35rem);
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: inherit;
+  background:
+    linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--bio-tone) 9%, var(--color-surface)) 0%,
+      var(--color-surface) 46%,
+      color-mix(in srgb, var(--color-bg) 20%, var(--color-surface)) 100%
+    );
+  transition: background 0.35s ease;
 }
 
-.about-bio__paragraph {
+.about-bio--armed {
+  background:
+    linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--bio-tone) 12%, var(--color-surface)) 0%,
+      var(--color-surface) 50%,
+      color-mix(in srgb, var(--color-bg) 12%, var(--color-surface)) 100%
+    );
+}
+
+.about-bio__mesh,
+.about-bio__glow,
+.about-bio__sheen {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.about-bio__mesh {
+  background-image:
+    radial-gradient(
+      color-mix(in srgb, var(--color-heading) 7%, transparent) 0.65px,
+      transparent 0.75px
+    );
+  background-size: 0.9rem 0.9rem;
+  mask-image: radial-gradient(ellipse at 14% 6%, #000 0%, transparent 58%);
+  opacity: 0.32;
+  transition: opacity 0.3s ease;
+}
+
+.about-bio--armed .about-bio__mesh {
+  opacity: 0.5;
+}
+
+.about-bio__glow {
+  background:
+    radial-gradient(
+      52% 38% at 6% -8%,
+      color-mix(in srgb, var(--bio-tone) 20%, transparent),
+      transparent 68%
+    ),
+    radial-gradient(
+      38% 32% at 100% 108%,
+      color-mix(in srgb, var(--bio-tone) 12%, transparent),
+      transparent 68%
+    );
+  opacity: 0.55;
+  transition: opacity 0.35s ease;
+}
+
+.about-bio--armed .about-bio__glow {
+  opacity: 0.78;
+}
+
+.about-bio__sheen {
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    color-mix(in srgb, var(--bio-tone) 8%, transparent) 48%,
+    transparent 66%
+  );
+  opacity: 0;
+  transform: translateX(-12%);
+  transition:
+    opacity 0.35s ease,
+    transform 0.55s var(--motion-ease);
+}
+
+.about-bio--armed .about-bio__sheen {
+  opacity: 0.85;
+  transform: translateX(10%);
+}
+
+.about-bio__chrome,
+.about-bio__progress,
+.about-bio__stack {
+  position: relative;
+  z-index: 1;
+}
+
+.about-bio__chrome {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem 0.85rem;
+  min-width: 0;
+  padding: 0.55rem 0.65rem;
+  border-radius: 0.95rem;
+  border: 1px solid color-mix(in srgb, var(--bio-tone) 16%, var(--color-border));
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--bio-tone) 8%, var(--color-surface)),
+      color-mix(in srgb, var(--color-bg) 28%, var(--color-surface))
+    );
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-heading) 6%, transparent);
+}
+
+.about-bio__identity {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+}
+
+.about-bio__orb {
+  position: relative;
+  width: 2.15rem;
+  height: 2.15rem;
+  flex-shrink: 0;
+  border-radius: 0.75rem;
+  display: grid;
+  place-items: center;
+  background:
+    linear-gradient(
+      150deg,
+      color-mix(in srgb, var(--bio-tone) 24%, transparent),
+      color-mix(in srgb, var(--color-bg) 42%, transparent)
+    );
+  border: 1px solid color-mix(in srgb, var(--bio-tone) 34%, transparent);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-heading) 8%, transparent);
+  overflow: hidden;
+}
+
+.about-bio__orb-ring {
+  position: absolute;
+  inset: 0.28rem;
+  border-radius: 0.5rem;
+  border: 1px dashed color-mix(in srgb, var(--bio-tone) 35%, transparent);
+  opacity: 0.7;
+}
+
+.about-bio__orb-core {
+  position: relative;
+  z-index: 1;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--bio-tone);
+  box-shadow: 0 0 0 0.26rem color-mix(in srgb, var(--bio-tone) 16%, transparent);
+  animation: about-bio-pulse 2.2s ease-out infinite;
+}
+
+.about-bio__identity-copy {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.08rem;
+}
+
+.about-bio__eyebrow {
   margin: 0;
-  font-size: 0.9375rem;
-  line-height: 1.7;
-  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--bio-tone) 72%, var(--color-heading));
 }
 
-.about-bio__paragraph:last-child {
-  margin-bottom: 0;
+.about-bio__heading {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--color-heading);
+}
+
+.about-bio__switch {
+  --bio-thumb: 0;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.2rem;
+  padding: 0.2rem;
+  border-radius: 0.8rem;
+  background: color-mix(in srgb, var(--color-bg) 55%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-border) 70%, transparent);
+  min-width: min(100%, 16.5rem);
+  overflow: hidden;
+}
+
+.about-bio__switch-thumb {
+  pointer-events: none;
+  position: absolute;
+  top: 0.2rem;
+  bottom: 0.2rem;
+  left: 0.2rem;
+  width: calc((100% - 0.4rem - 0.4rem) / 3);
+  border-radius: 0.6rem;
+  background: color-mix(in srgb, var(--bio-tone) 16%, var(--color-surface));
+  border: 1px solid color-mix(in srgb, var(--bio-tone) 36%, transparent);
+  box-shadow: inset 0 -1.5px 0 var(--bio-tone);
+  transform: translateX(calc(var(--bio-thumb) * (100% + 0.2rem)));
+  transition: transform 0.35s var(--motion-ease);
+  z-index: 0;
+}
+
+.about-bio__chip {
+  appearance: none;
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.28rem;
+  margin: 0;
+  padding: 0.4rem 0.4rem;
+  border: 0;
+  border-radius: 0.6rem;
+  background: transparent;
+  color: var(--color-text-muted);
+  font: inherit;
+  cursor: pointer;
+  transition: color var(--motion-base) ease;
+}
+
+.about-bio__chip-idx {
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  opacity: 0.7;
+}
+
+.about-bio__chip-label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.about-bio__chip--active {
+  color: var(--color-heading);
+}
+
+.about-bio__progress {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.about-bio__progress-track {
+  position: absolute;
+  left: 0;
+  right: 5.25rem;
+  height: 0.2rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-border) 78%, transparent);
+  z-index: 0;
+}
+
+.about-bio__progress-fill {
+  position: relative;
+  z-index: 1;
+  display: block;
+  height: 0.2rem;
+  width: var(--bio-progress);
+  max-width: 100%;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--bio-tone) 35%, transparent),
+    var(--bio-tone)
+  );
+  transition: width 0.35s var(--motion-ease);
+}
+
+.about-bio__progress-label {
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.about-bio__stack {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1 1 auto;
+  min-height: min-content;
+  min-width: 0;
+  padding-left: 0.85rem;
+}
+
+.about-bio__conductor {
+  pointer-events: none;
+  position: absolute;
+  top: 0.9rem;
+  bottom: 0.9rem;
+  left: 0.2rem;
+  width: 0.12rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bio-tone) 16%, transparent);
+  overflow: hidden;
+}
+
+.about-bio__conductor-fill {
+  display: block;
+  width: 100%;
+  height: var(--bio-progress);
+  border-radius: inherit;
+  background: linear-gradient(
+    180deg,
+    var(--bio-tone),
+    color-mix(in srgb, var(--bio-tone) 25%, transparent)
+  );
+  transition: height 0.35s var(--motion-ease);
+}
+
+.about-bio__panel {
+  --lane-x: 28%;
+  --lane-y: 42%;
+  appearance: none;
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.7rem;
+  align-items: start;
+  flex: 1 0 auto;
+  min-height: auto;
+  width: 100%;
+  margin: 0;
+  padding: 0.8rem 0.85rem 1.1rem 0.7rem;
+  text-align: left;
+  border-radius: 0.95rem;
+  border: 1px solid color-mix(in srgb, var(--color-border) 58%, transparent);
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--color-bg) 14%, transparent),
+      color-mix(in srgb, var(--color-surface) 70%, transparent)
+    );
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  overflow: hidden;
+  isolation: isolate;
+  clip-path: inset(0 round 0.95rem);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-heading) 5%, transparent);
+  transition:
+    border-color var(--motion-base) ease,
+    background var(--motion-base) ease,
+    box-shadow var(--motion-base) ease,
+    opacity var(--motion-base) ease;
+  opacity: 0;
+  transform: translateY(0.28rem);
+  animation: about-bio-in 0.45s var(--motion-ease) forwards;
+  animation-delay: calc(0.05s + (var(--bio-i, 0) * 70ms));
+}
+
+.about-bio__panel--lead,
+.about-bio__panel--craft {
+  flex: 1 0 auto;
+}
+
+.about-bio__panel--craft {
+  flex: 1.15 0 auto;
+}
+
+.about-bio__panel-spot,
+.about-bio__panel-beam,
+.about-bio__panel-edge {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  opacity: 0;
+}
+
+.about-bio__panel-spot {
+  background: radial-gradient(
+    170px circle at var(--lane-x) var(--lane-y),
+    color-mix(in srgb, var(--bio-tone) 14%, transparent),
+    transparent 64%
+  );
+  transition: opacity 0.2s ease;
+}
+
+.about-bio__panel-beam {
+  background: linear-gradient(
+    110deg,
+    transparent 24%,
+    color-mix(in srgb, var(--bio-tone) 15%, transparent) 48%,
+    transparent 72%
+  );
+  transform: translateX(-45%);
+  transition:
+    opacity 0.28s ease,
+    transform 0.42s var(--motion-ease);
+}
+
+.about-bio__panel-edge {
+  box-shadow: inset 3px 0 0 color-mix(in srgb, var(--bio-tone) 0%, transparent);
+  transition: box-shadow var(--motion-base) ease;
+}
+
+.about-bio__panel-node {
+  position: relative;
+  z-index: 1;
+  width: 0.7rem;
+  margin-top: 0.4rem;
+  align-self: start;
+  display: grid;
+  place-items: center;
+}
+
+.about-bio__panel-node::before {
+  content: '';
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 1.5px solid color-mix(in srgb, var(--bio-tone) 42%, var(--color-border));
+  transition:
+    background var(--motion-base) ease,
+    border-color var(--motion-base) ease,
+    box-shadow var(--motion-base) ease;
+}
+
+.about-bio__panel-main {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.4rem;
+  min-width: 0;
+  min-height: auto;
+  height: auto;
+  padding-bottom: 0;
+}
+
+.about-bio__panel-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-width: 0;
+  flex-shrink: 0;
+}
+
+.about-bio__panel-tag {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--bio-tone) 70%, var(--color-text-muted));
+  transition: color var(--motion-base) ease;
+}
+
+.about-bio__panel-code {
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  opacity: 0.8;
+  padding: 0.16rem 0.42rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--color-border) 70%, transparent);
+  background: color-mix(in srgb, var(--color-bg) 40%, transparent);
+}
+
+.about-bio__panel-text {
+  display: block;
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--color-text-muted);
+  overflow: visible;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: none;
+  text-wrap: pretty;
+  transition: color var(--motion-base) ease;
+}
+
+.about-bio__panel--lead .about-bio__panel-text {
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.about-bio__panel--active {
+  border-color: color-mix(in srgb, var(--bio-tone) 40%, var(--color-border));
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--bio-tone) 11%, transparent),
+      color-mix(in srgb, var(--color-surface) 86%, transparent)
+    );
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--bio-tone) 8%, transparent),
+    inset 0 1px 0 color-mix(in srgb, var(--color-heading) 6%, transparent);
+}
+
+.about-bio__panel--active .about-bio__panel-edge {
+  opacity: 1;
+  box-shadow: inset 3px 0 0 var(--bio-tone);
+}
+
+.about-bio__panel--active .about-bio__panel-node::before {
+  background: var(--bio-tone);
+  border-color: var(--bio-tone);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--bio-tone) 14%, transparent);
+}
+
+.about-bio__panel--active .about-bio__panel-tag {
+  color: var(--bio-tone);
+}
+
+.about-bio__panel--active .about-bio__panel-text {
+  color: var(--color-heading);
+}
+
+.about-bio__panel--dim {
+  opacity: 0.82;
+}
+
+.about-bio__panel--hot {
+  border-color: color-mix(in srgb, var(--bio-tone) 44%, var(--color-border));
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--bio-tone) 12%, var(--color-surface)),
+      color-mix(in srgb, var(--color-surface) 92%, transparent)
+    );
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--bio-tone) 10%, transparent),
+    inset 0 1px 0 color-mix(in srgb, var(--color-heading) 6%, transparent);
+}
+
+.about-bio__panel--hot .about-bio__panel-spot {
+  opacity: 0.8;
+}
+
+.about-bio__panel--hot .about-bio__panel-beam {
+  opacity: 0.85;
+  transform: translateX(28%);
+}
+
+.about-bio__panel--hot .about-bio__panel-edge {
+  opacity: 1;
+  box-shadow: inset 3px 0 0 var(--bio-tone);
+}
+
+.about-bio__panel--hot .about-bio__panel-node::before {
+  background: var(--bio-tone);
+  border-color: var(--bio-tone);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--bio-tone) 16%, transparent);
+}
+
+.about-bio__panel--hot .about-bio__panel-tag {
+  color: var(--bio-tone);
+}
+
+.about-bio__panel--hot .about-bio__panel-text {
+  color: var(--color-heading);
+}
+
+@media (hover: hover) {
+  .about-bio__chip:hover {
+    color: var(--color-heading);
+  }
+}
+
+/* Bio card — non-desktop only */
+@media (max-width: 1100px) {
+  .about-bio {
+    gap: 0.65rem;
+    padding: clamp(0.85rem, 2vw, 1.15rem);
+    min-height: 0;
+    height: auto;
+  }
+
+  .about-bio-card,
+  .about-bio-card.shine-card,
+  .about-bio-card .shine-card__inner {
+    height: auto;
+    min-height: 0;
+  }
+
+  .about-bio__chrome {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.55rem;
+    padding: 0.55rem 0.6rem;
+  }
+
+  .about-bio__switch {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .about-bio__progress-track {
+    right: 5rem;
+  }
+
+  .about-bio__stack {
+    padding-left: 0.75rem;
+  }
+
+  .about-bio__panel {
+    padding: 0.7rem 0.7rem 0.9rem;
+  }
+
+  .about-bio__panel-text {
+    font-size: 0.84rem;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 640px) {
+  .about-bio {
+    gap: 0.55rem;
+    padding: 0.8rem 0.75rem 0.9rem;
+  }
+
+  .about-bio__chrome {
+    padding: 0.5rem 0.55rem;
+  }
+
+  .about-bio__identity {
+    gap: 0.5rem;
+  }
+
+  .about-bio__orb {
+    width: 1.9rem;
+    height: 1.9rem;
+  }
+
+  .about-bio__heading {
+    font-size: 0.95rem;
+  }
+
+  .about-bio__eyebrow {
+    font-size: 0.52rem;
+  }
+
+  .about-bio__switch {
+    width: 100%;
+    min-width: 0;
+    gap: 0.15rem;
+  }
+
+  .about-bio__chip {
+    padding: 0.38rem 0.28rem;
+    gap: 0.2rem;
+  }
+
+  .about-bio__chip-label {
+    font-size: 0.625rem;
+  }
+
+  .about-bio__progress {
+    gap: 0.5rem;
+  }
+
+  .about-bio__progress-track {
+    right: 4.5rem;
+  }
+
+  .about-bio__progress-label {
+    font-size: 0.52rem;
+  }
+
+  .about-bio__stack {
+    padding-left: 0.55rem;
+    gap: 0.4rem;
+  }
+
+  .about-bio__panel {
+    gap: 0.45rem;
+    padding: 0.65rem 0.6rem 0.8rem;
+    flex: 1 0 auto;
+  }
+
+  .about-bio__panel--lead,
+  .about-bio__panel--craft {
+    flex: 1 0 auto;
+  }
+
+  .about-bio__panel-meta {
+    flex-wrap: wrap;
+    gap: 0.25rem 0.45rem;
+  }
+
+  .about-bio__panel-text {
+    font-size: 0.8rem;
+    line-height: 1.58;
+  }
+}
+
+@media (max-width: 420px) {
+  .about-bio__chip-label {
+    display: none;
+  }
+
+  .about-bio__chip {
+    justify-content: center;
+  }
+
+  .about-bio__progress-track {
+    right: 4.25rem;
+  }
+
+  .about-bio__panel-text {
+    font-size: 0.78rem;
+  }
+}
+
+@keyframes about-bio-pulse {
+  0% {
+    box-shadow: 0 0 0 0.18rem color-mix(in srgb, var(--bio-tone) 20%, transparent);
+  }
+  70% {
+    box-shadow: 0 0 0 0.4rem transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0.18rem transparent;
+  }
+}
+
+@keyframes about-bio-in {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-bio__orb-core,
+  .about-bio__panel {
+    animation: none;
+  }
+
+  .about-bio__panel {
+    opacity: 1;
+    transform: none;
+  }
+
+  .about-bio__switch-thumb,
+  .about-bio__progress-fill,
+  .about-bio__conductor-fill,
+  .about-bio__panel-beam,
+  .about-bio__sheen {
+    transition: none;
+  }
+
+  .about-bio--armed .about-bio__sheen,
+  .about-bio__panel--hot .about-bio__panel-beam {
+    transform: none;
+  }
 }

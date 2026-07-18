@@ -196,14 +196,13 @@
   }
 
   .exp-journey__head {
-    flex-direction: column;
-    gap: 0.45rem;
+    gap: 0.5rem;
   }
 
   .exp-journey__accent {
-    width: 2rem;
-    height: 0.3rem;
-    margin-top: 0;
+    width: 0.35rem;
+    height: 1.25rem;
+    margin-top: 0.15rem;
   }
 
   .exp-journey__hint {

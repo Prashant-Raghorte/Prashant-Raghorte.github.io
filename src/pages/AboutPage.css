@@ -10,11 +10,71 @@
   min-width: 0;
 }
 
+.about-page__who,
+.about-page__skills,
+.about-page__education {
+  min-width: 0;
+  padding-block: clamp(0.85rem, 2.4vw, 1.35rem);
+}
+
+.about-page__skills {
+  margin-top: var(--space-md);
+}
+
+.about-page__education {
+  margin-top: var(--space-sm);
+  padding-block: clamp(0.55rem, 1.6vw, 0.85rem);
+}
+
+.about-section-head {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  margin: 0 0 clamp(1rem, 2.5vw, 1.35rem);
+  padding-block: 0.15rem 0.35rem;
+}
+
+.about-section-head__accent {
+  width: 0.4rem;
+  height: 1.5rem;
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: linear-gradient(
+    to bottom,
+    var(--color-accent-primary),
+    color-mix(in srgb, var(--color-accent-primary) 25%, transparent)
+  );
+  box-shadow: 0 0 14px color-mix(in srgb, var(--color-accent-primary) 42%, transparent);
+}
+
+.about-section-head__copy {
+  min-width: 0;
+}
+
+.about-section-head__title {
+  margin: 0 0 0.3rem;
+  font-size: clamp(1.15rem, 2.8vw, 1.45rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-heading);
+}
+
+.about-section-head__hint {
+  margin: 0;
+  max-width: 36rem;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
 .about-page__who-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.85fr);
   gap: var(--space-lg);
-  align-items: start;
+  align-items: stretch;
 }
 
 .about-page__who-grid > * {
@@ -31,12 +91,76 @@
   margin-top: var(--space-xl);
 }
 
-.about-page__skills {
-  margin-top: var(--space-xl);
-}
+/* Who I Am — tablet / mobile only (desktop grid above stays) */
+@media (max-width: 1100px) {
+  .about-page__who {
+    padding-block: clamp(0.7rem, 2vw, 1.1rem);
+  }
 
-@media (max-width: 900px) {
   .about-page__who-grid {
     grid-template-columns: 1fr;
+    gap: clamp(0.75rem, 2vw, 1.1rem);
+  }
+
+  .about-page__who .about-section-head {
+    margin-bottom: clamp(0.75rem, 2vw, 1rem);
+  }
+
+  .about-page__who .about-section-head__hint {
+    max-width: 40rem;
+  }
+
+  .about-page__education {
+    margin-top: var(--space-sm);
+    padding-block: clamp(0.5rem, 1.5vw, 0.75rem);
+  }
+
+  .about-page__education .about-section-head {
+    margin-bottom: clamp(0.7rem, 1.8vw, 0.95rem);
+  }
+
+  .about-page__education .about-section-head__hint {
+    max-width: 36rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .about-page__who,
+  .about-page__skills,
+  .about-page__education {
+    padding-block: 0.75rem 1rem;
+  }
+
+  .about-section-head {
+    margin-bottom: 0.85rem;
+  }
+
+  .about-section-head__title {
+    font-size: clamp(1.05rem, 4.5vw, 1.25rem);
+  }
+
+  .about-section-head__hint {
+    font-size: 0.78rem;
+    line-height: 1.45;
+  }
+
+  .about-page__who-grid {
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .about-section-head {
+    gap: 0.5rem;
+  }
+
+  .about-section-head__accent {
+    width: 0.35rem;
+    height: 1.25rem;
+    margin-top: 0.15rem;
+  }
+
+  .about-section-head__hint {
+    font-size: 0.75rem;
   }
 }

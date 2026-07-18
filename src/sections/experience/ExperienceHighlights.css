@@ -221,16 +221,39 @@
   }
 }
 
+@media (max-width: 767px) {
+  .exp-outcomes__head {
+    margin-bottom: 0.85rem;
+  }
+
+  .exp-outcomes__title {
+    font-size: clamp(1.05rem, 4.5vw, 1.25rem);
+  }
+
+  .exp-outcomes__subtitle {
+    font-size: 0.78rem;
+    line-height: 1.45;
+  }
+}
+
 @media (max-width: 640px) {
   .exp-outcomes__head {
-    flex-direction: column;
-    gap: 0.45rem;
+    gap: 0.5rem;
   }
 
   .exp-outcomes__accent {
-    width: 2rem;
-    height: 0.3rem;
-    margin-top: 0;
+    width: 0.35rem;
+    height: 1.25rem;
+    margin-top: 0.15rem;
+  }
+
+  .exp-outcomes__eyebrow {
+    font-size: 0.625rem;
+    letter-spacing: 0.08em;
+  }
+
+  .exp-outcomes__subtitle {
+    font-size: 0.75rem;
   }
 }
 

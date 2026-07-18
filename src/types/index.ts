@@ -24,7 +24,19 @@ export type Education = {
   institution: string
   degree: string
   period: string
-  details?: string
+  level: string
+  credentialCode: string
+  startYear: number
+  endYear: number
+  /** Stream or discipline for this step */
+  stream: string
+  location: string
+  /** Single sentence framing this step */
+  highlight: string
+  /** Study focus topics shown as a quiet text row */
+  focus: string[]
+  board?: string
+  affiliation?: string
 }
 
 export type SkillCategory = {
@@ -33,11 +45,23 @@ export type SkillCategory = {
   skills: string[]
 }
 
+export type ProjectDeliverySnapshot = {
+  integrations: number
+  dataStores: number
+  aiIntegrations: number
+}
+
 export type Project = {
   id: string
   title: string
+  domain: string
   description: string
+  catalogSummary: string
+  spotlightQuote: string
+  modules: string[]
+  deliverySnapshot: ProjectDeliverySnapshot
   tags: string[]
+  highlights?: string[]
   url?: string
   repoUrl?: string
   logoUrl?: string

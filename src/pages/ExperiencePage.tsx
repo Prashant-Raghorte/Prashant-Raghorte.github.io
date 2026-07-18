@@ -14,7 +14,7 @@ export function ExperiencePage() {
         title={siteCopy.pages.experience.title}
         subtitle={siteCopy.pages.experience.subtitle}
       />
-      <Section eyebrow="Career" title="All Roles">
+      <Section>
         <ExperiencePageShowcase items={experiences} />
       </Section>
     </>

@@ -1,10 +1,13 @@
 import type { CSSProperties } from 'react'
+import { Link } from 'react-router-dom'
 import type { Experience } from '@/types'
-import { ExternalLinkIcon } from '@/components/ui/icons'
+import { siteCopy } from '@/config/copy'
+import { ArrowRightIcon, ExternalLinkIcon } from '@/components/ui/icons'
 import { ReadMoreList } from '@/components/common/ReadMoreList'
 import { CompanyLogo } from '@/components/experience/CompanyLogo'
 import { ExperienceCareerSnapshot } from '@/components/experience/ExperienceCareerSnapshot'
 import { ShineBorderCard } from '@/components/ui/ShineBorderCard'
+import { ROUTES } from '@/constants'
 import { useInView } from '@/hooks/useInView'
 import { useSpotlight } from '@/hooks/useSpotlight'
 import { getExperienceAnchorId } from '@/utils/experienceHelpers'
@@ -150,6 +153,66 @@ function ExperienceRailItem({
   )
 }
 
+type HomeExperienceDigestProps = {
+  item: Experience
+}
+
+function HomeExperienceDigest({ item }: HomeExperienceDigestProps) {
+  const previewPoints = item.highlights.slice(0, HOME_HIGHLIGHT_PREVIEW)
+  const remainingCount = Math.max(item.highlights.length - previewPoints.length, 0)
+  const allTags = extractExperienceTags(item.highlights, 12)
+  const visibleTags = allTags.slice(0, 4)
+  const moreSkills = Math.max(allTags.length - visibleTags.length, 0)
+  const roleHref = `${ROUTES.EXPERIENCE}#${getExperienceAnchorId(item.id)}`
+  const roleCopy = siteCopy.viewAll.experienceRole
+
+  return (
+    <section className="home-experience__digest" aria-label="Role highlights">
+      <ul className="home-experience__points">
+        {previewPoints.map((point, pointIndex) => (
+          <li key={`${item.id}-point-${pointIndex}`} className="home-experience__point">
+            <span className="home-experience__point-index" aria-hidden="true">
+              {String(pointIndex + 1).padStart(2, '0')}
+            </span>
+            <p className="home-experience__point-text">{point}</p>
+          </li>
+        ))}
+      </ul>
+
+      {visibleTags.length > 0 ? (
+        <ul className="home-experience__tech" aria-label="Technologies">
+          {visibleTags.map((tag) => (
+            <li key={tag} className="home-experience__tech-tag">
+              <span className="home-experience__tech-surface">{tag}</span>
+            </li>
+          ))}
+          {moreSkills > 0 ? (
+            <li className="home-experience__tech-more">{roleCopy.moreSkills(moreSkills)}</li>
+          ) : null}
+        </ul>
+      ) : null}
+
+      <div className="home-experience__digest-foot">
+        {remainingCount > 0 ? (
+          <span className="home-experience__more">{roleCopy.more(remainingCount)}</span>
+        ) : (
+          <span className="home-experience__more" aria-hidden="true" />
+        )}
+        <Link
+          to={roleHref}
+          className="home-experience__jump"
+          aria-label={`${roleCopy.title}: ${item.role} at ${item.company}`}
+        >
+          <span>{roleCopy.title}</span>
+          <span className="home-experience__jump-icon" aria-hidden="true">
+            <ArrowRightIcon />
+          </span>
+        </Link>
+      </div>
+    </section>
+  )
+}
+
 export function HomeExperienceShowcase({
   items,
   variant = 'home',
@@ -229,13 +292,7 @@ export function HomeExperienceShowcase({
                     </div>
                   </header>
 
-                  <ReadMoreList
-                    items={item.highlights}
-                    previewCount={highlightPreview}
-                    className="home-experience__card-body"
-                    listClassName="home-experience__list"
-                    itemClassName="prose text-fluid-sm"
-                  />
+                  <HomeExperienceDigest item={item} />
                 </article>
               </ShineBorderCard>
             </li>

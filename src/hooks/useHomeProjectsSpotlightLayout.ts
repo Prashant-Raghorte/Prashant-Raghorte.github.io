@@ -122,6 +122,37 @@ export function countTagsForSingleLine(
   return countTagsForLines(container, tags, 1, options)
 }
 
+function buildSpotlightTagChip(tag: string, measureList: HTMLUListElement): HTMLElement {
+  const chip = document.createElement('li')
+  chip.className = 'home-projects__spotlight-tag'
+  const surface = document.createElement('span')
+  surface.className = 'home-projects__spotlight-tag-surface'
+  const icon = getSkillIcon(tag)
+
+  if (icon) {
+    const img = document.createElement('img')
+    img.className = 'home-projects__spotlight-tag-icon'
+    img.src = icon
+    img.alt = ''
+    surface.appendChild(img)
+  } else {
+    const fallback = document.createElement('span')
+    fallback.className = 'home-projects__spotlight-tag-fallback'
+    fallback.textContent = tag.charAt(0)
+    fallback.setAttribute('aria-hidden', 'true')
+    surface.appendChild(fallback)
+  }
+
+  const label = document.createElement('span')
+  label.className = 'home-projects__spotlight-tag-label'
+  label.textContent = tag
+  surface.appendChild(label)
+  chip.appendChild(surface)
+  measureList.appendChild(chip)
+
+  return chip
+}
+
 function buildProjectCardTagChip(tag: string, measureList: HTMLUListElement): HTMLElement {
   const chip = document.createElement('li')
   chip.className = 'project-card__tag'
@@ -222,6 +253,7 @@ export function useSpotlightTagsLine(
       setTagLimit(
         countTagsForSingleLine(container, tags, {
           moreClassName: 'home-projects__spotlight-tags-more',
+          buildChip: buildSpotlightTagChip,
           unmeasuredFallback: SPOTLIGHT_INITIAL_DESKTOP_TAGS,
         }),
       )

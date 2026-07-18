@@ -14,11 +14,11 @@ const SKILL_ICON_MAP: Record<string, string> = {
   Python: `${DEVICON}/python/python-original.svg`,
   Django: `${DEVICON}/django/django-plain.svg`,
   'Django REST Framework': `${DEVICON}/django/django-plain.svg`,
-  'REST APIs': `${DEVICON}/fastapi/fastapi-original.svg`,
-  'Rest API': `${DEVICON}/fastapi/fastapi-original.svg`,
+  'REST APIs': si('openapiinitiative', '6BA539'),
+  'Rest API': si('openapiinitiative', '6BA539'),
   FastAPI: `${DEVICON}/fastapi/fastapi-original.svg`,
   'Django WebSockets': `${DEVICON}/django/django-plain.svg`,
-  'OAuth 2.0': `${DEVICON}/google/google-original.svg`,
+  'OAuth 2.0': si('openid', 'F78C40'),
   JWT: si('jsonwebtokens', 'FB015B'),
   RBAC: si('auth0'),
   'API Security': si('auth0'),
@@ -33,7 +33,7 @@ const SKILL_ICON_MAP: Record<string, string> = {
 
   // Databases
   PostgreSQL: `${DEVICON}/postgresql/postgresql-original.svg`,
-  MSSQL: `${DEVICON}/microsoftsqlserver/microsoftsqlserver-plain.svg`,
+  MSSQL: `${DEVICON}/microsoftsqlserver/microsoftsqlserver-original.svg`,
   SQLite: `${DEVICON}/sqlite/sqlite-original.svg`,
   Elasticsearch: `${DEVICON}/elasticsearch/elasticsearch-original.svg`,
   Redis: `${DEVICON}/redis/redis-original.svg`,
@@ -59,7 +59,7 @@ const SKILL_ICON_MAP: Record<string, string> = {
 
   // AI / LLM
   'OpenAI API': `${LOCAL}/openai.svg`,
-  'Claude API': si('anthropic', 'CC785C'),
+  'Claude API': si('claude', 'D97757'),
   'Gemini API': si('googlegemini'),
   Cursor: si('cursor', '000000'),
 
@@ -68,6 +68,18 @@ const SKILL_ICON_MAP: Record<string, string> = {
   LLM: `${LOCAL}/openai.svg`,
   Webhooks: si('zapier'),
   'GitHub Actions': `${DEVICON}/githubactions/githubactions-original.svg`,
+
+  // Experience tags
+  'Django ORM': `${DEVICON}/django/django-plain.svg`,
+  'Django MVT': `${DEVICON}/django/django-plain.svg`,
+  OpenAI: `${LOCAL}/openai.svg`,
+  Claude: si('claude', 'D97757'),
+  Gemini: si('googlegemini'),
+  'AWS S3': AWS_ICON,
+  'OAuth / SSO': si('openid', 'F78C40'),
+  'JWT / RBAC': si('jsonwebtokens', 'FB015B'),
+  i18n: si('googletranslate'),
+  Microservices: `${DEVICON}/docker/docker-original.svg`,
 }
 
 export function getSkillIcon(name: string): string | undefined {

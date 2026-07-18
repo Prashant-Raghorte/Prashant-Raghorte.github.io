@@ -8,6 +8,7 @@ import { useInView } from '@/hooks/useInView'
 import { useSpotlight } from '@/hooks/useSpotlight'
 import { getExperienceAnchorId } from '@/utils/experienceHelpers'
 import { extractExperienceTags } from '@/utils/experienceTags'
+import { getSkillIcon } from '@/utils/skillIcons'
 import '@/components/experience/ExperienceCardEffects.css'
 import './ExperienceImmersiveTimeline.css'
 import '@/components/experience/ExperienceRoleIdentity.css'
@@ -111,20 +112,34 @@ function ImmersiveItem({ item, index, total, parentInView, isActive }: Immersive
 
                 {tags.length > 0 ? (
                   <ul className="immersive-card__tags" aria-label="Skills and technologies">
-                    {tags.map((tag, tagIndex) => (
-                      <li
-                        key={tag}
-                        className="immersive-card__tag"
-                        style={
-                          {
-                            '--immersive-tag-delay': `${tagIndex * 45}ms`,
-                          } as CSSProperties
-                        }
-                      >
-                        <span className="immersive-card__tag-dot" aria-hidden="true" />
-                        <span className="immersive-card__tag-label">{tag}</span>
-                      </li>
-                    ))}
+                    {tags.map((tag, tagIndex) => {
+                      const icon = getSkillIcon(tag)
+
+                      return (
+                        <li
+                          key={tag}
+                          className="immersive-card__tag"
+                          style={
+                            {
+                              '--immersive-tag-delay': `${tagIndex * 45}ms`,
+                            } as CSSProperties
+                          }
+                        >
+                          {icon ? (
+                            <img
+                              src={icon}
+                              alt=""
+                              className="immersive-card__tag-icon"
+                              loading="lazy"
+                              decoding="async"
+                            />
+                          ) : (
+                            <span className="immersive-card__tag-dot" aria-hidden="true" />
+                          )}
+                          <span className="immersive-card__tag-label">{tag}</span>
+                        </li>
+                      )
+                    })}
                   </ul>
                 ) : null}
 

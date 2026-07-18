@@ -24,7 +24,15 @@ export function AboutPage() {
 
           <div className="about-page__content">
             <div className="about-page__who">
-              <h2 className="about-page__heading">Who I Am</h2>
+              <header className="about-section-head">
+                <span className="about-section-head__accent" aria-hidden="true" />
+                <div className="about-section-head__copy">
+                  <h2 className="about-section-head__title">Who I Am</h2>
+                  <p className="about-section-head__hint">
+                    Narrative profile, focus spectrum, and how I like to collaborate
+                  </p>
+                </div>
+              </header>
               <div className="about-page__who-grid">
                 <AboutBioCard />
                 <AboutHighlightsCard />
@@ -32,12 +40,31 @@ export function AboutPage() {
             </div>
 
             <div className="about-page__skills">
-              <h2 className="about-page__heading about-page__heading--spaced">Skills &amp; Tools</h2>
+              <header className="about-section-head">
+                <span className="about-section-head__accent" aria-hidden="true" />
+                <div className="about-section-head__copy">
+                  <h2 className="about-section-head__title">Skills &amp; Tools</h2>
+                  <p className="about-section-head__hint">
+                    Languages, frameworks, and platforms I use to design and ship backend systems
+                  </p>
+                </div>
+              </header>
               <AboutSkillsPanel />
             </div>
 
-            <h2 className="about-page__heading about-page__heading--spaced">Education</h2>
-            <AboutEducationList />
+            <div className="about-page__education">
+              <header className="about-section-head">
+                <span className="about-section-head__accent" aria-hidden="true" />
+                <div className="about-section-head__copy">
+                  <h2 className="about-section-head__title">Qualifications</h2>
+                  <p className="about-section-head__hint">
+                    Formal academic path from science higher secondary to undergraduate
+                    computer engineering
+                  </p>
+                </div>
+              </header>
+              <AboutEducationList />
+            </div>
           </div>
         </div>
       </section>

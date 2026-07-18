@@ -1,5 +1,6 @@
 import type { CSSProperties, MouseEvent } from 'react'
 import type { SkillCategoryFocus } from '@/utils/experienceImpactProfile'
+import { getSkillIcon } from '@/utils/skillIcons'
 import './ExperienceRoleSkillFocus.css'
 
 type ExperienceRoleSkillFocusProps = {
@@ -53,12 +54,26 @@ export function ExperienceRoleSkillFocus({
               />
             </span>
             <ul className="exp-skill-focus__tags" aria-label={`${category.label} skills`}>
-              {category.skills.map((skill) => (
-                <li key={skill} className="exp-skill-focus__tag">
-                  <span className="exp-skill-focus__tag-dot" aria-hidden="true" />
-                  <span>{skill}</span>
-                </li>
-              ))}
+              {category.skills.map((skill) => {
+                const icon = getSkillIcon(skill)
+
+                return (
+                  <li key={skill} className="exp-skill-focus__tag">
+                    {icon ? (
+                      <img
+                        src={icon}
+                        alt=""
+                        className="exp-skill-focus__tag-icon"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    ) : (
+                      <span className="exp-skill-focus__tag-dot" aria-hidden="true" />
+                    )}
+                    <span>{skill}</span>
+                  </li>
+                )
+              })}
             </ul>
           </li>
         ))}
