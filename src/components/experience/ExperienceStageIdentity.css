@@ -1,0 +1,229 @@
+.exp-stage-id {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  column-gap: clamp(0.7rem, 2vw, 0.9rem);
+  min-width: 0;
+  padding: 0.72rem 0.82rem 0.72rem 0.95rem;
+  border-radius: 0.85rem;
+  border: 1px solid color-mix(in srgb, var(--color-border) 90%, var(--color-heading));
+  background: var(--color-surface);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--color-heading) 7%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--color-border) 35%, transparent);
+  transition:
+    border-color var(--motion-base) ease,
+    box-shadow var(--motion-base) ease,
+    transform var(--motion-base) var(--motion-ease),
+    background var(--motion-base) ease;
+}
+
+.exp-stage-id--current {
+  border-color: color-mix(in srgb, var(--color-accent-primary) 42%, var(--color-border));
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--color-heading) 7%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--color-accent-primary) 20%, transparent),
+    0 0 22px color-mix(in srgb, var(--color-accent-primary) 12%, transparent);
+}
+
+.exp-stage-id--current::before {
+  content: '';
+  position: absolute;
+  top: 0.55rem;
+  bottom: 0.55rem;
+  left: 0;
+  width: 3px;
+  border-radius: 0 4px 4px 0;
+  background: linear-gradient(
+    to bottom,
+    var(--color-accent-primary),
+    color-mix(in srgb, var(--color-accent-primary) 55%, transparent)
+  );
+  box-shadow: 0 0 12px color-mix(in srgb, var(--color-accent-primary) 55%, transparent);
+}
+
+.exp-stage-id__logo {
+  flex-shrink: 0;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.72rem;
+  transition:
+    box-shadow var(--motion-base) ease,
+    transform var(--motion-base) var(--motion-ease);
+}
+
+.exp-stage-id__logo .company-logo__image {
+  width: 1.45rem;
+  height: 1.45rem;
+}
+
+.exp-stage-id__lines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+  min-width: 0;
+}
+
+.exp-stage-id__role,
+.exp-stage-id__company-row,
+.exp-stage-id__period,
+.exp-stage-id__location {
+  display: block;
+  width: 100%;
+  margin: 0;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.25;
+}
+
+.exp-stage-id__role {
+  font-size: clamp(0.98rem, 2.5vw, 1.12rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-heading);
+  transition: color var(--motion-base) ease;
+}
+
+.exp-stage-id__company-row {
+  padding-bottom: 0.18rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-accent-primary) 28%, transparent);
+  transition: border-color var(--motion-base) ease;
+}
+
+.exp-stage-id__company-link,
+.exp-stage-id__company-text {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-accent-primary);
+}
+
+.exp-stage-id__company-link {
+  display: inline;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: bottom;
+  text-decoration: none;
+  transition: color var(--motion-base) ease;
+}
+
+.exp-stage-id__period,
+.exp-stage-id__location {
+  display: flex;
+  align-items: center;
+  gap: 0.34rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  transition: color var(--motion-base) ease;
+}
+
+.exp-stage-id__line-icon {
+  width: 0.7rem;
+  height: 0.7rem;
+  flex-shrink: 0;
+  color: var(--color-accent-primary);
+  opacity: 0.82;
+  transition: opacity var(--motion-base) ease;
+}
+
+.exp-stage-id__period time,
+.exp-stage-id__location span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (hover: hover) {
+  .exp-stage-id:hover {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 48%, var(--color-border));
+    background: color-mix(in srgb, var(--color-accent-primary) 4%, var(--color-surface));
+    box-shadow:
+      inset 0 0 0 1px color-mix(in srgb, var(--color-accent-primary) 24%, transparent),
+      inset 0 1px 0 color-mix(in srgb, var(--color-heading) 9%, transparent),
+      0 0 0 1px color-mix(in srgb, var(--color-accent-primary) 22%, transparent),
+      0 6px 18px color-mix(in srgb, var(--color-accent-primary) 10%, transparent);
+    transform: translateY(-1px);
+  }
+
+  .exp-stage-id--current:hover {
+    box-shadow:
+      inset 0 0 0 1px color-mix(in srgb, var(--color-accent-primary) 28%, transparent),
+      inset 0 1px 0 color-mix(in srgb, var(--color-heading) 9%, transparent),
+      0 0 0 1px color-mix(in srgb, var(--color-accent-primary) 28%, transparent),
+      0 8px 24px color-mix(in srgb, var(--color-accent-primary) 15%, transparent);
+  }
+
+  .exp-stage-id:hover .exp-stage-id__logo {
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-accent-primary) 30%, transparent);
+    transform: scale(1.03);
+  }
+
+  .exp-stage-id:hover .exp-stage-id__line-icon {
+    opacity: 1;
+  }
+
+  .exp-stage-id__company-link:hover {
+    color: var(--color-primary-hover);
+  }
+
+  .exp-stage-id__company-row:has(.exp-stage-id__company-link:hover) {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 55%, transparent);
+  }
+}
+
+@media (max-width: 1023px) {
+  .exp-stage-id {
+    padding: 0.65rem 0.72rem 0.65rem 0.82rem;
+    column-gap: 0.65rem;
+  }
+
+  .exp-stage-id__role,
+  .exp-stage-id__company-row,
+  .exp-stage-id__period,
+  .exp-stage-id__location {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    overflow-wrap: anywhere;
+  }
+
+  .exp-stage-id__company-link,
+  .exp-stage-id__company-text {
+    white-space: normal;
+  }
+
+  .exp-stage-id__period time,
+  .exp-stage-id__location span {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 520px) {
+  .exp-stage-id {
+    grid-template-columns: 1fr;
+    row-gap: 0.55rem;
+  }
+
+  .exp-stage-id__logo {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .exp-stage-id,
+  .exp-stage-id__logo {
+    transition: none;
+  }
+
+  .exp-stage-id:hover {
+    transform: none;
+  }
+}

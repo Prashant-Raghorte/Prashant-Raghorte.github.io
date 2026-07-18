@@ -40,4 +40,11 @@
   --btn-shine-bg: var(--color-surface);
   --btn-shine-text: var(--color-text);
   --btn-shine-text-hover: var(--color-accent-primary);
+
+  --focus-tone-py: #a78bfa;
+  --focus-tone-api: #34d399;
+  --focus-tone-llm: #f472b6;
+  --focus-tone-async: #fbbf24;
+  --focus-tone-data: #38bdf8;
+  --focus-tone-sec: #fb7185;
 }

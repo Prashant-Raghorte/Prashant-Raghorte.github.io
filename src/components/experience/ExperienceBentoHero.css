@@ -1,0 +1,369 @@
+.exp-bento {
+  --exp-bento-enter: 0.72s;
+  position: relative;
+  margin-bottom: clamp(1.5rem, 3.5vw, 2.25rem);
+  border-radius: calc(var(--radius-lg) + 2px);
+  overflow: hidden;
+}
+
+.exp-bento__spotlight {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  background: radial-gradient(
+    520px circle at var(--exp-spot-x, 50%) var(--exp-spot-y, 50%),
+    color-mix(in srgb, var(--color-accent-primary) 16%, transparent),
+    transparent 62%
+  );
+  transition: opacity 0.35s ease;
+}
+
+.exp-bento__spotlight--active {
+  opacity: 1;
+}
+
+.exp-bento__mesh {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.45;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--color-border) 35%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-border) 35%, transparent) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(ellipse 85% 75% at 50% 35%, black 20%, transparent 75%);
+}
+
+.exp-bento__grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-areas:
+    'orbit orbit craft craft'
+    'stat1 stat2 stat3 stat4';
+  gap: clamp(0.65rem, 1.8vw, 0.85rem);
+  padding: clamp(0.65rem, 1.8vw, 0.85rem);
+  border-radius: inherit;
+  border: 1px solid color-mix(in srgb, var(--color-accent-primary) 14%, var(--color-border));
+  background:
+    radial-gradient(
+      circle at 12% 8%,
+      color-mix(in srgb, var(--color-accent-primary) 10%, transparent),
+      transparent 42%
+    ),
+    radial-gradient(
+      circle at 88% 92%,
+      color-mix(in srgb, var(--color-accent-primary) 8%, transparent),
+      transparent 38%
+    ),
+    color-mix(in srgb, var(--color-surface) 92%, var(--color-bg));
+}
+
+.exp-bento__tile {
+  min-width: 0;
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity var(--exp-bento-enter) var(--motion-ease),
+    transform var(--exp-bento-enter) var(--motion-ease);
+}
+
+.exp-bento--in-view .exp-bento__tile {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.exp-bento__tile--orbit {
+  grid-area: orbit;
+  transition-delay: 60ms;
+}
+
+.exp-bento__tile--craft {
+  grid-area: craft;
+  transition-delay: 120ms;
+}
+
+.exp-bento__stat-wrap {
+  min-width: 0;
+}
+
+.exp-bento__stat-wrap:nth-child(3) {
+  grid-area: stat1;
+}
+
+.exp-bento__stat-wrap:nth-child(4) {
+  grid-area: stat2;
+}
+
+.exp-bento__stat-wrap:nth-child(5) {
+  grid-area: stat3;
+}
+
+.exp-bento__stat-wrap:nth-child(6) {
+  grid-area: stat4;
+}
+
+.exp-bento__stat-wrap .exp-bento__tile {
+  height: 100%;
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity var(--exp-bento-enter) var(--motion-ease),
+    transform var(--exp-bento-enter) var(--motion-ease);
+  transition-delay: var(--exp-bento-stat-delay, 180ms);
+}
+
+.exp-bento--in-view .exp-bento__stat-wrap .exp-bento__tile {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.exp-bento__orbit-wrap,
+.exp-bento__craft,
+.exp-bento__stat {
+  padding: clamp(1rem, 2.2vw, 1.35rem);
+  height: 100%;
+}
+
+.exp-bento__orbit-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  text-align: center;
+}
+
+.exp-bento__orbit {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 5.25rem;
+  height: 5.25rem;
+}
+
+.exp-bento__orbit-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--color-accent-primary) 32%, transparent);
+}
+
+.exp-bento__orbit-ring--outer {
+  animation: exp-bento-orbit-spin 20s linear infinite;
+  animation-play-state: paused;
+}
+
+.exp-bento__orbit-ring--inner {
+  inset: 0.6rem;
+  border-color: color-mix(in srgb, var(--color-accent-primary) 20%, transparent);
+  animation: exp-bento-orbit-spin 14s linear infinite reverse;
+  animation-play-state: paused;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .exp-bento__orbit-ring--outer,
+  .exp-bento__orbit-ring--inner {
+    animation-play-state: running;
+  }
+}
+
+.exp-bento__orbit-glow {
+  position: absolute;
+  inset: 1.1rem;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 35%,
+    color-mix(in srgb, var(--color-accent-primary) 45%, transparent),
+    color-mix(in srgb, var(--color-accent-primary) 8%, transparent) 72%
+  );
+  box-shadow: 0 0 22px color-mix(in srgb, var(--color-accent-primary) 30%, transparent);
+}
+
+.exp-bento__orbit-value {
+  position: relative;
+  z-index: 1;
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--color-heading);
+  text-shadow: 0 0 16px color-mix(in srgb, var(--color-accent-primary) 35%, transparent);
+}
+
+.exp-bento__orbit-label {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.exp-bento__craft {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.exp-bento__craft-label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent-primary);
+}
+
+.exp-bento__craft-title {
+  margin: 0;
+  font-size: clamp(1.05rem, 2.4vw, 1.25rem);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--color-heading);
+}
+
+.exp-bento__craft-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.exp-bento__craft-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.exp-bento__craft-icon {
+  display: grid;
+  place-items: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  flex-shrink: 0;
+  border-radius: 0.55rem;
+  color: var(--color-accent-primary);
+  background: color-mix(in srgb, var(--color-accent-primary) 12%, var(--color-bg));
+  border: 1px solid color-mix(in srgb, var(--color-accent-primary) 18%, transparent);
+}
+
+.exp-bento__craft-icon svg {
+  width: 0.95rem;
+  height: 0.95rem;
+}
+
+.exp-bento__craft-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.exp-bento__craft-item-label {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.exp-bento__craft-item-value {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--color-heading);
+}
+
+.exp-bento__craft-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.exp-bento__craft-tags li {
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--color-accent-primary);
+  background: color-mix(in srgb, var(--color-accent-primary) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-accent-primary) 22%, transparent);
+}
+
+.exp-bento__stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.2rem;
+  min-height: 5.5rem;
+}
+
+.exp-bento__stat-value {
+  font-size: clamp(1.35rem, 3vw, 1.65rem);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--color-heading);
+}
+
+.exp-bento__stat-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+@keyframes exp-bento-orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 900px) {
+  .exp-bento__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      'orbit craft'
+      'stat1 stat2'
+      'stat3 stat4';
+  }
+}
+
+@media (max-width: 560px) {
+  .exp-bento__grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'orbit'
+      'craft'
+      'stat1'
+      'stat2'
+      'stat3'
+      'stat4';
+  }
+
+  .exp-bento__orbit-wrap {
+    padding-block: 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .exp-bento__orbit-ring--outer,
+  .exp-bento__orbit-ring--inner {
+    animation: none;
+  }
+
+  .exp-bento__tile {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

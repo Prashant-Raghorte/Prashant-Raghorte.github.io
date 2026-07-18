@@ -1,4 +1,7 @@
 .navbar {
+  --navbar-offset-top: var(--space-md);
+  --navbar-shell-height: 3.5rem;
+
   position: fixed;
   left: 0;
   right: 0;
@@ -18,6 +21,8 @@
 }
 
 .navbar--compact {
+  --navbar-offset-top: 0.5rem;
+  --navbar-shell-height: 3rem;
   top: 0.5rem;
 }
 
@@ -32,6 +37,10 @@
   opacity: 1;
 }
 
+.navbar--menu-open {
+  z-index: 210;
+}
+
 .navbar-shell {
   position: relative;
   display: grid;
@@ -40,7 +49,7 @@
   align-items: center;
   column-gap: var(--space-sm);
   width: min(100%, 56rem);
-  min-height: 3.25rem;
+  min-height: var(--navbar-shell-height);
   padding: 0.4rem 0.5rem 0.4rem 0.65rem;
   border-radius: 999px;
   border: 1px solid var(--nav-border);
@@ -55,7 +64,8 @@
   transition:
     min-height 0.35s ease,
     padding 0.35s ease,
-    box-shadow 0.35s ease;
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
 }
 
 .navbar-shell--top {
@@ -71,11 +81,19 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
+.navbar-shell--open {
+  border-color: color-mix(in srgb, var(--color-accent-primary) 35%, var(--nav-border));
+  box-shadow:
+    0 12px 36px color-mix(in srgb, var(--color-bg) 35%, transparent),
+    0 0 24px color-mix(in srgb, var(--color-accent-primary) 16%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
 .navbar-logo {
   grid-area: logo;
 }
 
-.navbar-menu {
+.navbar-menu-panel {
   grid-area: menu;
 }
 
@@ -166,61 +184,89 @@
 
 .navbar-toggle {
   display: none;
-  flex-direction: column;
+  position: relative;
+  align-items: center;
   justify-content: center;
-  gap: 5px;
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 2.35rem;
+  height: 2.35rem;
   padding: 0;
-  border: none;
+  border: 1px solid color-mix(in srgb, var(--color-border) 85%, transparent);
   border-radius: 999px;
   background: var(--nav-control-bg);
   cursor: pointer;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition:
+    border-color var(--motion-base) ease,
+    box-shadow var(--motion-base) ease,
+    transform var(--motion-base) var(--motion-ease);
 }
 
-.navbar-toggle span {
-  display: block;
+.navbar-toggle__shine {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    circle at 50% 50%,
+    color-mix(in srgb, var(--color-accent-primary) 22%, transparent),
+    transparent 70%
+  );
+  transition: opacity var(--motion-base) ease;
+}
+
+.navbar-toggle__bars {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
   width: 1rem;
+  height: 1rem;
+}
+
+.navbar-toggle__bar {
+  display: block;
+  width: 100%;
   height: 1.5px;
-  margin-inline: auto;
   border-radius: 2px;
   background: var(--color-text);
-  transition: transform 0.25s ease, opacity 0.25s ease;
+  transform-origin: center;
+  transition:
+    transform 0.28s var(--motion-ease),
+    opacity 0.2s ease,
+    width 0.28s var(--motion-ease);
 }
 
-.navbar-shell--open .navbar-toggle span:nth-child(1) {
-  transform: translateY(6.5px) rotate(45deg);
+.navbar-toggle--open {
+  border-color: color-mix(in srgb, var(--color-accent-primary) 42%, transparent);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--color-accent-primary) 22%, transparent);
 }
 
-.navbar-shell--open .navbar-toggle span:nth-child(2) {
-  opacity: 0;
-}
-
-.navbar-shell--open .navbar-toggle span:nth-child(3) {
-  transform: translateY(-6.5px) rotate(-45deg);
+.navbar-toggle--open .navbar-toggle__shine {
+  opacity: 1;
 }
 
 @media (max-width: 899px) {
   .navbar-shell {
     grid-template-columns: 1fr auto;
-    grid-template-areas:
-      'logo actions'
-      'menu menu';
+    grid-template-areas: 'logo actions';
     border-radius: var(--radius-lg);
     width: 100%;
     padding: 0.5rem;
+    position: relative;
+    z-index: 1;
   }
 
-  .navbar-menu {
-    display: none;
-  }
-
-  .navbar-menu.navbar-menu--open {
-    display: flex;
+  .navbar-menu-panel {
+    grid-area: unset;
   }
 
   .navbar-toggle {
-    display: flex;
+    display: inline-flex;
   }
 
   .navbar-indicator {
@@ -230,13 +276,37 @@
   .navbar-shine-ring {
     animation: none;
   }
+
+  .navbar-shell--open .navbar-shine-ring {
+    opacity: 0.65;
+  }
+}
+
+@media (hover: hover) {
+  .navbar-toggle:hover {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 40%, transparent);
+    box-shadow: 0 0 16px color-mix(in srgb, var(--color-accent-primary) 18%, transparent);
+    transform: translateY(var(--motion-lift));
+  }
+
+  .navbar-toggle:hover .navbar-toggle__shine {
+    opacity: 1;
+  }
+}
+
+@media (hover: none) {
+  .navbar-toggle:active {
+    transform: scale(0.96);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .navbar,
   .navbar-shell,
   .navbar-indicator,
-  .navbar-shine-ring {
+  .navbar-shine-ring,
+  .navbar-toggle,
+  .navbar-toggle__bar {
     transition: none;
     animation: none;
   }

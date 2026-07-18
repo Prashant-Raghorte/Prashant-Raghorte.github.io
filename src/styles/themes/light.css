@@ -39,6 +39,13 @@
   --btn-shine-bg: var(--color-bg);
   --btn-shine-text: var(--color-text);
   --btn-shine-text-hover: var(--color-accent-primary);
+
+  --focus-tone-py: #7c3aed;
+  --focus-tone-api: #059669;
+  --focus-tone-llm: #db2777;
+  --focus-tone-async: #d97706;
+  --focus-tone-data: #2563eb;
+  --focus-tone-sec: #e11d48;
 }
 
 [data-theme='light'] .navbar-shine-ring {

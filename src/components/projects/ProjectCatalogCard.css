@@ -1,0 +1,287 @@
+.catalog-card-wrap {
+  height: 100%;
+}
+
+.catalog-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  height: 100%;
+  padding: clamp(0.9rem, 2vw, 1.05rem);
+  overflow: hidden;
+}
+
+.catalog-card__glow {
+  pointer-events: none;
+  position: absolute;
+  top: -2rem;
+  right: -1rem;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-accent-primary) 14%, transparent);
+  filter: blur(32px);
+  opacity: 0.75;
+}
+
+.catalog-card__rail {
+  pointer-events: none;
+  position: absolute;
+  top: 0.65rem;
+  bottom: 0.65rem;
+  left: 0;
+  width: 2px;
+  border-radius: 999px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    var(--color-accent-primary),
+    color-mix(in srgb, var(--color-accent-primary) 35%, transparent)
+  );
+}
+
+.catalog-card__head {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 0.65rem;
+  align-items: center;
+  padding-left: 0.55rem;
+}
+
+.catalog-card__head-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.catalog-card__title-row {
+  min-width: 0;
+}
+
+.catalog-card__title {
+  margin: 0;
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
+  font-weight: 800;
+  line-height: 1.35;
+  color: var(--color-heading);
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: none;
+}
+
+.catalog-card__summary {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding-left: 0.55rem;
+}
+
+.catalog-card__summary-label {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--color-accent-primary);
+}
+
+.catalog-card__summary .projects-quote {
+  padding: 0.6rem 0.65rem;
+}
+
+.catalog-card__summary .projects-quote > p {
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+
+.catalog-card__status {
+  flex-shrink: 0;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--color-accent-primary) 26%, transparent);
+  background: color-mix(in srgb, var(--color-accent-primary) 8%, transparent);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--color-accent-primary);
+}
+
+.catalog-card__desc {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding-left: 0.55rem;
+}
+
+.catalog-card__desc .read-more__text {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.65;
+  color: var(--color-text-muted);
+  overflow-wrap: anywhere;
+}
+
+.catalog-card__highlights {
+  position: relative;
+  z-index: 1;
+  padding-left: 0.55rem;
+}
+
+.catalog-card__mobile-links {
+  display: none;
+}
+
+@media (max-width: 1099px) {
+  .catalog-card-wrap--active {
+    overflow: hidden;
+    border-radius: calc(var(--radius-lg) - 2px);
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--color-accent-primary) 32%, var(--color-border)),
+      0 14px 36px color-mix(in srgb, var(--color-accent-primary) 12%, transparent);
+  }
+
+  .catalog-card-wrap--active .shine-card__inner {
+    overflow: hidden;
+    border-radius: inherit;
+  }
+
+  .catalog-card--active {
+    padding: 0;
+    overflow: hidden;
+    border-radius: inherit;
+  }
+
+  .catalog-card--active .catalog-card__glow,
+  .catalog-card--active .catalog-card__rail {
+    display: none;
+  }
+
+  .catalog-card--active .catalog-card__head--desktop {
+    display: none;
+  }
+
+  .catalog-card--active .catalog-card__body--mobile {
+    padding-left: 0.85rem;
+    padding-right: 0.85rem;
+  }
+
+  .catalog-card--active .catalog-card__desc.catalog-card__body--mobile {
+    padding-top: 0.8rem;
+  }
+
+  .catalog-card--active .catalog-card__highlights.catalog-card__body--mobile {
+    padding-bottom: 0.55rem;
+  }
+
+  .catalog-card--active .catalog-card__mobile-links {
+    display: grid;
+    margin-top: 0;
+    padding: 0 0.85rem 0.85rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .catalog-card:not(.catalog-card--active) {
+    gap: 0.55rem;
+    padding: 0.75rem 0.72rem;
+  }
+
+  .catalog-card--active .catalog-card__body--mobile {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .catalog-card--active .catalog-card__desc.catalog-card__body--mobile {
+    padding-top: 0.75rem;
+  }
+
+  .catalog-card--active .catalog-card__highlights.catalog-card__body--mobile {
+    padding-bottom: 0.5rem;
+  }
+
+  .catalog-card--active .catalog-card__mobile-links {
+    padding: 0 0.75rem 0.75rem;
+  }
+
+  .catalog-card:not(.catalog-card--active) .catalog-card__head {
+    gap: 0.5rem;
+    padding-left: 0.45rem;
+  }
+
+  .catalog-card__domain-tag {
+    white-space: normal;
+  }
+
+  .catalog-card:not(.catalog-card--active) .catalog-card__summary,
+  .catalog-card:not(.catalog-card--active) .catalog-card__desc,
+  .catalog-card:not(.catalog-card--active) .catalog-card__highlights {
+    padding-left: 0.45rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .catalog-card:not(.catalog-card--active) {
+    gap: 0.5rem;
+    padding: 0.65rem 0.58rem;
+  }
+
+  .catalog-card--active .catalog-card__body--mobile {
+    padding-left: 0.68rem;
+    padding-right: 0.68rem;
+  }
+
+  .catalog-card--active .catalog-card__desc.catalog-card__body--mobile {
+    padding-top: 0.68rem;
+  }
+
+  .catalog-card--active .catalog-card__highlights.catalog-card__body--mobile {
+    padding-bottom: 0.45rem;
+  }
+
+  .catalog-card--active .catalog-card__mobile-links {
+    padding: 0 0.68rem 0.68rem;
+  }
+
+  .catalog-card:not(.catalog-card--active) .catalog-card__head {
+    gap: 0.42rem;
+  }
+
+  .catalog-card__head .project-logo--md {
+    --project-logo-size: 2.35rem;
+    --project-logo-image: 1.25rem;
+  }
+
+  .catalog-card__title {
+    font-size: 0.92rem;
+  }
+
+  .catalog-card__domain-tag {
+    font-size: 0.5rem;
+    padding: 0.16rem 0.42rem;
+  }
+
+  .catalog-card__status {
+    font-size: 0.5rem;
+    padding: 0.16rem 0.38rem;
+  }
+
+  .catalog-card__desc .read-more__text {
+    font-size: 0.78rem;
+  }
+
+  .catalog-card__summary .projects-quote > p {
+    font-size: 0.72rem;
+  }
+
+  .catalog-card__summary-label,
+  .project-highlights__label {
+    font-size: 0.58rem;
+  }
+}

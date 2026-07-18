@@ -1,0 +1,1028 @@
+/* Orbital hub — single card for Product orbit + Portfolio pulse (desktop / tablet row layout) */
+
+.projects-hero__orbit-hub {
+  display: contents;
+}
+
+.projects-hero__orbit-map-head,
+.projects-hero__orbit-signal {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .projects-hero__constellation {
+    position: relative;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    width: auto;
+    min-width: 11.75rem;
+    min-height: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    container-type: size;
+    container-name: constellation;
+    isolation: isolate;
+  }
+
+  .projects-hero__orbit-hub--focus,
+  .projects-hero__orbit-hub--focus .projects-hero__orbit-signal {
+    transition: none;
+  }
+
+  .projects-hero__stage {
+    contain: layout style;
+  }
+
+  .projects-hero__orbit-hub {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: stretch;
+    gap: clamp(0.38rem, 2cqh, 0.75rem);
+    min-height: 0;
+    width: 100%;
+    padding: clamp(0.5rem, 2cqh, 0.72rem) clamp(0.55rem, 2cqw, 0.7rem);
+    border-radius: 0.9rem;
+    container-type: size;
+    container-name: orbit-hub;
+    contain: layout style;
+    border: 1px solid color-mix(in srgb, var(--color-border) 88%, transparent);
+    background:
+      radial-gradient(
+        circle at 50% 0%,
+        color-mix(in srgb, var(--color-accent-primary) 8%, transparent),
+        transparent 55%
+      ),
+      color-mix(in srgb, var(--color-bg) 70%, var(--color-surface));
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-heading) 5%, transparent);
+  }
+
+  .projects-hero__orbit-hub--focus {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 28%, var(--color-border));
+    background:
+      radial-gradient(
+        circle at 50% 0%,
+        color-mix(in srgb, var(--color-accent-primary) 12%, transparent),
+        transparent 58%
+      ),
+      color-mix(in srgb, var(--color-accent-primary) 4%, var(--color-surface));
+    box-shadow:
+      inset 0 1px 0 color-mix(in srgb, var(--color-accent-primary) 10%, transparent),
+      0 0 20px color-mix(in srgb, var(--color-accent-primary) 6%, transparent);
+  }
+
+  .projects-hero__orbit-map-head {
+    position: relative;
+    z-index: 4;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    width: 100%;
+    min-width: 0;
+    padding-inline: 0.1rem;
+    flex: 0 0 auto;
+    flex-shrink: 0;
+  }
+
+  .projects-hero__orbit-map-head-glow {
+    width: 0.32rem;
+    height: 1.15rem;
+    margin-top: 0.12rem;
+    flex-shrink: 0;
+    border-radius: 999px;
+    background: linear-gradient(
+      180deg,
+      var(--color-accent-primary),
+      color-mix(in srgb, var(--color-accent-primary) 22%, transparent)
+    );
+    box-shadow: 0 0 10px color-mix(in srgb, var(--color-accent-primary) 38%, transparent);
+  }
+
+  .projects-hero__orbit-map-head-copy {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .projects-hero__orbit-map-label {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--color-accent-primary);
+    transition: color var(--motion-base) ease;
+  }
+
+  .projects-hero__orbit-hub--focus .projects-hero__orbit-map-label {
+    color: var(--color-heading);
+  }
+
+  .projects-hero__orbit-map-hint {
+    margin: 0.12rem 0 0;
+    font-size: 0.6875rem;
+    line-height: 1.4;
+    color: var(--color-text-muted);
+    min-height: calc(1 * 1.4em);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    text-overflow: ellipsis;
+  }
+
+  .projects-hero__orbit-hub--focus .projects-hero__orbit-map-hint {
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+  }
+
+  .projects-hero__orbit-signal-hint {
+    margin: 0.15rem 0 0;
+    font-size: 0.6875rem;
+    line-height: 1.4;
+    color: var(--color-text-muted);
+    min-height: calc(2 * 1.4em);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+
+  .projects-hero__orbit-wrap {
+    position: relative;
+    z-index: 1;
+    flex: 0 0 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 0;
+    margin-top: -0.06rem;
+    overflow: visible;
+  }
+
+  .projects-hero__orbit-wrap::after {
+    display: none;
+  }
+
+  .projects-hero__orbit-field {
+    container-type: inline-size;
+    flex: 0 0 auto;
+    width: min(100%, 16rem);
+    max-width: 16rem;
+    height: auto;
+    aspect-ratio: 1;
+    align-self: center;
+    margin-inline: auto;
+    --orbit-radius: clamp(3.35rem, calc(50cqw - 1.2rem), 6rem);
+  }
+
+  .projects-hero__orbit-hub > .projects-hero__orbit-caption {
+    position: relative;
+    z-index: 3;
+    flex: 0 0 auto;
+    flex-shrink: 0;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    min-height: 1.75rem;
+    margin: 0;
+    padding: clamp(0.28rem, 1.2cqh, 0.42rem) clamp(0.45rem, 2cqw, 0.65rem);
+    border-radius: 999px;
+    line-height: 1.35;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .projects-hero__orbit-hub > .projects-hero__orbit-caption .projects-hero__hero-tip {
+    z-index: 8;
+  }
+
+  .projects-hero__orbit-signal {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: clamp(0.45rem, 2cqh, 0.75rem);
+    min-height: 0;
+    margin-top: 0;
+    padding-top: clamp(0.55rem, 2.5cqh, 0.95rem);
+    padding-bottom: 0.14rem;
+    border-top: 1px solid color-mix(in srgb, var(--color-border) 82%, transparent);
+    background: inherit;
+    overflow: hidden;
+  }
+
+  .projects-hero__orbit-signal-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    width: 100%;
+    min-width: 0;
+    padding-inline: 0.1rem;
+    flex-shrink: 0;
+  }
+
+  .projects-hero__orbit-signal-head-glow {
+    width: 0.32rem;
+    height: 1.15rem;
+    margin-top: 0.12rem;
+    flex-shrink: 0;
+    border-radius: 999px;
+    background: linear-gradient(
+      180deg,
+      var(--color-accent-primary),
+      color-mix(in srgb, var(--color-accent-primary) 22%, transparent)
+    );
+    box-shadow: 0 0 10px color-mix(in srgb, var(--color-accent-primary) 38%, transparent);
+  }
+
+  .projects-hero__orbit-signal-head-copy {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .projects-hero__orbit-signal-label {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--color-accent-primary);
+    transition: color var(--motion-base) ease;
+  }
+
+  .projects-hero__orbit-hub--focus .projects-hero__orbit-signal-label {
+    color: var(--color-heading);
+  }
+
+  .projects-hero__orbit-signal-hero {
+    position: relative;
+    display: grid;
+    place-items: end center;
+    flex: 0 0 auto;
+    min-height: 3.15rem;
+    max-height: 3.85rem;
+    padding: 0.16rem 0.12rem 0.1rem;
+    container-type: size;
+    container-name: signal-hero;
+    isolation: isolate;
+  }
+
+  .projects-hero__orbit-signal-hero::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0.12rem;
+    z-index: 0;
+    width: 74%;
+    height: 82%;
+    transform: translateX(-50%);
+    border-radius: 999px 999px 0 0;
+    background:
+      radial-gradient(
+        ellipse 85% 100% at 50% 100%,
+        color-mix(in srgb, var(--color-accent-primary) 14%, transparent),
+        transparent 70%
+      );
+    pointer-events: none;
+  }
+
+  .projects-hero__orbit-signal-gauge {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 9.35rem);
+    height: auto;
+    max-height: 3.55rem;
+    overflow: visible;
+    filter: drop-shadow(
+      0 6px 14px color-mix(in srgb, var(--color-accent-primary) 10%, transparent)
+    );
+  }
+
+  .projects-hero__orbit-signal-gauge-track,
+  .projects-hero__orbit-signal-gauge-fill {
+    fill: none;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+    transition:
+      stroke-dashoffset 0.65s var(--motion-ease),
+      stroke 0.35s ease,
+      filter 0.35s ease;
+  }
+
+  .projects-hero__orbit-signal-gauge-track {
+    stroke: color-mix(in srgb, var(--color-border) 62%, var(--color-heading));
+    stroke-width: 2.5;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+    opacity: 0.28;
+  }
+
+  .projects-hero__orbit-signal-gauge-fill {
+    stroke: var(--color-accent-primary);
+    stroke-width: 3;
+    stroke-dasharray: 1;
+    stroke-dashoffset: calc(1 - var(--signal-fill, 0));
+    filter:
+      drop-shadow(0 0 10px color-mix(in srgb, var(--color-accent-primary) 42%, transparent))
+      drop-shadow(0 0 3px color-mix(in srgb, var(--color-accent-primary) 65%, transparent));
+  }
+
+  .projects-hero__orbit-signal--focus .projects-hero__orbit-signal-gauge-fill {
+    stroke-width: 3.15;
+    filter:
+      drop-shadow(0 0 12px color-mix(in srgb, var(--color-accent-primary) 52%, transparent))
+      drop-shadow(0 0 4px color-mix(in srgb, var(--color-accent-primary) 75%, transparent));
+  }
+
+  .projects-hero__orbit-signal-readout {
+    position: absolute;
+    left: 50%;
+    bottom: 0.1rem;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.12rem;
+    min-width: 0;
+    transform: translateX(-50%) translateY(0.06rem);
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .projects-hero__orbit-signal-value {
+    font-size: clamp(1.05rem, 18cqh, 1.3rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--color-heading);
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 1px 12px color-mix(in srgb, var(--color-accent-primary) 16%, transparent);
+    transition: color var(--motion-base) ease;
+  }
+
+  .projects-hero__orbit-signal--focus .projects-hero__orbit-signal-value {
+    color: var(--color-accent-primary);
+  }
+
+  .projects-hero__orbit-signal-readout-label {
+    font-size: 0.56rem;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-text-muted) 88%, var(--color-accent-primary));
+  }
+
+  /* Idle/default — keep Portfolio pulse compact without resizing the hub on focus */
+  .projects-hero__orbit-hub:not(.projects-hero__orbit-hub--focus) {
+    overflow: hidden;
+  }
+
+  .projects-hero__orbit-hub:not(.projects-hero__orbit-hub--focus) .projects-hero__orbit-signal {
+    flex: 1 1 0;
+    gap: clamp(0.32rem, 1.4cqh, 0.5rem);
+    padding-bottom: 0.12rem;
+    overflow: hidden;
+  }
+
+  .projects-hero__orbit-hub:not(.projects-hero__orbit-hub--focus) .projects-hero__orbit-signal-hint {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+  }
+
+  .projects-hero__orbit-hub:not(.projects-hero__orbit-hub--focus) .projects-hero__orbit-signal-value {
+    font-size: clamp(0.92rem, 15cqh, 1.12rem);
+  }
+
+  .projects-hero__orbit-hub:not(.projects-hero__orbit-hub--focus) .projects-hero__orbit-signal-readout {
+    gap: 0.08rem;
+    max-width: calc(100% - 0.75rem);
+    bottom: 0.08rem;
+    transform: translateX(-50%) translateY(0.08rem);
+  }
+
+  .projects-hero__orbit-hub:not(.projects-hero__orbit-hub--focus) .projects-hero__orbit-signal-readout-label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  .projects-hero__orbit-hub:not(.projects-hero__orbit-hub--focus) .projects-hero__orbit-signal-rows {
+    flex-shrink: 0;
+    margin-top: auto;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding-inline: 0.04rem;
+    padding-bottom: 0.06rem;
+    gap: clamp(0.28rem, 1.1cqh, 0.42rem);
+  }
+
+  .projects-hero__orbit-hub:not(.projects-hero__orbit-hub--focus) .projects-hero__orbit-signal-row-head {
+    gap: 0.35rem;
+  }
+
+  .projects-hero__orbit-hub:not(.projects-hero__orbit-hub--focus) .projects-hero__orbit-signal-row-label {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .projects-hero__orbit-signal-rows {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    gap: clamp(0.35rem, 1.5cqh, 0.55rem);
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0.04rem 0.06rem 0.06rem;
+    list-style: none;
+  }
+
+  .projects-hero__orbit-signal-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.24rem;
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+    flex: 0 0 auto;
+  }
+
+  .projects-hero__orbit-signal-row-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.35rem;
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .projects-hero__orbit-signal-row-label {
+    font-size: 0.56rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .projects-hero__orbit-signal-row-value {
+    font-size: 0.68rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--color-heading);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: color 0.35s ease;
+  }
+
+  .projects-hero__orbit-signal--focus .projects-hero__orbit-signal-row-value {
+    color: color-mix(in srgb, var(--color-accent-primary) 72%, var(--color-heading));
+  }
+
+  .projects-hero__orbit-signal-row-track {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: 0.24rem;
+    padding: 0.0625rem;
+    border-radius: 999px;
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-border) 38%, transparent),
+      color-mix(in srgb, var(--color-border) 78%, transparent)
+    );
+    box-shadow:
+      inset 0 1px 2px color-mix(in srgb, var(--color-heading) 7%, transparent),
+      0 1px 0 color-mix(in srgb, var(--color-heading) 4%, transparent);
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .projects-hero__orbit-signal-row-fill {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--color-accent-primary) 28%, transparent) 0%,
+      color-mix(in srgb, var(--color-accent-primary) 72%, var(--color-heading)) 58%,
+      var(--color-accent-primary) 100%
+    );
+    box-shadow:
+      inset 0 1px 0 color-mix(in srgb, var(--color-heading) 14%, transparent),
+      0 0 10px color-mix(in srgb, var(--color-accent-primary) 28%, transparent);
+    transform: scaleX(var(--signal-fill, 0));
+    transform-origin: left center;
+    transition: transform 0.65s var(--motion-ease);
+    will-change: transform;
+  }
+
+  .projects-hero__orbit-signal-row-fill::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 0.28rem;
+    height: 0.28rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-heading) 18%, var(--color-accent-primary));
+    box-shadow:
+      0 0 8px color-mix(in srgb, var(--color-accent-primary) 55%, transparent),
+      0 0 2px color-mix(in srgb, var(--color-accent-primary) 80%, transparent);
+    transform: translate(35%, -50%);
+    opacity: calc(clamp(0, (var(--signal-fill, 0) - 0.04) * 25, 1));
+  }
+
+  .projects-hero__orbit-signal--focus .projects-hero__orbit-signal-row-fill {
+    background: linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--color-accent-primary) 38%, transparent) 0%,
+      var(--color-accent-primary) 100%
+    );
+    box-shadow:
+      inset 0 1px 0 color-mix(in srgb, var(--color-heading) 18%, transparent),
+      0 0 12px color-mix(in srgb, var(--color-accent-primary) 38%, transparent);
+  }
+
+  @container orbit-hub (min-height: 24rem) {
+    .projects-hero__orbit-signal {
+      justify-content: space-between;
+    }
+  }
+
+  @container orbit-hub (max-height: 24rem) {
+    .projects-hero__orbit-hub > .projects-hero__orbit-caption {
+      min-height: 1.65rem;
+    }
+  }
+}
+
+/* Phone / small tablet — same Product orbit hub as desktop, scaled to screen space */
+@media (max-width: 767px) {
+  .projects-hero__constellation {
+    position: relative;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    isolation: isolate;
+  }
+
+  .projects-hero__orbit-hub {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 0;
+    gap: 0.42rem;
+    padding: 0.62rem 0.68rem 0.7rem;
+    border-radius: 0.85rem;
+    border: 1px solid color-mix(in srgb, var(--color-border) 88%, transparent);
+    background:
+      radial-gradient(
+        circle at 50% 0%,
+        color-mix(in srgb, var(--color-accent-primary) 8%, transparent),
+        transparent 55%
+      ),
+      color-mix(in srgb, var(--color-bg) 70%, var(--color-surface));
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-heading) 5%, transparent);
+    overflow: hidden;
+  }
+
+  .projects-hero__orbit-hub--focus {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 28%, var(--color-border));
+    background:
+      radial-gradient(
+        circle at 50% 0%,
+        color-mix(in srgb, var(--color-accent-primary) 12%, transparent),
+        transparent 58%
+      ),
+      color-mix(in srgb, var(--color-accent-primary) 4%, var(--color-surface));
+    box-shadow:
+      inset 0 1px 0 color-mix(in srgb, var(--color-accent-primary) 10%, transparent),
+      0 0 16px color-mix(in srgb, var(--color-accent-primary) 6%, transparent);
+  }
+
+  .projects-hero__orbit-map-head {
+    position: relative;
+    z-index: 4;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.45rem;
+    width: 100%;
+    min-width: 0;
+    padding-inline: 0.05rem;
+    flex: 0 0 auto;
+  }
+
+  .projects-hero__orbit-map-head-glow {
+    width: 0.28rem;
+    height: 1rem;
+    margin-top: 0.1rem;
+    flex-shrink: 0;
+    border-radius: 999px;
+    background: linear-gradient(
+      180deg,
+      var(--color-accent-primary),
+      color-mix(in srgb, var(--color-accent-primary) 22%, transparent)
+    );
+    box-shadow: 0 0 8px color-mix(in srgb, var(--color-accent-primary) 38%, transparent);
+  }
+
+  .projects-hero__orbit-map-head-copy {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .projects-hero__orbit-map-label {
+    display: block;
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--color-accent-primary);
+  }
+
+  .projects-hero__orbit-hub--focus .projects-hero__orbit-map-label {
+    color: var(--color-heading);
+  }
+
+  .projects-hero__orbit-map-hint {
+    margin: 0.1rem 0 0;
+    font-size: 0.625rem;
+    line-height: 1.35;
+    color: var(--color-text-muted);
+    min-height: 1.35em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    text-overflow: ellipsis;
+  }
+
+  .projects-hero__orbit-wrap {
+    position: relative;
+    z-index: 1;
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 0;
+    margin-top: 0;
+    overflow: visible;
+  }
+
+  .projects-hero__orbit-field {
+    container-type: inline-size;
+    flex: 0 0 auto;
+    width: min(100%, 13.25rem);
+    max-width: 13.25rem;
+    height: auto;
+    aspect-ratio: 1;
+    align-self: center;
+    margin-inline: auto;
+    --orbit-radius: clamp(2.85rem, calc(50cqw - 1.05rem), 4.85rem);
+  }
+
+  .projects-hero__orbit-hub > .projects-hero__orbit-caption {
+    position: relative;
+    z-index: 3;
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    min-height: 1.55rem;
+    margin: 0;
+    padding: 0.28rem 0.55rem;
+    border-radius: 999px;
+    line-height: 1.3;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .projects-hero__orbit-signal {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    gap: 0.38rem;
+    width: 100%;
+    min-width: 0;
+    margin-top: 0.1rem;
+    padding-top: 0.55rem;
+    padding-bottom: 0.08rem;
+    border-top: 1px solid color-mix(in srgb, var(--color-border) 82%, transparent);
+    overflow: hidden;
+  }
+
+  .projects-hero__orbit-signal-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.45rem;
+    width: 100%;
+    min-width: 0;
+    padding-inline: 0.05rem;
+  }
+
+  .projects-hero__orbit-signal-head-glow {
+    width: 0.28rem;
+    height: 1rem;
+    margin-top: 0.1rem;
+    flex-shrink: 0;
+    border-radius: 999px;
+    background: linear-gradient(
+      180deg,
+      var(--color-accent-primary),
+      color-mix(in srgb, var(--color-accent-primary) 22%, transparent)
+    );
+    box-shadow: 0 0 8px color-mix(in srgb, var(--color-accent-primary) 38%, transparent);
+  }
+
+  .projects-hero__orbit-signal-head-copy {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .projects-hero__orbit-signal-label {
+    display: block;
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--color-accent-primary);
+  }
+
+  .projects-hero__orbit-signal-hint {
+    margin: 0.1rem 0 0;
+    font-size: 0.625rem;
+    line-height: 1.35;
+    color: var(--color-text-muted);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+
+  .projects-hero__orbit-signal-hero {
+    position: relative;
+    display: grid;
+    place-items: end center;
+    flex: 0 0 auto;
+    min-height: 2.7rem;
+    max-height: 3.2rem;
+    padding: 0.1rem 0.1rem 0.06rem;
+    isolation: isolate;
+  }
+
+  .projects-hero__orbit-signal-hero::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0.08rem;
+    z-index: 0;
+    width: 70%;
+    height: 80%;
+    transform: translateX(-50%);
+    border-radius: 999px 999px 0 0;
+    background: radial-gradient(
+      ellipse 85% 100% at 50% 100%,
+      color-mix(in srgb, var(--color-accent-primary) 12%, transparent),
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+
+  .projects-hero__orbit-signal-gauge {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 8rem);
+    max-height: 3rem;
+    height: auto;
+    overflow: visible;
+  }
+
+  .projects-hero__orbit-signal-gauge-track,
+  .projects-hero__orbit-signal-gauge-fill {
+    fill: none;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .projects-hero__orbit-signal-gauge-track {
+    stroke: color-mix(in srgb, var(--color-border) 62%, var(--color-heading));
+    stroke-width: 2.25;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+    opacity: 0.28;
+  }
+
+  .projects-hero__orbit-signal-gauge-fill {
+    stroke: var(--color-accent-primary);
+    stroke-width: 2.75;
+    stroke-dasharray: 1;
+    stroke-dashoffset: calc(1 - var(--signal-fill, 0));
+    filter: drop-shadow(0 0 8px color-mix(in srgb, var(--color-accent-primary) 40%, transparent));
+  }
+
+  .projects-hero__orbit-signal-readout {
+    position: absolute;
+    left: 50%;
+    bottom: 0.06rem;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.08rem;
+    min-width: 0;
+    max-width: calc(100% - 0.5rem);
+    transform: translateX(-50%) translateY(0.04rem);
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .projects-hero__orbit-signal-value {
+    font-size: clamp(0.95rem, 4.5vw, 1.15rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--color-heading);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .projects-hero__orbit-signal-readout-label {
+    font-size: 0.5rem;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-text-muted) 88%, var(--color-accent-primary));
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  .projects-hero__orbit-signal-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 0.32rem;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0.02rem 0.04rem 0.04rem;
+    list-style: none;
+    box-sizing: border-box;
+  }
+
+  .projects-hero__orbit-signal-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .projects-hero__orbit-signal-row-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.35rem;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .projects-hero__orbit-signal-row-label {
+    font-size: 0.5rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .projects-hero__orbit-signal-row-value {
+    font-size: 0.62rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--color-heading);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .projects-hero__orbit-signal-row-track {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: 0.2rem;
+    padding: 0.05rem;
+    border-radius: 999px;
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-border) 38%, transparent),
+      color-mix(in srgb, var(--color-border) 78%, transparent)
+    );
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .projects-hero__orbit-signal-row-fill {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--color-accent-primary) 28%, transparent) 0%,
+      var(--color-accent-primary) 100%
+    );
+    transform: scaleX(var(--signal-fill, 0));
+    transform-origin: left center;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-hero__orbit-hub {
+    gap: 0.36rem;
+    padding: 0.55rem 0.58rem 0.6rem;
+  }
+
+  .projects-hero__orbit-field {
+    width: min(100%, 11.5rem);
+    max-width: 11.5rem;
+    --orbit-radius: clamp(2.55rem, calc(50cqw - 0.95rem), 4.2rem);
+  }
+
+  .projects-hero__orbit-signal {
+    gap: 0.32rem;
+    padding-top: 0.45rem;
+  }
+
+  .projects-hero__orbit-signal-gauge {
+    width: min(100%, 7.25rem);
+    max-height: 2.75rem;
+  }
+
+  .projects-hero__orbit-signal-hero {
+    min-height: 2.45rem;
+    max-height: 2.9rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects-hero__orbit-signal-gauge-track,
+  .projects-hero__orbit-signal-gauge-fill,
+  .projects-hero__orbit-signal-row-fill,
+  .projects-hero__orbit-signal-row-value {
+    transition: none;
+  }
+}

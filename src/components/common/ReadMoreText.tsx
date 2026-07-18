@@ -1,8 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { ReadMoreToggle } from '@/components/common/ReadMoreToggle'
 import './ReadMore.css'
-
-const CHAR_FALLBACK_THRESHOLD = 150
 
 type ReadMoreTextProps = {
   text: string
@@ -10,50 +8,71 @@ type ReadMoreTextProps = {
   className?: string
 }
 
+function measureClampedOverflow(element: HTMLParagraphElement, maxLines: number): boolean {
+  const hadClamp = element.classList.contains('read-more__text--clamped')
+  const previousLineClamp = element.style.webkitLineClamp
+
+  element.classList.add('read-more__text--clamped')
+  element.style.webkitLineClamp = String(maxLines)
+
+  const overflow = element.scrollHeight > element.clientHeight + 1
+
+  if (!hadClamp) {
+    element.classList.remove('read-more__text--clamped')
+  }
+  element.style.webkitLineClamp = previousLineClamp
+
+  return overflow
+}
+
 export function ReadMoreText({ text, maxLines = 3, className = '' }: ReadMoreTextProps) {
   const [expanded, setExpanded] = useState(false)
-  const [needsToggle, setNeedsToggle] = useState(text.length > CHAR_FALLBACK_THRESHOLD)
+  const [isOverflowing, setIsOverflowing] = useState(false)
+  const [hasMeasured, setHasMeasured] = useState(false)
   const contentRef = useRef<HTMLParagraphElement>(null)
 
   useEffect(() => {
+    setExpanded(false)
+    setHasMeasured(false)
+  }, [text, maxLines])
+
+  useLayoutEffect(() => {
     const element = contentRef.current
     if (!element) return
 
     const checkOverflow = () => {
-      if (expanded) {
-        setNeedsToggle(text.length > CHAR_FALLBACK_THRESHOLD)
-        return
-      }
-
-      element.classList.add('read-more__text--clamped')
-      element.style.webkitLineClamp = String(maxLines)
-
-      const clamped = element.scrollHeight > element.clientHeight + 1
-      setNeedsToggle(clamped || text.length > CHAR_FALLBACK_THRESHOLD)
+      setIsOverflowing(measureClampedOverflow(element, maxLines))
+      setHasMeasured(true)
     }
 
     checkOverflow()
+
+    const observer = new ResizeObserver(checkOverflow)
+    observer.observe(element)
     window.addEventListener('resize', checkOverflow)
-    return () => window.removeEventListener('resize', checkOverflow)
-  }, [text, maxLines, expanded])
+
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('resize', checkOverflow)
+    }
+  }, [text, maxLines])
+
+  const shouldClamp = !expanded && (hasMeasured ? isOverflowing : true)
 
   return (
     <div className={className}>
       <p
         ref={contentRef}
-        className={[
-          'read-more__text',
-          !expanded && needsToggle ? 'read-more__text--clamped' : '',
-        ]
+        className={['read-more__text', shouldClamp ? 'read-more__text--clamped' : '']
           .filter(Boolean)
           .join(' ')}
-        style={!expanded && needsToggle ? { WebkitLineClamp: maxLines } : undefined}
+        style={shouldClamp ? { WebkitLineClamp: maxLines } : undefined}
       >
         {text}
       </p>
-      {needsToggle && (
+      {hasMeasured && isOverflowing ? (
         <ReadMoreToggle expanded={expanded} onToggle={() => setExpanded((current) => !current)} />
-      )}
+      ) : null}
     </div>
   )
 }

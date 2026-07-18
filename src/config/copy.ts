@@ -1,15 +1,15 @@
 export const siteCopy = {
-  role: 'Software Developer',
-  tagline: 'Software Developer · React & TypeScript',
+  role: 'SDE I — Backend',
+  tagline: 'SDE I — Backend · Python, Django & DRF',
   description:
-    'Software developer building responsive web applications with Python and Django, and modern tooling — focused on clean interfaces, performance, and maintainable code.',
+    'Backend engineer with 3.5+ years shipping production systems in Python, Django, and DRF — REST APIs, Celery pipelines, LLM integrations, and multi-database architecture.',
   metaDescription:
-    'Prashant Raghorte — Software developer specializing in responsive web applications with React, TypeScript, and modern tooling.',
+    'Prashant Raghorte — SDE I (Backend) specializing in Python, Django, DRF, REST APIs, Celery, Elasticsearch, LLM integration, and AWS.',
 
   pages: {
     about: {
       title: 'About Me',
-      subtitle: 'My background, education, and the technologies I use day-to-day',
+      subtitle: 'Background, education, and the stack behind day-to-day backend work',
     },
     experience: {
       title: 'Work Experience',
@@ -17,36 +17,199 @@ export const siteCopy = {
     },
     projects: {
       title: 'Projects',
-      subtitle: 'Applications and interfaces I have designed, built, and shipped',
+      subtitle: 'SaaS products, APIs, and interfaces designed, built, and shipped',
     },
     contact: {
-      title: 'Contact',
+      title: 'Start the conversation',
       subtitle:
-        'Have a question, opportunity, or idea? Send a message — I would love to hear from you.',
+        'Roles, freelance builds, and technical collaborations — drop the brief in the thread and I’ll reply within one to two business days.',
     },
   },
 
   sections: {
     featuredExperience:
-      'Recent roles and the impact I delivered in each position.',
-    featuredProjects:
-      'Selected work spanning full-stack applications, UI clones, and developer tooling.',
-    contactPreview:
-      'Open to full-time roles and freelance collaborations. Reach out by email or phone — I usually reply within one to two business days.',
-    contactForm: {
-      title: 'Send a message',
-      subtitle:
-        'Tell me about your project or opportunity. I typically reply within one to two business days.',
-      success: 'Message sent successfully. Thank you — I will get back to you soon.',
-      placeholders: {
-        subject: 'Project inquiry, collaboration, or opportunity',
-        message: 'Tell me about your idea or opportunity…',
+      'Backend roles across SEO SaaS, lead generation, and enterprise platforms — building APIs, integrations, and scalable systems.',
+    experiencePage: {
+      lede:
+        'From Django internships to backend engineering at scale — APIs, async pipelines, LLM integrations, and multi-database systems across SaaS and enterprise products.',
+      timelineTitle: 'Professional journey',
+      craftLabel: 'Core craft',
+      craftTitle: 'Scalable backend systems',
+      craftStack: 'Python & Django across production SaaS',
+      craftAi: 'LLM-powered features in live products',
+      stageLabel: 'Now viewing',
+      currentRoleLabel: 'Current',
+      timelineCardsLabel: 'Experience roles',
+      constellationLabel: 'Career constellation',
+      impactsLabel: 'Impact points',
+      bentoHighlights: 'Highlights',
+      highlightsEyebrow: 'Expertise',
+      highlightsTitle: 'Career impact map',
+      highlightsSubtitle:
+        'Theme distribution across every role — a snapshot of where impact concentrated, without repeating timeline bullets.',
+      roleImpactTitle: 'Impact focus',
+      roleImpactHint: 'Stack areas for this role — badge shows skills; bar width scales with skill count.',
+      careerImpactTitle: 'Cross-role themes',
+      careerImpactHint: 'Aggregated focus areas across your full career journey.',
+      impactMapLegendLabel: 'Theme breakdown',
+      ctaTitle: 'Let’s build something together',
+      collabLede: 'Open to full-time, freelance, and remote backend work.',
+      collabStrengthsLabel: 'What I bring to collaborations',
+      collabStrengths: [
+        'Production REST APIs with Django & DRF',
+        'Async pipelines, Redis, and multi-database systems',
+        'LLM integrations shipped in live products',
+        'End-to-end ownership from design to deployment',
+      ],
+      collabModeHints: {
+        'Full-time roles': 'Long-term product engineering',
+        'Freelance projects': 'Scoped APIs and delivery',
+        'Remote opportunities': 'Async across time zones',
       },
+      viewProjects: 'View projects',
+      getInTouch: 'Get in touch',
+      introEyebrow: 'Career snapshot',
+      introTitle: 'Backend engineer across SaaS & enterprise',
+      showcaseWidgetTitle: 'Career overview',
+      showcaseWidgetHint:
+        'Role snapshot, constellation navigation, and delivery history across SaaS and enterprise engineering',
+      winsLabel: 'Standout deliverables',
+      spotlightLabel: 'Focused role',
+      focusAreasTitle: 'Technologies I work with',
+      snapshotTitle: 'Career snapshot',
+      snapshotLive: 'Active',
+      snapshotCraft: 'Core stack',
+      stackLabel: 'Tech stack',
+      introStackLabel: 'Primary stack',
+      navTitle: 'Role navigator',
+      navHint: 'Jump to any role in the timeline',
+      pathLabel: 'Career path',
+      pathHint: 'Tap a role to jump into the timeline',
+    },
+    featuredProjects:
+      'Production SaaS products spanning SEO intelligence, email marketing, interior design management, compliance, and recruitment.',
+    projectsPage: {
+      lede:
+        'Production SaaS spanning SEO intelligence, email outreach, interior design, compliance, and recruitment — each built end-to-end with Python, Django, and cloud-native integrations.',
+      portfolioQuotes: [
+        'Production SaaS spanning SEO intelligence, email outreach, interior design, compliance, and recruitment — each built end-to-end with Python, Django, and cloud-native integrations.',
+        'Built on a shared foundation of Django REST APIs, Celery, and OAuth 2.0 auth — extending into Elasticsearch analytics, multi-database architectures, Stripe, CRM webhooks, and LLM-powered workflows.',
+      ],
+      introEyebrow: 'Product portfolio',
+      introTitle: 'Shipped backends across live SaaS products',
+      showcaseWidgetTitle: 'Production portfolio',
+      showcaseWidgetHint:
+        'Shipped SaaS products, stack spectrum, and delivery scope across live production builds',
+      orbitLabel: 'Products shipped',
+      orbitMapLabel: 'Product orbit',
+      orbitMapHint: 'Hover a logo to preview',
+      orbitProjectHint: (name: string) => `Previewing ${name}`,
+      orbitCaptionHint: 'Select to preview',
+      orbitSignalIdleLabel: 'Portfolio pulse',
+      orbitSignalHint: 'Live coverage and integration footprint across shipped products',
+      orbitSignalFocusHint: 'Module depth and integration footprint for this build',
+      summaryLabel: 'Portfolio overview',
+      spotlightLabel: 'Focused product',
+      spotlightHighlightsLabel: 'Key highlights',
+      stackSpectrumLabel: 'Stack overlap',
+      stackSpectrumHint: 'Hover a product logo to highlight its stack',
+      stackProjectHint: (name: string) => `Highlighting ${name}`,
+      stackReadoutIdle: 'Hover a skill icon',
+      stackReadoutActive: 'Hover a skill to inspect',
+      craftLabel: 'Core craft',
+      craftTitle: 'Production SaaS backends',
+      craftMetricLabel: 'Products shipped',
+      craftMetricDetail: 'Python & Django backends',
+      craftAiMetricLabel: 'AI-powered',
+      craftAiMetricDetail: 'LLM workflows in production',
+      spotlightStackLabel: 'Tech stack',
+      catalogLabel: 'Product catalog',
+      catalogWidgetTitle: 'Product catalog',
+      catalogWidgetHint: 'Filter by stack, browse products, and inspect delivery details',
+      catalogTimelineLabel: 'Product timeline',
+      filterLabel: 'Stack filter',
+      filterHint: 'Narrow by technology — filters combine with OR logic',
+      stackFilterUnavailableHint: 'Unavailable',
+      stackFilterUnavailableLabel: 'Not used in any product',
+      focusLabel: 'Now viewing',
+      focusHint: 'Delivery snapshot, stack, and links for the active product',
+      focusSnapshotLabel: 'Delivery snapshot',
+      catalogSummaryLabel: 'Project summary',
+      catalogHighlightsLabel: 'Key highlights',
+      catalogLiveStatus: 'Live',
+      catalogRepoStatus: 'Repo',
+      focusStackSkillLabel: 'Stack',
+      focusHighlightsLabel: 'Highlights',
+      focusModulesLabel: 'Modules',
+      focusIntegrationsLabel: 'Integrations',
+      focusDataStoresLabel: 'Data stores',
+      focusAiCountLabel: 'AI',
+      liveProduct: 'Live product',
+      liveProductShort: 'Live',
+      viewRepo: 'View repository',
+      viewRepoShort: 'Repo',
+      showingCount: (shown: number, total: number) =>
+        shown === total ? `All ${total} products` : `${shown} of ${total} products`,
+      railLabel: 'Product list',
+      outcomesEyebrow: 'Delivery',
+      outcomesTitle: 'Portfolio delivery map',
+      outcomesSubtitle:
+        'Aggregated delivery footprint and recurring architecture patterns across shipped products — complementary to the product catalog above.',
+      deliveryLedgerTitle: 'Product delivery ledger',
+      deliveryLedgerHint:
+        'Comparative delivery depth per product — stacked modules, integrations, data stores, and AI surfaces',
+      deliveryLedgerLegendLabel: 'Segment legend',
+      deliveryLedgerTotalLabel: 'Portfolio delivery points',
+      deliveryLedgerShareLabel: '% portfolio',
+      patternsTitle: 'Architecture patterns',
+      patternsHint: 'Recurring build approaches evidenced across multiple products',
+      patternsProductsLabel: 'products',
+    },
+    contactPreview:
+      'Open to backend engineering roles, contract work, and product collaborations. Choose a channel below or submit a formal inquiry — I typically reply within one to two business days.',
+    contactPreviewCta: {
+      hint: 'For roles, proposals, and technical collaborations',
+      label: 'Submit a detailed inquiry',
+      ariaLabel: 'Open the contact page to submit a detailed inquiry',
+    },
+    contactForm: {
+      title: 'Submit a detailed inquiry',
+      subtitle:
+        'Share the role, project scope, timeline, and technical requirements. The more context you provide, the more tailored my response will be.',
+      success:
+        'Your message has been sent. Thank you for reaching out — I will review it and get back to you within one to two business days.',
+      errorFallback: 'You can also reach me through the quick channels on this page.',
+      placeholders: {
+        name: 'Your full name',
+        email: 'Your work or personal email',
+        subject: 'Professional inquiry',
+        message:
+          'Briefly describe the opportunity, team, stack, timeline, and what you would like help with…',
+      },
+      labels: {
+        name: 'Full name',
+        email: 'Email address',
+        subject: 'Subject',
+        message: 'Message',
+      },
+      submit: 'Send message',
+      submitting: 'Sending message…',
     },
     contactConnect: {
-      title: 'Connect with me',
-      subtitle: 'Prefer a direct channel? Reach me through any of the options below.',
-      locationTitle: 'Current location',
+      title: 'Direct channels',
+      subtitle:
+        'Prefer email, a quick call, or a social profile? Pick the option that works best for you.',
+      locationTitle: 'Location',
+      locationHint: 'Open to remote and hybrid opportunities across India.',
+      responseTitle: 'Typical response',
+      responseHint: '1–2 business days for email and form messages.',
+    },
+    contactChannels: {
+      email: 'Best for detailed inquiries, proposals, and role discussions',
+      phone: 'Reach out for quick questions or scheduling a call',
+      github: 'Browse repositories, contributions, and side projects',
+      linkedin: 'Connect for roles, referrals, and professional updates',
+      instagram: 'Follow for personal updates and behind-the-scenes content',
     },
   },
 
@@ -55,6 +218,7 @@ export const siteCopy = {
   },
 
   hero: {
+    greeting: "Hey, I'm",
     exploreWork: 'Explore featured work',
     exploreWorkHint: 'Scroll to featured projects on this page',
   },
@@ -63,9 +227,29 @@ export const siteCopy = {
     experience: {
       title: 'View all roles',
     },
+    experienceRole: {
+      title: 'View full role',
+      more: (count: number) => `+${count} more on timeline`,
+      moreSkills: (count: number) => `+${count} more`,
+    },
     projects: {
       title: 'View all projects',
+      openProject: 'View case study',
+      more: (count: number) =>
+        count === 1 ? '+1 more highlight' : `+${count} more highlights`,
     },
+  },
+
+  skills: {
+    all: {
+      title: 'All Skills',
+      hint: 'Technologies across my full stack',
+      showMore: (count: number) => `Show ${count} more skills`,
+      showLess: 'Show fewer skills',
+    },
+    categoryHint: 'Technologies in this area',
+    skillCount: (count: number) => (count === 1 ? '1 skill' : `${count} skills`),
+    navLabel: 'Categories',
   },
 
   projects: {

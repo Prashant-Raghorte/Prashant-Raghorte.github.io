@@ -1,0 +1,302 @@
+.exp-identity {
+  min-width: 0;
+}
+
+.exp-identity__surface {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: stretch;
+  gap: 0;
+  min-width: 0;
+  border-radius: 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--color-border) 78%, transparent);
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-accent-primary) 7%, var(--color-surface)),
+      color-mix(in srgb, var(--color-heading) 2%, var(--color-surface))
+    );
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--color-heading) 6%, transparent),
+    0 10px 28px color-mix(in srgb, var(--color-bg) 35%, transparent);
+  overflow: hidden;
+}
+
+.exp-identity__brand {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 2vw, 1rem);
+  min-width: 0;
+  padding: clamp(0.75rem, 2vw, 0.95rem) clamp(0.85rem, 2.2vw, 1.05rem);
+}
+
+.exp-identity__logo-frame {
+  position: relative;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+}
+
+.exp-identity__logo-ring {
+  pointer-events: none;
+  position: absolute;
+  inset: -0.18rem;
+  border-radius: 1rem;
+  border: 1px solid color-mix(in srgb, var(--color-accent-primary) 28%, transparent);
+  background: radial-gradient(
+    circle at 50% 0%,
+    color-mix(in srgb, var(--color-accent-primary) 16%, transparent),
+    transparent 68%
+  );
+  opacity: 0.9;
+}
+
+.exp-identity__logo {
+  position: relative;
+  z-index: 1;
+  width: clamp(3rem, 7vw, 3.35rem);
+  height: clamp(3rem, 7vw, 3.35rem);
+  border-radius: 0.8rem;
+}
+
+.exp-identity__logo .company-logo__image {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.exp-identity__copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.28rem;
+  min-width: 0;
+}
+
+.exp-identity__company-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.exp-identity__role-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.exp-identity__company {
+  margin: 0;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: var(--color-text-muted);
+  overflow-wrap: anywhere;
+}
+
+.exp-identity__company--link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  width: fit-content;
+  max-width: 100%;
+  text-decoration: none;
+  transition: color var(--motion-base) ease, gap var(--motion-base) ease;
+}
+
+.exp-identity__company--link svg {
+  width: 0.7rem;
+  height: 0.7rem;
+  flex-shrink: 0;
+  opacity: 0.65;
+  transition: opacity var(--motion-base) ease;
+}
+
+.exp-identity__badge {
+  padding: 0.12rem 0.45rem;
+  border-radius: 999px;
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: var(--color-accent-primary);
+  background: color-mix(in srgb, var(--color-accent-primary) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-accent-primary) 28%, transparent);
+}
+
+.exp-identity__role {
+  margin: 0;
+  font-size: clamp(1.05rem, 2.8vw, 1.28rem);
+  font-weight: 800;
+  line-height: 1.18;
+  letter-spacing: -0.025em;
+  color: var(--color-heading);
+  overflow-wrap: anywhere;
+}
+
+.exp-identity__copy--role-first .exp-identity__company {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--color-accent-primary);
+}
+
+.exp-identity__facts {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  align-self: stretch;
+  margin: 0;
+  min-width: clamp(7.5rem, 18vw, 9.5rem);
+  border-left: 1px solid color-mix(in srgb, var(--color-border) 72%, transparent);
+  background: color-mix(in srgb, var(--color-heading) 3%, var(--color-bg));
+}
+
+.exp-identity__fact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.18rem;
+  padding: 0.55rem 0.85rem;
+  min-width: 0;
+}
+
+.exp-identity__fact + .exp-identity__fact {
+  border-top: 1px solid color-mix(in srgb, var(--color-border) 65%, transparent);
+}
+
+.exp-identity__fact-label {
+  margin: 0;
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1;
+  color: color-mix(in srgb, var(--color-text-muted) 88%, transparent);
+}
+
+.exp-identity__fact-value {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--color-heading);
+  overflow-wrap: anywhere;
+}
+
+@media (hover: hover) {
+  .exp-identity__company--link:hover {
+    color: var(--color-accent-primary);
+    gap: 0.38rem;
+  }
+
+  .exp-identity__company--link:hover svg {
+    opacity: 1;
+  }
+
+  .exp-identity__surface:hover {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 24%, var(--color-border));
+  }
+
+  .exp-identity__surface:hover .exp-identity__logo-ring {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 45%, transparent);
+    box-shadow: 0 0 18px color-mix(in srgb, var(--nav-glow) 22%, transparent);
+  }
+}
+
+@media (max-width: 1023px) {
+  .immersive .exp-identity__surface {
+    grid-template-columns: 1fr;
+  }
+
+  .immersive .exp-identity__facts {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: none;
+    border-left: none;
+    border-top: 1px solid color-mix(in srgb, var(--color-border) 72%, transparent);
+    min-width: 0;
+  }
+
+  .immersive .exp-identity__fact + .exp-identity__fact {
+    border-top: none;
+    border-left: 1px solid color-mix(in srgb, var(--color-border) 65%, transparent);
+  }
+
+  .immersive .exp-identity__brand {
+    padding: 0.7rem 0.8rem;
+  }
+
+  .immersive .exp-identity__role {
+    font-size: clamp(0.95rem, 4vw, 1.1rem);
+  }
+}
+
+@media (max-width: 720px) {
+  .exp-identity__surface {
+    grid-template-columns: 1fr;
+  }
+
+  .exp-identity__facts {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: none;
+    border-left: none;
+    border-top: 1px solid color-mix(in srgb, var(--color-border) 72%, transparent);
+    min-width: 0;
+  }
+
+  .exp-identity__fact + .exp-identity__fact {
+    border-top: none;
+    border-left: 1px solid color-mix(in srgb, var(--color-border) 65%, transparent);
+  }
+}
+
+@media (max-width: 480px) {
+  .immersive .exp-identity__brand {
+    align-items: flex-start;
+  }
+
+  .immersive .exp-identity__logo {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .immersive .exp-identity__facts {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .immersive .exp-identity__fact + .exp-identity__fact {
+    border-left: none;
+    border-top: 1px solid color-mix(in srgb, var(--color-border) 65%, transparent);
+  }
+}
+
+@media (max-width: 480px) {
+  .exp-identity__brand {
+    align-items: flex-start;
+  }
+
+  .exp-identity__logo {
+    width: 2.85rem;
+    height: 2.85rem;
+  }
+
+  .exp-identity__logo .company-logo__image {
+    width: 1.45rem;
+    height: 1.45rem;
+  }
+
+  .exp-identity__facts {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .exp-identity__fact + .exp-identity__fact {
+    border-left: none;
+    border-top: 1px solid color-mix(in srgb, var(--color-border) 65%, transparent);
+  }
+}

@@ -39,10 +39,25 @@
   --btn-shine-bg: var(--color-surface);
   --btn-shine-text: var(--color-text);
   --btn-shine-text-hover: var(--color-accent-primary);
+
+  --focus-tone-py: #fb923c;
+  --focus-tone-api: #34d399;
+  --focus-tone-llm: #f472b6;
+  --focus-tone-async: #fbbf24;
+  --focus-tone-data: #38bdf8;
+  --focus-tone-sec: #f87171;
 }
 
 [data-theme='sunset'] .navbar-shine-ring {
   opacity: 0.42;
+}
+
+@media (hover: none) {
+  [data-theme='sunset'] .hero__actions .ui-btn--shine::before,
+  [data-theme='sunset'] .hero__actions .ui-btn--ghost::before,
+  [data-theme='sunset'] .hero-stats-shine::before {
+    opacity: 0.78;
+  }
 }
 
 [data-theme='sunset'] .star-background__stage canvas {

@@ -8,6 +8,9 @@
 
 @media (hover: none) {
   .navbar-link,
+  .navbar-toggle,
+  .navbar-menu-backdrop,
+  .navbar-menu-panel__close,
   .navbar-logo,
   .theme-switcher,
   .ui-btn,
@@ -16,52 +19,90 @@
   .footer-social-link,
   .footer__resume,
   .scroll-fab,
-  .contact-preview__social,
-  .contact-preview__link,
+  .contact-preview__channel,
+  .contact-preview__signal,
   .contact-connect__channel,
   .about-profile__tile--link,
   .about-profile__social-item,
+  .about-skills__nav-btn,
+  .about-skills__less-btn,
+  .about-skills__category-trigger,
+  .about-skills__category-option,
+  .home-experience__path-item,
+  .career-hero__path-step,
+  .career-hero__stack-chips li,
+  .career-nav__item,
   .project-card__link-btn,
+  .project-card__tag,
   .projects-page__clear,
+  .projects-catalog__clear,
+  .stack-filter__pill,
+  .stack-filter__tab,
+  .stack-filter__clear,
+  .stack-filter__active-chip,
+  .stack-filter__all,
+  .projects-catalog__focus-link,
+  .projects-catalog__focus-tag,
+  .projects-catalog__focus-stat,
+  .project-highlights__item,
+  .projects-hero__orbit-logo,
+  .projects-hero__stack-node-btn,
+  .projects-hero__brief-domain,
+  .projects-hero__brief-metric,
   .project-skill-filter__chip,
   .project-skill-filter__clear,
   .project-skill-filter__active-chip,
   .home-skills__tab,
+  .skill-tile__surface--more,
+  .home-skills__mosaic-less-btn,
+  .skill-tile__surface,
   .skills-chip,
   .about-highlights__chip,
   .about-skills__category,
   .read-more__toggle,
   .view-all-rail__pill,
+  .home-experience__cta,
+  .home-experience__live-item,
+  .home-experience__company--link,
   .timeline-card__company--link,
   .availability-badge__status {
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
   }
 
-  /* Glass shine cards — same as desktop hover, always on */
-  .shine-card--hover::before,
-  .shine-card--active::before {
-    opacity: 1;
-    animation: shine-border-spin 1.6s linear infinite;
+  .hero-stats__item {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
 
-  /* Shine / ghost buttons — same as desktop hover, always on */
+  /* Glass shine cards — static accent on touch (no continuous spin) */
+  .shine-card--hover::before,
+  .shine-card--active::before,
+  .hero-stats-shell--hover .hero-stats-shine::before {
+    opacity: 0.72;
+    animation: none;
+  }
+
+  /* Shine / ghost buttons — matching static accent on touch */
   .ui-btn--shine::before,
   .ui-btn--ghost::before {
-    opacity: 1;
-    animation: shine-border-spin 1.6s linear infinite;
+    opacity: 0.72;
+    animation: none;
   }
 
-  .ui-btn--shine .ui-btn__inner {
+  .ui-btn--shine .ui-btn__inner,
+  .ui-btn--ghost .ui-btn__inner--ghost {
     color: var(--btn-shine-text-hover);
+    background: var(--btn-shine-bg);
     box-shadow: 0 0 22px color-mix(in srgb, var(--nav-glow) 70%, transparent);
   }
 
   .ui-btn--ghost .ui-btn__inner--ghost {
-    border-color: color-mix(in srgb, var(--color-accent-primary) 35%, transparent);
-    background: color-mix(in srgb, var(--color-accent-primary) 8%, var(--color-surface));
-    color: var(--color-accent-primary);
-    box-shadow: 0 0 22px color-mix(in srgb, var(--nav-glow) 60%, transparent);
+    border-color: transparent;
+  }
+
+  .hero__actions .ui-btn--ghost .ui-btn__inner--ghost {
+    border-color: transparent;
   }
 
   .ui-btn--soft {
@@ -75,11 +116,11 @@
     transition-duration: 0.1s;
   }
 
-  /* Footer CV + scroll FAB — desktop shine always on */
+  /* Footer CV + scroll FAB — static shine on touch */
   .footer__resume::before,
   .scroll-fab::before {
-    opacity: 1;
-    animation: shine-border-spin 1.6s linear infinite;
+    opacity: 0.72;
+    animation: none;
   }
 
   .footer__resume .footer__resume-inner {
@@ -116,6 +157,23 @@
     transform: translateY(var(--motion-lift));
   }
 
+  .navbar-toggle:active,
+  .navbar-toggle:focus-visible {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 42%, transparent);
+    box-shadow: 0 0 16px var(--nav-glow);
+  }
+
+  .navbar-toggle:active .navbar-toggle__shine,
+  .navbar-toggle:focus-visible .navbar-toggle__shine {
+    opacity: 1;
+  }
+
+  .navbar-menu-panel__close:active,
+  .navbar-menu-panel__close:focus-visible {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 42%, var(--color-border));
+    box-shadow: 0 0 14px color-mix(in srgb, var(--color-accent-primary) 18%, transparent);
+  }
+
   /* Footer icons */
   .footer__brand:active {
     transform: translateY(var(--motion-lift));
@@ -139,19 +197,42 @@
     transform: scale(0.96);
   }
 
-  /* Home contact preview */
-  .contact-preview__social:active,
-  .contact-preview__social:focus-visible {
-    color: var(--color-accent-primary);
-    border-color: color-mix(in srgb, var(--color-accent-primary) 40%, transparent);
-    transform: translateY(var(--motion-lift));
+  /* Home contact preview — channels match contact-connect */
+  .contact-preview__channel:active,
+  .contact-preview__channel:focus-visible {
+    transform: scale(0.985);
+    border-color: color-mix(in srgb, var(--color-accent-primary) 42%, var(--color-border));
+    background: color-mix(in srgb, var(--color-accent-primary) 7%, var(--color-surface));
     box-shadow: 0 0 16px var(--nav-glow);
   }
 
-  .contact-preview__link:active,
-  .contact-preview__link:focus-visible {
-    color: var(--color-primary-hover);
-    border-color: var(--color-accent-primary);
+  .contact-preview__channel:active .contact-preview__channel-icon-wrap,
+  .contact-preview__channel:focus-visible .contact-preview__channel-icon-wrap {
+    transform: scale(1.06);
+    background: color-mix(in srgb, var(--color-accent-primary) 20%, transparent);
+    box-shadow: 0 0 16px color-mix(in srgb, var(--color-accent-primary) 22%, transparent);
+  }
+
+  .contact-preview__channel:active .contact-preview__channel-arrow,
+  .contact-preview__channel:focus-visible .contact-preview__channel-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Signals match home-experience live items */
+  .contact-preview__signal:active,
+  .contact-preview__signal:focus-visible {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 32%, var(--color-border));
+    background: color-mix(in srgb, var(--color-accent-primary) 7%, var(--color-surface));
+    transform: translateY(var(--motion-lift));
+    box-shadow: 0 0 14px color-mix(in srgb, var(--nav-glow) 35%, transparent);
+  }
+
+  .contact-preview__signal:active .contact-preview__signal-icon,
+  .contact-preview__signal:focus-visible .contact-preview__signal-icon {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 35%, transparent);
+    box-shadow: 0 0 12px color-mix(in srgb, var(--nav-glow) 45%, transparent);
+    transform: scale(1.04);
   }
 
   /* Contact page channels */
@@ -195,10 +276,57 @@
     transform: translateX(2px);
   }
 
-  .about-profile__social-item:active .about-profile__social-icon-wrap,
-  .about-profile__social-item:focus-visible .about-profile__social-icon-wrap {
+  .about-profile__social-item:active .about-profile__social-mark,
+  .about-profile__social-item:focus-visible .about-profile__social-mark {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 35%, transparent);
+    background: color-mix(in srgb, var(--color-accent-primary) 16%, var(--color-bg));
+    box-shadow: 0 0 14px color-mix(in srgb, var(--nav-glow) 50%, transparent);
+  }
+
+  .home-experience__path-item:active,
+  .home-experience__path-item:focus-visible {
+    color: var(--color-accent-primary);
+    border-color: color-mix(in srgb, var(--color-accent-primary) 28%, transparent);
+    background: color-mix(in srgb, var(--color-accent-primary) 8%, var(--color-bg));
+    transform: translateX(2px);
+  }
+
+  .home-experience__path-item:active .home-experience__path-indicator,
+  .home-experience__path-item:focus-visible .home-experience__path-indicator {
     border-color: color-mix(in srgb, var(--color-accent-primary) 35%, transparent);
     box-shadow: 0 0 14px var(--nav-glow);
+  }
+
+  .home-experience__path-item:active .home-experience__path-role,
+  .home-experience__path-item:focus-visible .home-experience__path-role {
+    color: var(--color-accent-primary);
+  }
+
+  .career-hero__stack-chips li:active {
+    color: var(--color-accent-primary);
+    border-color: color-mix(in srgb, var(--color-accent-primary) 38%, var(--color-border));
+    background: color-mix(in srgb, var(--color-accent-primary) 12%, var(--color-bg));
+    box-shadow: 0 0 12px color-mix(in srgb, var(--nav-glow) 28%, transparent);
+    transform: translateY(-1px);
+  }
+
+  .career-hero__stack-chips li.career-hero__stack-chip--production:active {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 42%, transparent);
+    background: color-mix(in srgb, var(--color-accent-primary) 12%, transparent);
+    box-shadow: 0 4px 14px color-mix(in srgb, var(--nav-glow) 35%, transparent);
+  }
+
+  .career-nav__item:active,
+  .career-nav__item:focus-visible {
+    color: var(--color-accent-primary);
+    border-color: color-mix(in srgb, var(--color-accent-primary) 28%, transparent);
+    background: color-mix(in srgb, var(--color-accent-primary) 8%, var(--color-bg));
+    transform: translateX(2px);
+  }
+
+  .career-nav__item:active .career-nav__role,
+  .career-nav__item:focus-visible .career-nav__role {
+    color: var(--color-accent-primary);
   }
 
   /* Focus area chips */
@@ -211,21 +339,125 @@
   }
 
   /* Skills panels */
-  .about-skills__category:active,
-  .about-skills__category:focus-visible {
-    border-color: color-mix(in srgb, var(--color-accent-primary) 30%, var(--color-border));
-    background: color-mix(in srgb, var(--color-accent-primary) 5%, var(--color-surface));
-    box-shadow: 0 8px 24px color-mix(in srgb, var(--color-bg) 35%, transparent);
+  .about-skills__nav-btn:active,
+  .about-skills__nav-btn:focus-visible {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 28%, transparent);
+    background: color-mix(in srgb, var(--color-accent-primary) 9%, var(--color-surface));
+    transform: translateX(2px);
+    box-shadow: inset 3px 0 0 var(--color-accent-primary);
+  }
+
+  .about-skills__nav-btn--active:active,
+  .about-skills__nav-btn--active:focus-visible {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 35%, var(--color-border));
+    background: color-mix(in srgb, var(--color-accent-primary) 12%, var(--color-surface));
+  }
+
+  .about-skills__nav-btn:active .about-skills__nav-node,
+  .about-skills__nav-btn:focus-visible .about-skills__nav-node,
+  .about-skills__nav-btn--active:active .about-skills__nav-node,
+  .about-skills__nav-btn--active:focus-visible .about-skills__nav-node {
+    border-color: var(--color-accent-primary);
+    box-shadow: 0 0 14px color-mix(in srgb, var(--nav-glow) 70%, transparent);
+    transform: scale(1.08);
+  }
+
+  .about-skills__nav-btn:active .about-skills__nav-title,
+  .about-skills__nav-btn:focus-visible .about-skills__nav-title,
+  .about-skills__nav-btn--active:active .about-skills__nav-title,
+  .about-skills__nav-btn--active:focus-visible .about-skills__nav-title {
+    color: var(--color-heading);
+  }
+
+  .about-skills__nav-btn:active .about-skills__nav-meta,
+  .about-skills__nav-btn:focus-visible .about-skills__nav-meta,
+  .about-skills__nav-btn--active:active .about-skills__nav-meta,
+  .about-skills__nav-btn--active:focus-visible .about-skills__nav-meta {
+    color: var(--color-accent-primary);
+  }
+
+  .about-skills__category-trigger:active,
+  .about-skills__category-trigger:focus-visible {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 42%, var(--color-border));
+    transform: translateY(-1px);
+    box-shadow:
+      inset 0 1px 0 color-mix(in srgb, var(--color-heading) 8%, transparent),
+      0 0 0 1px color-mix(in srgb, var(--color-accent-primary) 14%, transparent),
+      0 10px 24px color-mix(in srgb, var(--nav-glow) 24%, transparent);
+  }
+
+  .about-skills__category-option:active,
+  .about-skills__category-option:focus-visible {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 28%, transparent);
+    background: color-mix(in srgb, var(--color-accent-primary) 10%, var(--color-bg));
+    transform: translateX(2px);
+  }
+
+  .about-skills__less-btn:active,
+  .about-skills__less-btn:focus-visible {
+    color: var(--color-accent-primary);
+    border-color: color-mix(in srgb, var(--color-accent-primary) 40%, var(--color-border));
+    background: color-mix(in srgb, var(--color-accent-primary) 8%, var(--color-surface));
+    transform: translateY(var(--motion-lift));
   }
 
   .home-skills__tab:active,
   .home-skills__tab:focus-visible,
+  .skill-tile__surface:active,
+  .skill-tile__surface:focus-visible,
   .skills-chip:active,
-  .skills-chip:focus-visible {
-    color: var(--color-accent-primary);
-    border-color: color-mix(in srgb, var(--color-accent-primary) 40%, transparent);
+  .skills-chip:focus-visible,
+  .project-card__tag:active .project-card__tag-surface,
+  .project-card__tag:focus-within .project-card__tag-surface {
+    color: var(--color-heading);
+    border-color: color-mix(in srgb, var(--color-accent-primary) 45%, transparent);
+    background: color-mix(in srgb, var(--color-accent-primary) 16%, var(--color-surface));
+    box-shadow: 0 0 12px color-mix(in srgb, var(--nav-glow) 40%, transparent);
+  }
+
+  .hero-stats__item:active,
+  .hero-stats__item:focus-visible {
     transform: translateY(var(--motion-lift));
-    box-shadow: 0 0 12px var(--nav-glow);
+  }
+
+  .hero-stats__item:active .hero-stats__glow,
+  .hero-stats__item:focus-visible .hero-stats__glow {
+    opacity: 1;
+  }
+
+  .hero-stats__item:active .hero-stats__icon,
+  .hero-stats__item:focus-visible .hero-stats__icon {
+    transform: scale(1.06);
+    border-color: color-mix(in srgb, var(--color-accent-primary) 45%, transparent);
+    background: color-mix(in srgb, var(--color-accent-primary) 18%, transparent);
+    box-shadow: 0 0 22px color-mix(in srgb, var(--color-accent-primary) 28%, transparent);
+  }
+
+  .hero-stats__item:active .hero-stats__value,
+  .hero-stats__item:focus-visible .hero-stats__value {
+    color: var(--color-accent-primary);
+    text-shadow: 0 0 18px color-mix(in srgb, var(--color-accent-primary) 35%, transparent);
+  }
+
+  .skill-tile__surface--more:active,
+  .skill-tile__surface--more:focus-visible {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 55%, var(--color-border));
+    background: color-mix(in srgb, var(--color-accent-primary) 12%, var(--color-surface));
+    transform: translateY(var(--motion-lift));
+    box-shadow: 0 10px 28px color-mix(in srgb, var(--nav-glow) 45%, transparent);
+  }
+
+  .skill-tile__surface--more:active .skill-tile__more-count,
+  .skill-tile__surface--more:focus-visible .skill-tile__more-count {
+    background: color-mix(in srgb, var(--color-accent-primary) 24%, transparent);
+  }
+
+  .home-skills__mosaic-less-btn:active,
+  .home-skills__mosaic-less-btn:focus-visible {
+    color: var(--color-accent-primary);
+    border-color: color-mix(in srgb, var(--color-accent-primary) 40%, var(--color-border));
+    background: color-mix(in srgb, var(--color-accent-primary) 8%, var(--color-surface));
+    transform: translateY(var(--motion-lift));
   }
 
   /* Projects page */
@@ -239,9 +471,72 @@
   }
 
   .projects-page__clear:active,
-  .projects-page__clear:focus-visible {
+  .projects-page__clear:focus-visible,
+  .projects-catalog__clear:active,
+  .projects-catalog__clear:focus-visible {
     color: var(--color-accent-primary);
     border-color: color-mix(in srgb, var(--color-accent-primary) 40%, var(--color-border));
+    transform: translateY(var(--motion-lift));
+  }
+
+  .stack-filter__pill:not(:disabled):active,
+  .stack-filter__pill:not(:disabled):focus-visible,
+  .stack-filter__tab:active,
+  .stack-filter__tab:focus-visible,
+  .stack-filter__all:active,
+  .stack-filter__all:focus-visible {
+    color: var(--color-accent-primary);
+    border-color: color-mix(in srgb, var(--color-accent-primary) 40%, var(--color-border));
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-accent-primary) 18%, transparent);
+    transform: scale(0.98);
+  }
+
+  .stack-filter__clear:active,
+  .stack-filter__clear:focus-visible,
+  .stack-filter__active-chip:active,
+  .stack-filter__active-chip:focus-visible {
+    color: var(--color-accent-primary);
+    border-color: color-mix(in srgb, var(--color-accent-primary) 40%, var(--color-border));
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-accent-primary) 16%, transparent);
+    transform: scale(0.98);
+  }
+
+  .projects-catalog__focus-link:active,
+  .projects-catalog__focus-link:focus-visible {
+    background: color-mix(in srgb, var(--color-accent-primary) 14%, var(--color-surface));
+    border-color: color-mix(in srgb, var(--color-accent-primary) 45%, var(--color-border));
+    transform: translateY(var(--motion-lift));
+  }
+
+  .projects-catalog__focus-tag:active,
+  .projects-catalog__focus-tag:focus-visible,
+  .projects-catalog__focus-stat:active,
+  .projects-catalog__focus-stat:focus-visible,
+  .project-highlights__item:active,
+  .project-highlights__item:focus-visible {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 36%, var(--color-border));
+    background: color-mix(in srgb, var(--color-accent-primary) 8%, var(--color-surface));
+    box-shadow:
+      inset 0 1px 0 color-mix(in srgb, var(--color-accent-primary) 16%, transparent),
+      inset 0 0 0 1px color-mix(in srgb, var(--color-accent-primary) 12%, transparent);
+  }
+
+  .projects-catalog__focus-tag:active .projects-catalog__focus-tag-icon,
+  .projects-catalog__focus-tag:focus-visible .projects-catalog__focus-tag-icon {
+    transform: scale(1.08);
+  }
+
+  .projects-hero__orbit-logo:active .projects-hero__orbit-logo-surface,
+  .projects-hero__orbit-logo:focus-visible .projects-hero__orbit-logo-surface {
+    transform: scale(1.1);
+    box-shadow: 0 0 14px color-mix(in srgb, var(--color-accent-primary) 35%, transparent);
+  }
+
+  .projects-hero__brief-domain:active,
+  .projects-hero__brief-domain:focus-visible,
+  .projects-hero__brief-metric:active,
+  .projects-hero__brief-metric:focus-visible {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 38%, var(--color-border));
     transform: translateY(var(--motion-lift));
   }
 
@@ -277,10 +572,91 @@
   }
 
   .view-all-rail__pill:active .view-all-rail__arrow,
-  .view-all-rail__pill:focus-visible .view-all-rail__arrow {
+  .view-all-rail__pill:focus-visible .view-all-rail__arrow,
+  .home-experience__cta:active .view-all-rail__arrow,
+  .home-experience__cta:focus-visible .view-all-rail__arrow,
+  .contact-preview__cta:active .view-all-rail__arrow,
+  .contact-preview__cta:focus-visible .view-all-rail__arrow {
     transform: translateX(3px);
     background: color-mix(in srgb, var(--color-accent-primary) 20%, transparent);
     box-shadow: 0 0 16px color-mix(in srgb, var(--color-accent-primary) 22%, transparent);
+  }
+
+  .view-all-rail__pill:active .view-all-rail__label,
+  .view-all-rail__pill:focus-visible .view-all-rail__label,
+  .home-experience__cta:active .view-all-rail__label,
+  .home-experience__cta:focus-visible .view-all-rail__label,
+  .contact-preview__cta:active .view-all-rail__label,
+  .contact-preview__cta:focus-visible .view-all-rail__label {
+    color: var(--color-accent-primary);
+  }
+
+  .home-experience__cta-shine::before,
+  .home-projects__cta-shine::before,
+  .contact-preview__cta-shine::before,
+  .home-experience__card-wrap.shine-card--hover::before,
+  .timeline__card-wrap.shine-card--hover::before,
+  .immersive__card-wrap.shine-card--hover::before,
+  .home-experience__snapshot-card.shine-card--hover::before,
+  .career-hero__card.shine-card--hover::before,
+  .career-nav__card.shine-card--hover::before,
+  .exp-outcomes__spectrum-wrap.shine-card--hover::before,
+  .exp-outcomes__cta-wrap.shine-card--hover::before {
+    opacity: 0.72;
+    animation: none;
+  }
+
+  .home-experience__card-wrap.shine-card--hover:active,
+  .timeline__card-wrap.shine-card--hover:active,
+  .immersive__card-wrap.shine-card--hover:active,
+  .exp-outcomes__spectrum-wrap.shine-card--hover:active,
+  .exp-outcomes__cta-wrap.shine-card--hover:active {
+    transform: translateY(var(--motion-lift));
+  }
+
+  .home-experience__live-item:active,
+  .home-experience__live-item:focus-visible {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 32%, var(--color-border));
+    background: color-mix(in srgb, var(--color-accent-primary) 7%, var(--color-surface));
+    transform: translateY(var(--motion-lift));
+    box-shadow: 0 0 14px color-mix(in srgb, var(--nav-glow) 35%, transparent);
+  }
+
+  .home-experience__live-item:active .home-experience__live-icon,
+  .home-experience__live-item:focus-visible .home-experience__live-icon {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 35%, transparent);
+    box-shadow: 0 0 12px color-mix(in srgb, var(--nav-glow) 45%, transparent);
+    transform: scale(1.04);
+  }
+
+  .home-experience__company--link:active,
+  .home-experience__company--link:focus-visible,
+  .timeline-card__company--link:active,
+  .timeline-card__company--link:focus-visible {
+    color: var(--color-primary-hover);
+  }
+
+  .home-experience__stats li:active {
+    border-color: color-mix(in srgb, var(--color-accent-primary) 28%, var(--color-border));
+    background: color-mix(in srgb, var(--color-accent-primary) 6%, var(--color-surface));
+    transform: translateY(var(--motion-lift));
+    box-shadow: 0 0 12px color-mix(in srgb, var(--nav-glow) 30%, transparent);
+  }
+
+  /* Decorative orbit rings — static on touch devices */
+  .hero__portrait-orbit--outer,
+  .hero__portrait-orbit--inner,
+  .home-experience__orbit-ring--outer,
+  .home-experience__orbit-ring--inner,
+  .career-hero__orbit-ring--outer,
+  .career-hero__orbit-ring--inner,
+  .contact-preview__orbit-ring--outer,
+  .contact-preview__orbit-ring--inner,
+  .about-skills__orbit-ring--outer,
+  .about-skills__orbit-ring--inner,
+  .home-skills__count-ring--outer,
+  .home-skills__count-ring--inner {
+    animation: none;
   }
 
   .timeline-card__company--link:active,
@@ -321,8 +697,10 @@
   .footer__resume:active,
   .scroll-fab:hover .scroll-fab__inner,
   .scroll-fab:active .scroll-fab__inner,
-  .contact-preview__social:hover,
-  .contact-preview__social:active,
+  .contact-preview__channel:hover,
+  .contact-preview__channel:active,
+  .contact-preview__signal:hover,
+  .contact-preview__signal:active,
   .contact-connect__channel:hover,
   .contact-connect__channel:active,
   .about-profile__tile--link:hover,
@@ -333,22 +711,71 @@
   .about-profile__tile--link:active .about-profile__tile-icon,
   .about-profile__social-item:hover,
   .about-profile__social-item:active,
+  .home-experience__path-item:hover,
+  .home-experience__path-item:active,
   .project-card__link-btn:hover,
   .project-card__link-btn:active,
   .projects-page__clear:hover,
   .projects-page__clear:active,
+  .projects-catalog__clear:hover,
+  .projects-catalog__clear:active,
+  .stack-filter__pill:hover,
+  .stack-filter__pill:active,
+  .stack-filter__tab:hover,
+  .stack-filter__tab:active,
+  .stack-filter__all:hover,
+  .stack-filter__all:active,
+  .stack-filter__clear:hover,
+  .stack-filter__clear:active,
+  .stack-filter__active-chip:hover,
+  .stack-filter__active-chip:active,
+  .projects-catalog__focus-link:hover,
+  .projects-catalog__focus-link:active,
+  .projects-hero__orbit-logo:hover,
+  .projects-hero__orbit-logo:active,
+  .projects-hero__brief-domain:hover,
+  .projects-hero__brief-domain:active,
+  .projects-hero__brief-metric:hover,
+  .projects-hero__brief-metric:active,
+  .projects-hero__stack-node-btn:hover,
+  .projects-hero__stack-node-btn:active,
   .project-skill-filter__chip:hover,
   .project-skill-filter__chip:active,
   .project-skill-filter__clear:hover,
   .project-skill-filter__clear:active,
   .home-skills__tab:hover,
   .home-skills__tab:active,
+  .skill-tile__surface:hover,
+  .skill-tile__surface:active,
+  .skill-tile__surface--more:hover,
+  .skill-tile__surface--more:active,
   .skills-chip:hover,
   .skills-chip:active,
+  .project-card__tag:hover,
+  .project-card__tag:active,
+  .about-skills__nav-btn:hover,
+  .about-skills__nav-btn:active,
+  .about-skills__category-trigger:hover,
+  .about-skills__category-trigger:active,
+  .about-skills__category-option:hover,
+  .about-skills__category-option:active,
+  .about-skills__nav-btn--active .about-skills__nav-node,
+  .about-skills__less-btn:hover,
+  .about-skills__less-btn:active,
   .about-highlights__chip:hover,
   .about-highlights__chip:active,
   .view-all-rail__pill:hover .view-all-rail__arrow,
   .view-all-rail__pill:active .view-all-rail__arrow,
+  .home-experience__cta:active .view-all-rail__arrow,
+  .home-experience__card-wrap.shine-card--hover:active,
+  .timeline__card-wrap.shine-card--hover:active,
+  .career-hero__card.shine-card--hover:active,
+  .exp-outcomes__spectrum-wrap.shine-card--hover:active,
+  .exp-outcomes__cta-wrap.shine-card--hover:active,
+  .home-experience__live-item:hover,
+  .home-experience__live-item:active,
+  .hero-stats__item:hover,
+  .hero-stats__item:active,
   .availability-badge__status:hover,
   .availability-badge__status:active {
     transform: none;
@@ -364,7 +791,18 @@
   .scroll-fab::before,
   .shine-card--hover:hover::before,
   .shine-card--hover::before,
-  .shine-card--active::before {
+  .shine-card--active::before,
+  .home-experience__cta-shine::before,
+  .home-projects__cta-shine::before,
+  .contact-preview__cta-shine::before,
+  .home-experience__card-wrap.shine-card--hover::before,
+  .timeline__card-wrap.shine-card--hover::before,
+  .immersive__card-wrap.shine-card--hover::before,
+  .home-experience__snapshot-card.shine-card--hover::before,
+  .career-hero__card.shine-card--hover::before,
+  .career-nav__card.shine-card--hover::before,
+  .exp-outcomes__spectrum-wrap.shine-card--hover::before,
+  .exp-outcomes__cta-wrap.shine-card--hover::before {
     animation: none;
     opacity: 0.75;
   }
@@ -378,8 +816,34 @@
   .hero__portrait-glow,
   .hero__portrait-orbit--outer,
   .hero__portrait-orbit--inner,
-  .hero__portrait-spark {
+  .hero__portrait-spark,
+  .hero-stats-shell,
+  .hero-stats__item,
+  .home-skills__count-ring--outer,
+  .home-skills__count-ring--inner,
+  .about-skills__orbit-ring--outer,
+  .about-skills__orbit-ring--inner,
+  .about-skills__stage,
+  .about-skills__grid--expanded,
+  .home-experience__orbit-ring--outer,
+  .home-experience__orbit-ring--inner,
+  .career-hero__orbit-ring--outer,
+  .career-hero__orbit-ring--inner,
+  .contact-preview__orbit-ring--outer,
+  .contact-preview__orbit-ring--inner {
     animation: none;
+  }
+
+  .hero-stats-shell,
+  .hero-stats__item,
+  .about-skills__stage {
+    opacity: 1;
+    transform: none;
+  }
+
+  .hero-stats-shine::before {
+    animation: none !important;
+    opacity: 0.75;
   }
 
   .availability-badge__status--open .availability-badge__dot-wrap::before,

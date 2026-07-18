@@ -1,0 +1,753 @@
+.impact-map {
+  --impact-map-enter: 0.72s;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: clamp(0.75rem, 2vw, 0.95rem);
+  min-height: 0;
+  min-width: 0;
+}
+
+.impact-map__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: clamp(0.75rem, 2vw, 0.95rem);
+  min-height: 0;
+}
+
+.impact-map__head {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding-bottom: 0.15rem;
+}
+
+.impact-map__head-glow {
+  width: 0.42rem;
+  height: 1.35rem;
+  margin-top: 0.12rem;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: linear-gradient(
+    180deg,
+    var(--color-accent-primary),
+    color-mix(in srgb, var(--color-accent-primary) 20%, transparent)
+  );
+  box-shadow: 0 0 14px color-mix(in srgb, var(--color-accent-primary) 45%, transparent);
+}
+
+.impact-map__head-copy {
+  min-width: 0;
+}
+
+.impact-map__title {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent-primary);
+}
+
+.impact-map__hint {
+  margin: 0.22rem 0 0;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--color-text-muted);
+}
+
+.impact-map__canvas {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  width: min(100%, 22rem);
+  margin-inline: auto;
+  flex-shrink: 0;
+  border-radius: 50%;
+  isolation: isolate;
+  overflow: visible;
+  opacity: 0;
+  transform: scale(0.94);
+}
+
+.impact-map__aside {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.55rem;
+  min-height: 0;
+}
+
+.impact-map__legend-title {
+  margin: 0;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent-primary);
+}
+
+.exp-outcomes--in-view .impact-map__canvas {
+  animation: impact-map-canvas-in 0.85s var(--motion-ease) forwards;
+  animation-delay: 80ms;
+}
+
+.exp-outcomes--in-view .impact-map__ring--outer {
+  animation: impact-map-ring-spin 52s linear infinite;
+}
+
+.exp-outcomes--in-view .impact-map__ring--inner {
+  animation: impact-map-ring-spin 36s linear infinite reverse;
+}
+
+.impact-map__grid {
+  pointer-events: none;
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  background-image:
+    radial-gradient(
+      circle at center,
+      color-mix(in srgb, var(--color-accent-primary) 8%, transparent) 0%,
+      transparent 68%
+    ),
+    repeating-conic-gradient(
+      from 0deg,
+      color-mix(in srgb, var(--color-border) 28%, transparent) 0deg 8deg,
+      transparent 8deg 18deg
+    );
+  mask-image: radial-gradient(circle at center, black 42%, transparent 78%);
+  opacity: 0.85;
+}
+
+.impact-map__ring {
+  pointer-events: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--color-accent-primary) 18%, var(--color-border));
+  transform: translate(-50%, -50%);
+}
+
+.impact-map__ring--outer {
+  width: 88%;
+  height: 88%;
+  opacity: 0.55;
+}
+
+.impact-map__ring--inner {
+  width: 52%;
+  height: 52%;
+  border-style: dashed;
+  opacity: 0.35;
+}
+
+.impact-map__beams {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.impact-map__beams line {
+  opacity: 0;
+}
+
+.exp-outcomes--in-view .impact-map__beams line {
+  animation: impact-map-beam-in 0.7s var(--motion-ease) forwards;
+  animation-delay: var(--impact-beam-delay, 180ms);
+}
+
+.impact-map__core {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  top: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.12rem;
+  width: clamp(4.5rem, 28%, 5.5rem);
+  height: clamp(4.5rem, 28%, 5.5rem);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  cursor: default;
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      color-mix(in srgb, var(--color-accent-primary) 22%, var(--color-surface)),
+      color-mix(in srgb, var(--color-bg) 88%, var(--color-surface))
+    );
+  border: 1px solid color-mix(in srgb, var(--color-accent-primary) 32%, var(--color-border));
+  box-shadow:
+    0 0 0 4px color-mix(in srgb, var(--color-accent-primary) 8%, transparent),
+    0 16px 36px color-mix(in srgb, var(--color-accent-primary) 14%, transparent);
+  transition:
+    border-color var(--motion-base) ease,
+    box-shadow var(--motion-base) ease,
+    transform var(--motion-base) var(--motion-ease);
+}
+
+.impact-map__core:focus {
+  outline: none;
+}
+
+.impact-map__core:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--color-accent-primary) 65%, white);
+  outline-offset: 3px;
+}
+
+.impact-map__core-ring {
+  pointer-events: none;
+  position: absolute;
+  inset: -0.35rem;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--color-accent-primary) 28%, transparent);
+  animation: impact-map-core-pulse 3.2s ease-in-out infinite;
+}
+
+.impact-map__core-value {
+  font-size: clamp(1.15rem, 4vw, 1.45rem);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--color-heading);
+  background: linear-gradient(
+    120deg,
+    var(--color-heading),
+    color-mix(in srgb, var(--color-accent-primary) 72%, var(--color-heading))
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.impact-map__core-label {
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  line-height: 1.2;
+}
+
+.impact-map__orbit {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.impact-map__node {
+  position: absolute;
+  left: var(--impact-node-x);
+  top: var(--impact-node-y);
+  width: clamp(4.5rem, 30%, 5.75rem);
+  transform: translate(-50%, -50%) scale(0.88);
+  opacity: 0;
+}
+
+.exp-outcomes--in-view .impact-map__node {
+  animation: impact-map-node-in var(--impact-map-enter) var(--motion-ease) forwards;
+  animation-delay: var(--impact-node-delay, 0ms);
+}
+
+.impact-map__node-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.18rem;
+  padding: 0.55rem 0.45rem 0.48rem;
+  border-radius: var(--radius-md);
+  border: 1px solid color-mix(in srgb, var(--impact-node-color) 32%, var(--color-border));
+  background:
+    linear-gradient(
+      160deg,
+      color-mix(in srgb, var(--impact-node-color) 14%, var(--color-bg)),
+      color-mix(in srgb, var(--color-bg) 90%, var(--color-surface))
+    );
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, white 6%, transparent),
+    0 10px 22px color-mix(in srgb, var(--impact-node-color) 12%, transparent);
+  text-align: center;
+  cursor: default;
+  transition:
+    border-color var(--motion-base) ease,
+    box-shadow var(--motion-base) ease,
+    transform var(--motion-base) var(--motion-ease);
+}
+
+.impact-map__node-card:focus {
+  outline: none;
+}
+
+.impact-map__node-card:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--impact-node-color) 55%, var(--color-accent-primary));
+  outline-offset: 2px;
+}
+
+.impact-map__node-orbit {
+  position: absolute;
+  inset: -0.28rem;
+  border-radius: inherit;
+  border: 1px solid color-mix(in srgb, var(--impact-node-color) 22%, transparent);
+  opacity: 0.65;
+  overflow: hidden;
+}
+
+.impact-map__node-orbit-fill {
+  position: absolute;
+  inset: 0;
+  background: conic-gradient(
+    from -90deg,
+    var(--impact-node-color) 0deg,
+    var(--impact-node-color) calc(var(--impact-node-score, 0) * 3.6deg),
+    transparent calc(var(--impact-node-score, 0) * 3.6deg)
+  );
+  opacity: 0.22;
+}
+
+.impact-map__node-glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 0.45rem;
+  font-size: 0.5625rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--impact-node-color);
+  background: color-mix(in srgb, var(--impact-node-color) 14%, var(--color-bg));
+  border: 1px solid color-mix(in srgb, var(--impact-node-color) 28%, transparent);
+  transition: box-shadow var(--motion-base) ease;
+}
+
+.impact-map__node-label {
+  font-size: 0.625rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--color-heading);
+  overflow-wrap: anywhere;
+}
+
+.impact-map__node-count {
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--impact-node-color);
+}
+
+.impact-map__legend {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.45rem;
+  flex: 1;
+  align-content: space-evenly;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.impact-map__legend-item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) minmax(3.5rem, 22%);
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 0.65rem;
+  border-radius: var(--radius-md);
+  border: 1px solid color-mix(in srgb, var(--impact-node-color) 20%, var(--color-border));
+  background: color-mix(in srgb, var(--impact-node-color) 5%, var(--color-bg));
+  opacity: 0;
+  transform: translateY(6px);
+  cursor: default;
+  transition:
+    border-color var(--motion-base) ease,
+    box-shadow var(--motion-base) ease,
+    background var(--motion-base) ease;
+}
+
+.impact-map__legend-item:focus {
+  outline: none;
+}
+
+.impact-map__legend-item:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--impact-node-color) 55%, var(--color-accent-primary));
+  outline-offset: 2px;
+}
+
+.exp-outcomes--in-view .impact-map__legend-item {
+  animation: impact-map-legend-in var(--impact-map-enter) var(--motion-ease) forwards;
+  animation-delay: var(--impact-node-delay, 0ms);
+}
+
+.impact-map__legend-glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.65rem;
+  height: 1.65rem;
+  border-radius: 0.5rem;
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--impact-node-color);
+  background: color-mix(in srgb, var(--impact-node-color) 12%, var(--color-bg));
+  border: 1px solid color-mix(in srgb, var(--impact-node-color) 26%, transparent);
+}
+
+.impact-map__legend-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.impact-map__legend-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-heading);
+  line-height: 1.25;
+}
+
+.impact-map__legend-meta {
+  font-size: 0.6875rem;
+  line-height: 1.35;
+  color: var(--color-text-muted);
+}
+
+.impact-map__legend-meter {
+  display: block;
+  height: 0.3rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-border) 65%, transparent);
+  overflow: hidden;
+}
+
+.impact-map__legend-meter-fill {
+  display: block;
+  height: 100%;
+  width: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--impact-node-color) 55%, transparent),
+    var(--impact-node-color)
+  );
+  box-shadow: 0 0 10px color-mix(in srgb, var(--impact-node-color) 45%, transparent);
+  transition: width 0.85s var(--motion-ease);
+}
+
+.exp-outcomes--in-view .impact-map__legend-meter-fill {
+  width: calc(var(--impact-node-score, 0) * 1%);
+}
+
+@media (hover: hover) {
+  .impact-map__node-card {
+    transition:
+      border-color var(--motion-base) ease,
+      box-shadow var(--motion-base) ease,
+      transform var(--motion-base) var(--motion-ease),
+      opacity var(--motion-base) ease;
+  }
+
+  .impact-map__legend-item {
+    transition:
+      border-color var(--motion-base) ease,
+      box-shadow var(--motion-base) ease,
+      background var(--motion-base) ease,
+      opacity var(--motion-base) ease;
+  }
+
+  .impact-map__node-card:hover,
+  .impact-map__node--linked .impact-map__node-card,
+  .impact-map__node-card:focus-visible {
+    transform: translateY(-2px) scale(1.03);
+    border-color: color-mix(in srgb, var(--impact-node-color) 48%, var(--color-border));
+    box-shadow:
+      inset 0 1px 0 color-mix(in srgb, white 8%, transparent),
+      0 14px 28px color-mix(in srgb, var(--impact-node-color) 22%, transparent),
+      0 0 16px color-mix(in srgb, var(--impact-node-color) 28%, transparent);
+  }
+
+  .impact-map__node-card:hover .impact-map__node-glyph,
+  .impact-map__node--linked .impact-map__node-glyph,
+  .impact-map__node-card:focus-visible .impact-map__node-glyph {
+    box-shadow: 0 0 12px color-mix(in srgb, var(--impact-node-color) 40%, transparent);
+  }
+
+  .impact-map__legend-item:hover,
+  .impact-map__legend-item--linked,
+  .impact-map__legend-item:focus-visible {
+    border-color: color-mix(in srgb, var(--impact-node-color) 40%, var(--color-border));
+    box-shadow: 0 0 14px color-mix(in srgb, var(--impact-node-color) 18%, transparent);
+    background: color-mix(in srgb, var(--impact-node-color) 9%, var(--color-bg));
+  }
+
+  .impact-map--linking:not(.impact-map--all-linked) .impact-map__node:not(.impact-map__node--linked) .impact-map__node-card {
+    opacity: 0.72;
+  }
+
+  .impact-map--linking:not(.impact-map--all-linked) .impact-map__legend-item:not(.impact-map__legend-item--linked) {
+    opacity: 0.72;
+  }
+
+  .impact-map--linking:not(.impact-map--all-linked) .impact-map__beams line {
+    opacity: 0.18;
+  }
+
+  .impact-map--linking .impact-map__beam--linked {
+    opacity: var(--impact-beam-opacity, 0.75);
+    stroke-width: 0.5;
+  }
+
+  .impact-map--all-linked .impact-map__core,
+  .impact-map__core:hover,
+  .impact-map__core:focus-visible {
+    transform: translate(-50%, -50%) scale(1.04);
+    border-color: color-mix(in srgb, var(--color-accent-primary) 55%, var(--color-border));
+    box-shadow:
+      0 0 0 5px color-mix(in srgb, var(--color-accent-primary) 14%, transparent),
+      0 20px 42px color-mix(in srgb, var(--color-accent-primary) 24%, transparent),
+      0 0 28px color-mix(in srgb, var(--color-accent-primary) 30%, transparent);
+  }
+}
+
+@media (hover: none) {
+  .impact-map__node-card:active,
+  .impact-map__node--linked .impact-map__node-card {
+    transform: translateY(-1px) scale(1.02);
+    border-color: color-mix(in srgb, var(--impact-node-color) 48%, var(--color-border));
+    box-shadow: 0 0 14px color-mix(in srgb, var(--impact-node-color) 22%, transparent);
+  }
+
+  .impact-map__legend-item:active,
+  .impact-map__legend-item--linked {
+    border-color: color-mix(in srgb, var(--impact-node-color) 40%, var(--color-border));
+    box-shadow: 0 0 14px color-mix(in srgb, var(--impact-node-color) 18%, transparent);
+    background: color-mix(in srgb, var(--impact-node-color) 9%, var(--color-bg));
+  }
+}
+
+@media (max-width: 900px) {
+  .impact-map__canvas {
+    width: min(100%, 21rem);
+  }
+}
+
+@media (max-width: 720px) {
+  .impact-map__body {
+    flex: none;
+    gap: 0.85rem;
+  }
+
+  .impact-map__canvas {
+    width: min(100%, 19rem);
+  }
+
+  .impact-map__legend {
+    align-content: start;
+  }
+}
+
+@media (max-width: 560px) {
+  .impact-map__canvas {
+    width: min(100%, 17rem);
+  }
+
+  .impact-map__node {
+    width: clamp(3.35rem, 27%, 4.35rem);
+  }
+
+  .impact-map__node-card {
+    padding: 0.48rem 0.38rem 0.42rem;
+    gap: 0.14rem;
+  }
+
+  .impact-map__legend {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .impact-map__head {
+    gap: 0.5rem;
+  }
+
+  .impact-map__hint {
+    font-size: 0.6875rem;
+  }
+
+  .impact-map__canvas {
+    width: min(100%, 15.5rem);
+  }
+
+  .impact-map__node {
+    width: clamp(3rem, 26%, 3.85rem);
+  }
+
+  .impact-map__node-label {
+    font-size: 0.5625rem;
+    line-height: 1.2;
+  }
+
+  .impact-map__node-glyph {
+    width: 1.15rem;
+    height: 1.15rem;
+    font-size: 0.5rem;
+  }
+
+  .impact-map__node-count {
+    font-size: 0.5rem;
+  }
+
+  .impact-map__core {
+    width: clamp(3.65rem, 27%, 4.5rem);
+    height: clamp(3.65rem, 27%, 4.5rem);
+  }
+
+  .impact-map__core-value {
+    font-size: clamp(0.95rem, 4.8vw, 1.15rem);
+  }
+
+  .impact-map__core-label {
+    font-size: 0.5rem;
+  }
+
+  .impact-map__legend-item {
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas:
+      'glyph copy'
+      'meter meter';
+  }
+
+  .impact-map__legend-glyph {
+    grid-area: glyph;
+  }
+
+  .impact-map__legend-copy {
+    grid-area: copy;
+  }
+
+  .impact-map__legend-meter {
+    grid-area: meter;
+  }
+}
+
+@media (max-width: 380px) {
+  .impact-map__canvas {
+    width: min(100%, 13.75rem);
+  }
+
+  .impact-map__node {
+    width: clamp(2.7rem, 24%, 3.35rem);
+  }
+
+  .impact-map__node-label {
+    display: none;
+  }
+
+  .impact-map__node-card {
+    padding: 0.38rem 0.3rem 0.34rem;
+  }
+}
+
+@keyframes impact-map-core-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes impact-map-canvas-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes impact-map-ring-spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes impact-map-beam-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: var(--impact-beam-opacity, 0.75);
+  }
+}
+
+@keyframes impact-map-node-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.88);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes impact-map-legend-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .impact-map__core-ring,
+  .impact-map__node,
+  .impact-map__legend-item,
+  .impact-map__canvas,
+  .impact-map__ring--outer,
+  .impact-map__ring--inner,
+  .impact-map__beams line {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .impact-map__node {
+    transform: translate(-50%, -50%);
+  }
+
+  .impact-map__ring--outer,
+  .impact-map__ring--inner {
+    transform: translate(-50%, -50%);
+  }
+
+  .exp-outcomes--in-view .impact-map__legend-meter-fill {
+    width: calc(var(--impact-node-score, 0) * 1%);
+  }
+
+  .impact-map__node-card:hover {
+    transform: none;
+  }
+}

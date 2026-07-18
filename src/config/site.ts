@@ -10,7 +10,7 @@ export const siteConfig = {
   url: env.siteUrl,
   resumeUrl: '/resume.pdf',
   profileImageUrl: '/profile.jpg',
-  location: 'Pune, India',
+  location: 'Mumbai, India',
   availability: {
     state: 'open' as const,
     label: 'Open to work',
@@ -18,10 +18,10 @@ export const siteConfig = {
   },
   links: {
     github: 'https://github.com/Prashant-Raghorte',
-    linkedin: 'https://www.linkedin.com/in/Prashant-Raghorte',
-    instagram: 'https://www.instagram.com/Prashant-Raghorte',
-    email: 'hello@prashantraghorte.dev',
-    phone: '+91 9876543210',
+    linkedin: 'https://www.linkedin.com/in/prashant-raghorte',
+    instagram: 'https://www.instagram.com/being.sk_prashant/',
+    email: 'raghorteprashant3@gmail.com',
+    phone: '+91 9309764799',
   },
 } as const
 

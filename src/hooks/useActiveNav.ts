@@ -7,6 +7,7 @@ const HOME_SECTION_IDS = [
   SECTION_IDS.EXPERIENCE,
   SECTION_IDS.SKILLS,
   SECTION_IDS.PROJECTS,
+  SECTION_IDS.CONTACT,
 ]
 
 const ROUTE_ACTIVE_MAP: Record<string, string> = {
@@ -21,6 +22,7 @@ const SCROLL_OFFSET = 140
 function resolveHomeNavSection(sectionId: string): string {
   if (sectionId === SECTION_IDS.EXPERIENCE) return 'experience'
   if (sectionId === SECTION_IDS.PROJECTS) return 'projects'
+  if (sectionId === SECTION_IDS.CONTACT) return 'contact'
   return 'home'
 }
 

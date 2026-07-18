@@ -1,6 +1,8 @@
+import type { CSSProperties } from 'react'
 import type { NavItem } from '@/constants'
 import { NavIcon } from '@/components/navbar/NavIcon'
 import { NavTooltip } from '@/components/navbar/NavTooltip'
+import { ArrowRightIcon } from '@/components/ui/icons'
 import { ROUTES } from '@/constants'
 import { scrollToSection } from '@/utils/scroll'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
@@ -12,9 +14,17 @@ type NavBarLinkProps = {
   isActive: boolean
   onNavigate?: () => void
   registerRef?: (itemId: string, element: HTMLAnchorElement | null) => void
+  style?: CSSProperties
 }
 
-export function NavBarLink({ item, index, isActive, onNavigate, registerRef }: NavBarLinkProps) {
+export function NavBarLink({
+  item,
+  index,
+  isActive,
+  onNavigate,
+  registerRef,
+  style,
+}: NavBarLinkProps) {
   const location = useLocation()
   const navigate = useNavigate()
   const sectionHint = String(index + 1).padStart(2, '0')
@@ -34,20 +44,36 @@ export function NavBarLink({ item, index, isActive, onNavigate, registerRef }: N
     onNavigate?.()
   }
 
+  const linkClass = isActive ? 'navbar-link navbar-link--active' : 'navbar-link'
+
+  const linkContent = (
+    <Link
+      ref={(element) => registerRef?.(item.id, element)}
+      to={item.to}
+      className={linkClass}
+      aria-label={item.label}
+      aria-current={isActive ? 'page' : undefined}
+      onClick={handleClick}
+      style={style}
+    >
+      <span className="navbar-link__beam" aria-hidden="true" />
+      <span className="navbar-link__index" aria-hidden="true">
+        {sectionHint}
+      </span>
+      <span className="navbar-link__icon-wrap" aria-hidden="true">
+        <NavIcon name={item.icon} className="navbar-link__icon" />
+      </span>
+      <span className="navbar-link__label">{item.label}</span>
+      <span className="navbar-link__arrow" aria-hidden="true">
+        <ArrowRightIcon />
+      </span>
+    </Link>
+  )
+
   return (
-    <li>
+    <li className="navbar-link-item">
       <NavTooltip label={item.label} hint={sectionHint}>
-        <Link
-          ref={(element) => registerRef?.(item.id, element)}
-          to={item.to}
-          className={isActive ? 'navbar-link navbar-link--active' : 'navbar-link'}
-          aria-label={item.label}
-          data-label={item.label}
-          aria-current={isActive ? 'page' : undefined}
-          onClick={handleClick}
-        >
-          <NavIcon name={item.icon} className="navbar-link__icon" />
-        </Link>
+        {linkContent}
       </NavTooltip>
     </li>
   )

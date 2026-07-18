@@ -1,0 +1,544 @@
+.immersive {
+  --immersive-enter: 0.7s;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.25rem, 3vw, 1.75rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.immersive__item {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  gap: 0.85rem;
+  align-items: start;
+  scroll-margin-top: calc(var(--header-height) + var(--space-lg));
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity var(--immersive-enter) var(--motion-ease),
+    transform var(--immersive-enter) var(--motion-ease);
+  transition-delay: var(--immersive-delay, 0ms);
+}
+
+.immersive__item--in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.immersive__item--active .immersive__dot {
+  transform: scale(1.2);
+}
+
+.immersive__rail {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1.5rem;
+  min-height: 100%;
+}
+
+.immersive__index {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: color-mix(in srgb, var(--color-accent-primary) 50%, var(--color-text-muted));
+  opacity: 0;
+  transition: opacity var(--immersive-enter) ease;
+  transition-delay: calc(var(--immersive-delay, 0ms) + 80ms);
+}
+
+.immersive__item--in-view .immersive__index {
+  opacity: 1;
+}
+
+.immersive__dot {
+  position: relative;
+  z-index: 1;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 2px solid color-mix(in srgb, var(--color-accent-primary) 45%, var(--color-border));
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-accent-primary) 8%, transparent);
+  transition:
+    transform 0.35s var(--motion-ease),
+    background 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.immersive__dot--current {
+  background: var(--color-accent-primary);
+  border-color: color-mix(in srgb, var(--color-accent-primary) 80%, white);
+  box-shadow:
+    0 0 0 4px color-mix(in srgb, var(--color-accent-primary) 16%, transparent),
+    0 0 20px color-mix(in srgb, var(--color-accent-primary) 50%, transparent);
+}
+
+.immersive__connector {
+  flex: 1;
+  width: 2px;
+  min-height: 2rem;
+  margin-top: 0.4rem;
+  border-radius: 999px;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--color-accent-primary) 45%, var(--color-border)),
+    color-mix(in srgb, var(--color-border) 80%, transparent)
+  );
+  transform-origin: top center;
+  transform: scaleY(0);
+  transition: transform calc(var(--immersive-enter) * 1.1) var(--motion-ease);
+  transition-delay: calc(var(--immersive-delay, 0ms) + 140ms);
+}
+
+.immersive__item--in-view .immersive__connector {
+  transform: scaleY(1);
+}
+
+.immersive__card-col {
+  min-width: 0;
+  max-width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .immersive__item--reverse .immersive__card-col {
+    margin-left: clamp(0.35rem, 2.5vw, 1.35rem);
+  }
+
+  .immersive__item:not(.immersive__item--reverse) .immersive__card-col {
+    margin-right: clamp(0.2rem, 1.2vw, 0.65rem);
+  }
+}
+
+.immersive__card-wrap {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.immersive__item--active .immersive__card-wrap {
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-accent-primary) 22%, transparent);
+}
+
+/* ── Card shell (matches home experience page cards) ── */
+
+.immersive-card {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(0.95rem, 2vw, 1.15rem);
+  background: transparent;
+  transition: background var(--motion-base) ease;
+}
+
+.immersive__card-wrap .shine-card__inner {
+  transition:
+    background var(--motion-base) ease,
+    box-shadow var(--motion-base) ease;
+}
+
+@media (hover: hover) {
+  .immersive__card-wrap.shine-card--hover:hover .shine-card__inner {
+    background:
+      radial-gradient(
+        circle at 100% 0%,
+        color-mix(in srgb, var(--color-accent-primary) 12%, transparent),
+        transparent 46%
+      ),
+      var(--color-surface);
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-accent-primary) 10%, transparent);
+  }
+
+  .immersive__card-wrap.shine-card--hover:hover .immersive-card {
+    background:
+      radial-gradient(
+        circle at var(--immersive-spot-x, 80%) var(--immersive-spot-y, 20%),
+        color-mix(in srgb, var(--color-accent-primary) 8%, transparent),
+        transparent 55%
+      );
+  }
+
+  .immersive__card-wrap.shine-card--hover:hover .exp-identity__fact-value {
+    color: var(--color-accent-primary);
+  }
+
+  .immersive-card__tag:hover {
+    color: var(--color-heading);
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--color-accent-primary) 42%, transparent);
+    background: color-mix(in srgb, var(--color-accent-primary) 14%, var(--color-surface));
+    box-shadow: 0 0 12px color-mix(in srgb, var(--nav-glow) 42%, transparent);
+  }
+
+  .immersive-card__tag:hover .immersive-card__tag-dot {
+    box-shadow: 0 0 8px color-mix(in srgb, var(--nav-glow) 60%, transparent);
+  }
+
+  .immersive-card__tag:hover .immersive-card__tag-icon {
+    transform: scale(1.18);
+    filter: drop-shadow(0 0 6px color-mix(in srgb, var(--nav-glow) 55%, transparent));
+  }
+}
+
+.immersive-card__spotlight {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  background: radial-gradient(
+    360px circle at var(--immersive-spot-x, 50%) var(--immersive-spot-y, 50%),
+    color-mix(in srgb, var(--color-accent-primary) 14%, transparent),
+    transparent 68%
+  );
+  transition: opacity 0.35s ease;
+}
+
+.immersive-card__spotlight--active {
+  opacity: 1;
+}
+
+.immersive-card__scan {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 42%,
+    color-mix(in srgb, var(--color-accent-primary) 8%, transparent) 50%,
+    transparent 58%
+  );
+  transform: translateX(-120%);
+  opacity: 0;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .immersive__card-wrap.shine-card--hover:hover .immersive-card__scan {
+    opacity: 1;
+    animation: immersive-scan 0.85s var(--motion-ease);
+  }
+}
+
+.immersive-card__body {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+.immersive-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  min-width: 0;
+}
+
+/* ── Skill tags ── */
+
+.immersive-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.immersive-card__tag {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  min-height: 1.45rem;
+  padding: 0.22rem 0.58rem 0.22rem 0.48rem;
+  border-radius: 999px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  line-height: 1;
+  letter-spacing: 0.01em;
+  color: var(--color-accent-primary);
+  background: color-mix(in srgb, var(--color-accent-primary) 9%, var(--color-bg));
+  border: 1px solid color-mix(in srgb, var(--color-accent-primary) 22%, transparent);
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    color var(--motion-base) ease,
+    border-color var(--motion-base) ease,
+    background var(--motion-base) ease,
+    box-shadow var(--motion-base) ease,
+    transform var(--motion-base) var(--motion-ease);
+}
+
+.immersive__item:not(.immersive__item--in-view) .immersive-card__tag {
+  opacity: 0;
+  transform: translateY(5px);
+}
+
+.immersive__item--in-view .immersive-card__tag {
+  animation: immersive-tag-in 0.5s var(--motion-ease) forwards;
+  animation-delay: calc(var(--immersive-delay, 0ms) + var(--immersive-tag-delay, 0ms) + 160ms);
+}
+
+.immersive-card__tag-dot {
+  width: 0.28rem;
+  height: 0.28rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--color-accent-primary);
+  box-shadow: 0 0 5px color-mix(in srgb, var(--color-accent-primary) 45%, transparent);
+}
+
+.immersive-card__tag-icon {
+  width: 0.9rem;
+  height: 0.9rem;
+  flex-shrink: 0;
+  object-fit: contain;
+  transition:
+    transform var(--motion-base) var(--motion-ease),
+    filter var(--motion-base) ease;
+}
+
+.immersive-card__tag-label {
+  position: relative;
+}
+
+.immersive-card--active .immersive-card__tag,
+.immersive__item--active .immersive-card__tag {
+  border-color: color-mix(in srgb, var(--color-accent-primary) 35%, transparent);
+  background: color-mix(in srgb, var(--color-accent-primary) 12%, var(--color-bg));
+}
+
+/* ── Highlights ── */
+
+.immersive-card__highlights {
+  padding-top: 0.15rem;
+  padding-left: clamp(0.4rem, 1.8vw, 0.65rem);
+  border-top: 1px solid color-mix(in srgb, var(--color-border) 55%, transparent);
+}
+
+.immersive-card__list-wrap {
+  min-width: 0;
+}
+
+.immersive-card__list {
+  margin: 0.55rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+.immersive-card__list-item {
+  position: relative;
+  max-width: 100%;
+  padding-left: 1.05rem;
+  color: var(--color-text-muted);
+  opacity: 1;
+  transform: translateX(0);
+  transition: color var(--motion-base) ease;
+}
+
+.immersive-card__list-item.prose {
+  max-width: 100%;
+}
+
+.immersive__item:not(.immersive__item--in-view) .immersive-card__list-item {
+  opacity: 0;
+  transform: translateX(-6px);
+}
+
+.immersive-card__list-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-accent-primary) 70%, transparent);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--color-accent-primary) 35%, transparent);
+  transition: box-shadow var(--motion-base) ease;
+}
+
+.immersive__item--in-view .immersive-card__list-item {
+  animation: immersive-list-in 0.5s var(--motion-ease) forwards;
+  animation-delay: calc(var(--immersive-delay, 0ms) + 220ms + (var(--immersive-list-index, 0) * 60ms));
+}
+
+.immersive-card__list-item:nth-child(1) { --immersive-list-index: 0; }
+.immersive-card__list-item:nth-child(2) { --immersive-list-index: 1; }
+.immersive-card__list-item:nth-child(3) { --immersive-list-index: 2; }
+.immersive-card__list-item:nth-child(4) { --immersive-list-index: 3; }
+.immersive-card__list-item:nth-child(5) { --immersive-list-index: 4; }
+.immersive-card__list-item:nth-child(6) { --immersive-list-index: 5; }
+.immersive-card__list-item:nth-child(7) { --immersive-list-index: 6; }
+
+@media (hover: hover) {
+  .immersive-card__list-item:hover {
+    color: var(--color-heading);
+  }
+
+  .immersive-card__list-item:hover::before {
+    box-shadow: 0 0 10px color-mix(in srgb, var(--nav-glow) 50%, transparent);
+  }
+}
+
+.immersive-card--active {
+  background: transparent;
+}
+
+/* ── Responsive (mobile & tablet only — desktop ≥1024px unchanged) ── */
+
+@media (max-width: 1023px) {
+  .immersive {
+    gap: 1rem;
+  }
+
+  .immersive__item {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    scroll-margin-top: calc(var(--header-height) + var(--space-sm));
+  }
+
+  .immersive__rail {
+    display: none;
+  }
+
+  .immersive__card-wrap {
+    overflow: hidden;
+    border-radius: 0.95rem;
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--color-border) 80%, transparent),
+      0 10px 28px color-mix(in srgb, var(--color-bg) 55%, transparent);
+    transition:
+      box-shadow var(--motion-base) ease,
+      transform var(--motion-base) ease;
+  }
+
+  .immersive__item--active .immersive__card-wrap {
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--color-accent-primary) 32%, var(--color-border)),
+      0 14px 36px color-mix(in srgb, var(--color-accent-primary) 12%, transparent);
+  }
+
+  .immersive__card-wrap .shine-card__inner {
+    overflow: hidden;
+    border-radius: inherit;
+  }
+
+  .immersive-card {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    overflow: hidden;
+    border-radius: inherit;
+    background: var(--color-surface);
+  }
+
+  .immersive-card__identity-desktop,
+  .immersive-card__tags {
+    display: none;
+  }
+
+  .immersive-card__body--mobile {
+    margin-top: 0;
+    padding: 0.8rem 0.85rem 0.85rem;
+    border: none;
+    border-radius: 0;
+    background: var(--color-surface);
+  }
+
+  .immersive-card__content {
+    gap: 0;
+  }
+
+  .immersive-card__highlights {
+    padding: 0;
+    border-top: none;
+  }
+
+  .immersive-card__list {
+    gap: 0.45rem;
+    margin-top: 0;
+  }
+
+  .immersive-card__list-item {
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    padding-left: 0.95rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .immersive-card__body--mobile {
+    padding: 0.75rem 0.75rem 0.8rem;
+  }
+}
+
+/* ── Keyframes ── */
+
+@keyframes immersive-tag-in {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes immersive-list-in {
+  from {
+    opacity: 0;
+    transform: translateX(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes immersive-scan {
+  to {
+    transform: translateX(120%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .immersive__item,
+  .immersive__index,
+  .immersive__connector,
+  .immersive__dot,
+  .immersive__card-wrap,
+  .immersive-card {
+    transition: none;
+  }
+
+  .immersive__item {
+    opacity: 1;
+    transform: none;
+  }
+
+  .immersive__connector {
+    transform: scaleY(1);
+  }
+
+  .immersive-card__scan {
+    display: none;
+  }
+
+  .immersive-card__tag,
+  .immersive-card__list-item {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

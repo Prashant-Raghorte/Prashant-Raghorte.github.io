@@ -1,0 +1,236 @@
+.exp-skill-focus {
+  --exp-skill-focus-enter: 0.55s;
+}
+
+.exp-skill-focus__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  margin-bottom: 0.7rem;
+}
+
+.exp-skill-focus__accent {
+  width: 0.32rem;
+  height: 1.15rem;
+  margin-top: 0.15rem;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: linear-gradient(
+    to bottom,
+    var(--color-accent-primary),
+    color-mix(in srgb, var(--color-accent-primary) 25%, transparent)
+  );
+  box-shadow: 0 0 10px color-mix(in srgb, var(--color-accent-primary) 38%, transparent);
+}
+
+.exp-skill-focus__title {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-accent-primary);
+}
+
+.exp-skill-focus__hint {
+  margin: 0.2rem 0 0;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--color-text-muted);
+}
+
+.exp-skill-focus__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.exp-skill-focus__category {
+  opacity: 0;
+  transform: translateX(-8px);
+}
+
+.exp-stage--in-view .exp-skill-focus__category {
+  animation: exp-skill-focus-in var(--exp-skill-focus-enter) var(--motion-ease) forwards;
+  animation-delay: var(--exp-skill-focus-delay, 0ms);
+}
+
+.exp-skill-focus__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.28rem;
+}
+
+.exp-skill-focus__label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+.exp-skill-focus__count {
+  flex-shrink: 0;
+  min-width: 1.15rem;
+  padding: 0.1rem 0.35rem;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  color: var(--color-accent-primary);
+  background: color-mix(in srgb, var(--color-accent-primary) 10%, var(--color-bg));
+  border: 1px solid color-mix(in srgb, var(--color-accent-primary) 22%, transparent);
+}
+
+.exp-skill-focus__track {
+  display: block;
+  height: 0.28rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-border) 65%, transparent);
+  overflow: hidden;
+}
+
+.exp-skill-focus__fill {
+  display: block;
+  height: 100%;
+  width: var(--exp-skill-focus-score, 0%);
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--color-accent-primary) 55%, transparent),
+    var(--color-accent-primary)
+  );
+  box-shadow: 0 0 10px color-mix(in srgb, var(--color-accent-primary) 45%, transparent);
+  transition: width 0.65s var(--motion-ease);
+}
+
+.exp-skill-focus__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.45rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.exp-skill-focus__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  min-height: 1.45rem;
+  padding: 0.22rem 0.58rem 0.22rem 0.48rem;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: normal;
+  color: var(--color-accent-primary);
+  background: color-mix(in srgb, var(--color-accent-primary) 9%, var(--color-bg));
+  border: 1px solid color-mix(in srgb, var(--color-accent-primary) 22%, transparent);
+  transition:
+    border-color var(--motion-base) ease,
+    box-shadow var(--motion-base) ease,
+    transform var(--motion-base) var(--motion-ease);
+}
+
+.exp-skill-focus__tag-dot {
+  width: 0.28rem;
+  height: 0.28rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--color-accent-primary);
+  box-shadow: 0 0 5px color-mix(in srgb, var(--color-accent-primary) 45%, transparent);
+  transition:
+    transform var(--motion-base) var(--motion-ease),
+    box-shadow var(--motion-base) ease;
+}
+
+.exp-skill-focus__tag-icon {
+  width: 0.9rem;
+  height: 0.9rem;
+  flex-shrink: 0;
+  object-fit: contain;
+  transition:
+    transform var(--motion-base) var(--motion-ease),
+    filter var(--motion-base) ease;
+}
+
+@media (hover: hover) {
+  .exp-skill-focus__category:hover .exp-skill-focus__fill {
+    box-shadow: 0 0 14px color-mix(in srgb, var(--nav-glow) 55%, transparent);
+  }
+
+  .exp-skill-focus__tag:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--color-accent-primary) 40%, transparent);
+    box-shadow: 0 0 12px color-mix(in srgb, var(--nav-glow) 40%, transparent);
+  }
+
+  .exp-skill-focus__tag:hover .exp-skill-focus__tag-icon {
+    transform: scale(1.18);
+    filter: drop-shadow(0 0 6px color-mix(in srgb, var(--nav-glow) 55%, transparent));
+  }
+}
+
+@keyframes exp-skill-focus-in {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .exp-skill-focus__category {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .exp-skill-focus__fill {
+    transition: none;
+  }
+}
+
+@media (max-width: 1023px) {
+  .exp-skill-focus__head {
+    margin-bottom: 0.55rem;
+  }
+
+  .exp-skill-focus__title {
+    font-size: 0.7rem;
+  }
+
+  .exp-skill-focus__hint {
+    font-size: 0.7rem;
+    line-height: 1.4;
+  }
+
+  .exp-skill-focus__list {
+    gap: 0.55rem;
+  }
+
+  .exp-skill-focus__label {
+    font-size: 0.7rem;
+  }
+
+  .exp-skill-focus__tag {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem 0.2rem 0.42rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .exp-skill-focus__tags {
+    gap: 0.3rem;
+  }
+}
