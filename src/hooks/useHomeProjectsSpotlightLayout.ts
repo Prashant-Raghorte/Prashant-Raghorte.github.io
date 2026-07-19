@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState, type RefObject } from 'react'
+import { useLayoutEffect, useState, type RefObject } from 'react'
 import { getSkillIcon } from '@/utils/skillIcons'
 
 const DESKTOP_LAYOUT_MIN = 993
@@ -314,28 +314,4 @@ export function useProjectCardTagsLine(
   }, [containerRef, tags])
 
   return tagLimit
-}
-
-/** @deprecated Use useSpotlightTagsLine for per-project spotlight rows. */
-export function useHomeProjectsSpotlightLayout() {
-  const [tagLimit, setTagLimit] = useState(() =>
-    typeof window !== 'undefined'
-      ? getSpotlightTagLimit(window.innerWidth)
-      : 2,
-  )
-
-  useEffect(() => {
-    const syncLayout = () => {
-      setTagLimit(getSpotlightTagLimit(window.innerWidth))
-    }
-
-    syncLayout()
-    window.addEventListener('resize', syncLayout)
-
-    return () => {
-      window.removeEventListener('resize', syncLayout)
-    }
-  }, [])
-
-  return { tagLimit }
 }

@@ -12,6 +12,7 @@ import { useInView } from '@/hooks/useInView'
 import { useSpotlight } from '@/hooks/useSpotlight'
 import { getExperienceAnchorId } from '@/utils/experienceHelpers'
 import { extractExperienceTags } from '@/utils/experienceTags'
+import { getSkillIcon } from '@/utils/skillIcons'
 import '@/components/common/ViewAllCard.css'
 import '@/components/experience/ExperienceCareerSnapshot.css'
 import '@/components/experience/ExperienceCardEffects.css'
@@ -181,11 +182,26 @@ function HomeExperienceDigest({ item }: HomeExperienceDigestProps) {
 
       {visibleTags.length > 0 ? (
         <ul className="home-experience__tech" aria-label="Technologies">
-          {visibleTags.map((tag) => (
-            <li key={tag} className="home-experience__tech-tag">
-              <span className="home-experience__tech-surface">{tag}</span>
-            </li>
-          ))}
+          {visibleTags.map((tag) => {
+            const icon = getSkillIcon(tag)
+
+            return (
+              <li key={tag} className="home-experience__tech-tag">
+                <span className="home-experience__tech-surface">
+                  {icon ? (
+                    <img
+                      src={icon}
+                      alt=""
+                      className="home-experience__tech-icon"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : null}
+                  {tag}
+                </span>
+              </li>
+            )
+          })}
           {moreSkills > 0 ? (
             <li className="home-experience__tech-more">{roleCopy.moreSkills(moreSkills)}</li>
           ) : null}

@@ -7,7 +7,6 @@ import { PageMeta } from '@/components/seo/PageMeta'
 import { ProjectsPageShowcase } from '@/sections/projects/ProjectsPageShowcase'
 import { getSkillsFromSearchParams, skillsToSearchParams } from '@/utils/projectRoutes'
 import '@/components/common/PageHeader.css'
-import '@/sections/projects/ProjectsPageCatalog.css'
 
 export function ProjectsPage() {
   const [searchParams, setSearchParams] = useSearchParams()

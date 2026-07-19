@@ -29,43 +29,6 @@ export function getPythonBuildCount(items: Project[]): number {
   return items.filter((project) => project.tags.includes('Python')).length
 }
 
-export type SkillOverlap = {
-  skill: string
-  count: number
-  maxCount: number
-  iconSkill?: string
-}
-
-const FEATURED_STACK_OVERLAP = [
-  { label: 'Python', matchTags: ['Python'] },
-  { label: 'Django', matchTags: ['Django'] },
-  { label: 'DRF', matchTags: ['DRF', 'Django REST Framework'] },
-  { label: 'Rest API', matchTags: ['Rest API', 'REST APIs'] },
-  { label: 'Postgres', matchTags: ['PostgreSQL'], iconSkill: 'PostgreSQL' },
-  {
-    label: 'LLM Integration',
-    matchTags: ['OpenAI API', 'Claude API', 'Gemini API', 'LLM'],
-    iconSkill: 'OpenAI API',
-  },
-] as const
-
-function countProjectsWithTags(items: Project[], matchTags: readonly string[]): number {
-  return items.filter((project) => matchTags.some((tag) => project.tags.includes(tag))).length
-}
-
-export function getFeaturedSkillOverlaps(items: Project[]): SkillOverlap[] {
-  const rows = FEATURED_STACK_OVERLAP.map((entry) => ({
-    skill: entry.label,
-    count: countProjectsWithTags(items, entry.matchTags),
-    maxCount: 1,
-    iconSkill: 'iconSkill' in entry ? entry.iconSkill : entry.label,
-  }))
-
-  const maxCount = Math.max(...rows.map((row) => row.count), 1)
-
-  return rows.map((row) => ({ ...row, maxCount }))
-}
-
 export type PortfolioSkill = {
   skill: string
   count: number
@@ -236,21 +199,4 @@ export function getSortedProjectTags(tags: string[]): string[] {
     if (orderA !== orderB) return orderA - orderB
     return a.localeCompare(b)
   })
-}
-
-export function getTopSkillOverlaps(items: Project[], limit = 6): SkillOverlap[] {
-  const counts = new Map<string, number>()
-
-  for (const project of items) {
-    for (const tag of project.tags) {
-      counts.set(tag, (counts.get(tag) ?? 0) + 1)
-    }
-  }
-
-  const maxCount = Math.max(...counts.values(), 1)
-
-  return Array.from(counts.entries())
-    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
-    .slice(0, limit)
-    .map(([skill, count]) => ({ skill, count, maxCount }))
 }

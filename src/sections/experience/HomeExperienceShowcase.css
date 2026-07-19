@@ -985,6 +985,17 @@
     box-shadow var(--motion-base) ease;
 }
 
+.home-experience__tech-surface {
+  gap: 0.3rem;
+}
+
+.home-experience__tech-icon {
+  width: 0.75rem;
+  height: 0.75rem;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
 .home-experience__tech-more {
   flex-shrink: 0;
   color: var(--color-accent-primary);
