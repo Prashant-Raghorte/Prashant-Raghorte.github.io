@@ -479,6 +479,17 @@ function StackLatticePanel({ skills, activeProject }: StackLatticePanelProps) {
                   key={item.skill}
                   className={[
                     'projects-hero__stack-node',
+                    y > 50 ? 'projects-hero__stack-node--south' : '',
+                    // Deepest and topmost nodes: tooltip opens sideways (toward center)
+                    // to clear the card's bottom/top border
+                    y >= 78 || y <= 22
+                      ? x >= 50
+                        ? 'projects-hero__stack-node--side-left'
+                        : 'projects-hero__stack-node--side-right'
+                      : '',
+                    // Middle-ring right node (level with the center core): open the tip
+                    // below with extra gap so its wide body clears the core card
+                    x >= 78 && x <= 90 && y > 40 && y < 60 ? 'projects-hero__stack-node--tip-under' : '',
                     isActive ? 'projects-hero__stack-node--active' : '',
                     isHovered ? 'projects-hero__stack-node--hovered' : '',
                     isLinked ? 'projects-hero__stack-node--linked' : '',
@@ -517,6 +528,26 @@ function StackLatticePanel({ skills, activeProject }: StackLatticePanelProps) {
                           {item.skill.charAt(0)}
                         </span>
                       )}
+                    </span>
+                    <span className="projects-hero__stack-tip" aria-hidden="true">
+                      <span className="projects-hero__stack-tip-shine" />
+                      <span className="projects-hero__stack-tip-head">
+                        {icon ? (
+                          <span className="projects-hero__stack-tip-icon-wrap">
+                            <img src={icon} alt="" className="projects-hero__stack-tip-icon" loading="lazy" decoding="async" />
+                          </span>
+                        ) : null}
+                        <span className="projects-hero__stack-tip-name">{item.skill}</span>
+                      </span>
+                      <span className="projects-hero__stack-tip-meta">
+                        <span className="projects-hero__stack-tip-count">
+                          {item.count} {item.count === 1 ? 'project' : 'projects'}
+                        </span>
+                        <span className="projects-hero__stack-tip-track">
+                          <span className="projects-hero__stack-tip-fill" />
+                        </span>
+                      </span>
+                      <span className="projects-hero__stack-tip-arrow" />
                     </span>
                   </button>
                 </li>

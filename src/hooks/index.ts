@@ -5,11 +5,6 @@ export { useHashScroll } from '@/hooks/useHashScroll'
 export { useActiveExperience } from '@/hooks/useActiveExperience'
 export { useInView } from '@/hooks/useInView'
 export {
-  countTagsForLines,
-  countTagsForSingleLine,
-  getProjectCardTagLimit,
-  getSpotlightTagLimit,
-  useHomeProjectsSpotlightLayout,
   useProjectCardTagsLine,
   useSpotlightTagsLine,
 } from '@/hooks/useHomeProjectsSpotlightLayout'
