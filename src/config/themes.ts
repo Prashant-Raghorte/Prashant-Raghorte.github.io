@@ -14,7 +14,7 @@ export const themes: ThemeMeta[] = [
   { id: 'sunset', label: 'Sunset' },
 ]
 
-export const DEFAULT_THEME: ThemeId = 'dark'
+export const DEFAULT_THEME: ThemeId = 'light'
 
 export const THEME_STORAGE_KEY = 'portfolio-theme'
 

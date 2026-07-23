@@ -116,6 +116,59 @@
   gap: clamp(1.75rem, 4vw, 2.75rem);
 }
 
+.contact-studio__head {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  margin-bottom: calc(clamp(1rem, 2.5vw, 1.35rem) - clamp(1.75rem, 4vw, 2.75rem));
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.7s var(--motion-ease),
+    transform 0.7s var(--motion-ease);
+}
+
+.contact-studio--in-view .contact-studio__head {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.contact-studio__head-accent {
+  width: 0.4rem;
+  height: 1.5rem;
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: linear-gradient(
+    to bottom,
+    var(--color-accent-primary),
+    color-mix(in srgb, var(--color-accent-primary) 25%, transparent)
+  );
+  box-shadow: 0 0 14px color-mix(in srgb, var(--color-accent-primary) 42%, transparent);
+}
+
+.contact-studio__head-copy {
+  min-width: 0;
+}
+
+.contact-studio__head-title {
+  margin: 0 0 0.3rem;
+  font-size: clamp(1.15rem, 2.8vw, 1.45rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-heading);
+}
+
+.contact-studio__head-hint {
+  margin: 0;
+  max-width: 36rem;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
 /* Shared liquid-glass card shell + ShineBorderCard corners (matches Product portfolio) */
 .contact-glass.shine-card {
   --spot-x: 50%;

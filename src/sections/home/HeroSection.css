@@ -19,6 +19,33 @@
   max-width: 44rem;
 }
 
+.hero__availability {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem 0.85rem;
+  margin-bottom: var(--space-md);
+}
+
+.hero__availability-badge {
+  flex-direction: row;
+  align-items: center;
+}
+
+.hero__availability-meta {
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
+  color: var(--color-text-muted);
+}
+
+.hero__availability-sep {
+  margin-inline: 0.4rem;
+  opacity: 0.55;
+}
+
 .hero__intro {
   display: flex;
   flex-direction: column;

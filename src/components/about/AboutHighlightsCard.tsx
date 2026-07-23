@@ -23,7 +23,7 @@ export function AboutHighlightsCard() {
   const focusId = useId()
   const panelId = useId()
   const cardRef = useRef<HTMLElement>(null)
-  const [active, setActive] = useState(1)
+  const [active, setActive] = useState(0)
   const [pointer, setPointer] = useState({ x: 72, y: 28 })
   const [cardHot, setCardHot] = useState(false)
 

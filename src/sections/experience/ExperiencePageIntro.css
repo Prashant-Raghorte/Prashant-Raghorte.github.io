@@ -495,6 +495,7 @@
 .career-hero__stack-chips li {
   display: inline-flex;
   align-items: center;
+  gap: 0.3rem;
   min-height: 1.65rem;
   padding: 0.28rem 0.62rem;
   border-radius: 999px;
@@ -513,6 +514,13 @@
     background var(--motion-base) ease,
     box-shadow var(--motion-base) ease,
     transform var(--motion-base) var(--motion-ease);
+}
+
+.career-hero__stack-icon {
+  width: 0.8125rem;
+  height: 0.8125rem;
+  flex-shrink: 0;
+  object-fit: contain;
 }
 
 .career-hero__stack-chip--production {

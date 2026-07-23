@@ -34,7 +34,7 @@ const pageSeoEntries: Record<SeoPage, PageSeoEntry> = {
   },
   contact: {
     title: `${siteCopy.pages.contact.title} | ${siteConfig.name}`,
-    description: siteCopy.pages.contact.subtitle,
+    description: siteCopy.pages.contact.lede,
     path: ROUTES.CONTACT,
   },
 }
@@ -46,7 +46,7 @@ export function getAbsoluteUrl(path: string): string {
 }
 
 export function getOgImageUrl(): string {
-  return getAbsoluteUrl(siteConfig.profileImageUrl)
+  return getAbsoluteUrl('/og-image.png')
 }
 
 export function getPageSeo(page: SeoPage): PageSeoEntry & { url: string; image: string } {

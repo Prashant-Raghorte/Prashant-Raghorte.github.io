@@ -20,9 +20,13 @@ export const siteCopy = {
       subtitle: 'SaaS products, APIs, and interfaces designed, built, and shipped',
     },
     contact: {
-      title: 'Start the conversation',
-      subtitle:
+      title: 'Contact',
+      subtitle: 'Roles, freelance builds, and technical collaborations',
+      lede:
         'Roles, freelance builds, and technical collaborations — drop the brief in the thread and I’ll reply within one to two business days.',
+      showcaseWidgetTitle: 'Contact desk',
+      showcaseWidgetHint:
+        'Availability, live routes, and response timing across open channels',
     },
   },
 

@@ -311,6 +311,8 @@ type ProductSpotlightProps = {
 function ProductSpotlight({ project }: ProductSpotlightProps) {
   const copy = siteCopy.sections.projectsPage
   const sortedTags = getSortedProjectTags(project.tags)
+  const visibleTags = sortedTags.slice(0, 8)
+  const hiddenTagCount = Math.max(sortedTags.length - visibleTags.length, 0)
 
   return (
     <article className="projects-hero__spotlight">
@@ -334,7 +336,7 @@ function ProductSpotlight({ project }: ProductSpotlightProps) {
           <div className="projects-hero__spotlight-skills">
             <span className="projects-hero__spotlight-skills-label">{copy.spotlightStackLabel}</span>
             <ul className="projects-hero__spotlight-tags" aria-label={`${project.title} tech stack`}>
-              {sortedTags.map((tag) => {
+              {visibleTags.map((tag) => {
                 const icon = getSkillIcon(tag)
 
                 return (
@@ -352,6 +354,11 @@ function ProductSpotlight({ project }: ProductSpotlightProps) {
                   </li>
                 )
               })}
+              {hiddenTagCount > 0 ? (
+                <li className="projects-hero__spotlight-tag projects-hero__spotlight-tag--more">
+                  +{hiddenTagCount}
+                </li>
+              ) : null}
             </ul>
           </div>
 

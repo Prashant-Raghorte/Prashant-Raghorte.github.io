@@ -14,6 +14,7 @@ import {
   YEARS_EXPERIENCE,
 } from '@/utils/experienceHelpers'
 import { buildHeroTechStack } from '@/utils/experienceTags'
+import { getSkillIcon } from '@/utils/skillIcons'
 import { experienceKeyWins } from '@/data/portfolio'
 import './ExperiencePageIntro.css'
 import '@/components/experience/CompanyLogo.css'
@@ -126,16 +127,29 @@ export function ExperiencePageIntro({ items, inView }: ExperiencePageIntroProps)
               <div className="career-hero__stack">
                 <span className="career-hero__stack-label">{copy.stackLabel}</span>
                 <ul className="career-hero__stack-chips" aria-label={copy.stackLabel}>
-                  {techStack.map((item) => (
-                    <li
-                      key={item.label}
-                      className={
-                        item.variant === 'production' ? 'career-hero__stack-chip--production' : ''
-                      }
-                    >
-                      {item.label}
-                    </li>
-                  ))}
+                  {techStack.map((item) => {
+                    const icon = getSkillIcon(item.label)
+
+                    return (
+                      <li
+                        key={item.label}
+                        className={
+                          item.variant === 'production' ? 'career-hero__stack-chip--production' : ''
+                        }
+                      >
+                        {icon ? (
+                          <img
+                            src={icon}
+                            alt=""
+                            className="career-hero__stack-icon"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        ) : null}
+                        {item.label}
+                      </li>
+                    )
+                  })}
                 </ul>
               </div>
             </div>
