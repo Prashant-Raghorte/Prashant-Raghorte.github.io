@@ -4,7 +4,7 @@ export const siteCopy = {
   description:
     'Backend engineer with 3.5+ years shipping production systems in Python, Django, and DRF — REST APIs, Celery pipelines, LLM integrations, and multi-database architecture.',
   metaDescription:
-    'Prashant Raghorte — SDE I (Backend) specializing in Python, Django, DRF, REST APIs, Celery, Elasticsearch, LLM integration, and AWS.',
+    'Prashant Raghorte — SDE I (Backend). Python, Django, DRF, REST APIs, Celery, Elasticsearch, LLMs & AWS.',
 
   pages: {
     about: {
