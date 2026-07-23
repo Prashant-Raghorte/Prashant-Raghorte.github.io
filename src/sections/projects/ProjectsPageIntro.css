@@ -1380,6 +1380,19 @@
   .projects-hero__bento {
     grid-template-columns: 1fr;
   }
+
+  /* Keep tech tags from overlapping key highlights when tags wrap in the fixed spotlight layer */
+  .projects-hero__spotlight-skills {
+    flex: 1 1 0;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .projects-hero__spotlight-highlights {
+    flex: 0 0 auto;
+    position: relative;
+    z-index: 2;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1100px) {
@@ -1447,7 +1460,29 @@
     flex-direction: column;
     align-items: stretch;
     gap: 0.65rem;
+    height: auto;
     padding: 0.75rem;
+  }
+
+  /* Mobile: let focused spotlight size to content instead of absolute-fill (avoids tag/highlight overlap) */
+  .projects-hero__brief-stage--focus .projects-hero__brief-layer--hidden {
+    display: none;
+  }
+
+  .projects-hero__brief-stage--focus .projects-hero__brief-layer--spotlight {
+    position: relative;
+    inset: auto;
+    overflow: visible;
+  }
+
+  .projects-hero__spotlight-skills {
+    flex: 0 0 auto;
+    overflow: visible;
+  }
+
+  .projects-hero__spotlight-stack,
+  .projects-hero__spotlight-tags {
+    overflow: visible;
   }
 
   .projects-hero__constellation {
@@ -1614,8 +1649,9 @@
     gap: 0.38rem;
   }
 
+  /* Keep 2-col highlights on mobile so tags + highlights fit without stacking collision */
   .projects-hero__spotlight-highlights-list {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
