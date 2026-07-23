@@ -1,12 +1,14 @@
 import { useEffect, useState, type CSSProperties } from 'react'
 import { siteCopy } from '@/config/copy'
 import { siteConfig } from '@/config/site'
+import { PageHeader } from '@/components/common/PageHeader'
 import { ContactConnectPanel } from '@/sections/contact/ContactConnectPanel'
 import { ContactForm } from '@/sections/contact/ContactForm'
 import { PageMeta } from '@/components/seo/PageMeta'
 import { ShineBorderCard } from '@/components/ui/ShineBorderCard'
 import { useInView } from '@/hooks/useInView'
 import { getContactChannels } from '@/utils/contactChannels'
+import '@/components/common/PageHeader.css'
 import '@/components/ui/ShineBorderCard.css'
 import '@/sections/contact/ContactSection.css'
 
@@ -43,6 +45,11 @@ export function ContactPage() {
   return (
     <>
       <PageMeta page="contact" />
+      <PageHeader
+        className="page-header--projects"
+        title={siteCopy.pages.contact.title}
+        subtitle={siteCopy.pages.contact.subtitle}
+      />
 
       <section
         ref={ref}
@@ -59,6 +66,18 @@ export function ContactPage() {
             <span className="contact-studio__mesh" />
             <span className="contact-studio__noise" />
           </div>
+
+          <header className="contact-studio__head">
+            <span className="contact-studio__head-accent" aria-hidden="true" />
+            <div className="contact-studio__head-copy">
+              <h2 className="contact-studio__head-title">
+                {siteCopy.pages.contact.showcaseWidgetTitle}
+              </h2>
+              <p className="contact-studio__head-hint">
+                {siteCopy.pages.contact.showcaseWidgetHint}
+              </p>
+            </div>
+          </header>
 
           <ShineBorderCard
             hoverOnly
@@ -224,16 +243,16 @@ export function ContactPage() {
                 </span>
               </div>
 
-              <h1 id="contact-studio-title" className="contact-studio__title">
+              <h2 id="contact-studio-title" className="contact-studio__title">
                 <span className="contact-studio__title-line">Start</span>
                 <span className="contact-studio__title-line contact-studio__title-line--accent">
                   the conversation
                 </span>
-              </h1>
+              </h2>
 
               <p className="contact-studio__lede">
                 <span className="contact-studio__lede-rail" aria-hidden="true" />
-                <span className="contact-studio__lede-copy">{siteCopy.pages.contact.subtitle}</span>
+                <span className="contact-studio__lede-copy">{siteCopy.pages.contact.lede}</span>
               </p>
 
               <ShineBorderCard

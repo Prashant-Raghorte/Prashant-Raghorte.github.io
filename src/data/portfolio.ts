@@ -423,6 +423,6 @@ export const projects: Project[] = [
     ],
     repoUrl: 'https://github.com/Prashant-Raghorte/Prashant-Raghorte.github.io',
     url: 'https://prashant-raghorte.github.io',
-    logoUrl: '/favicon.svg',
+    logoUrl: '/project-logos/developer-portfolio.svg',
   },
 ]
