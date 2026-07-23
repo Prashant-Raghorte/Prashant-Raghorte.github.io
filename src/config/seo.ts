@@ -46,7 +46,7 @@ export function getAbsoluteUrl(path: string): string {
 }
 
 export function getOgImageUrl(): string {
-  return getAbsoluteUrl('/og-image.png')
+  return getAbsoluteUrl('/og-image.jpg')
 }
 
 export function getPageSeo(page: SeoPage): PageSeoEntry & { url: string; image: string } {
